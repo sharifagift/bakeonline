@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>BakeOnline Shop — Baking Supplies</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--cream:#FDF6EC;--warm:#FFFAF3;--brown:#3B1F0D;--caramel:#C47B2B;--gold:#E8A83E;--soft:#8C5A2E;--tan:#F0DFC0;--dark:#1E0F05;--red:#C0392B;--green:#2D6A4F;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--brown);}
+
+/* NAV */
+nav{background:var(--brown);padding:0 5%;height:66px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;}
+.nav-logo img{height:46px;width:auto;}
+.nav-logo-text{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:900;color:var(--cream);}
+.nav-logo-text span{color:var(--gold);}
+.nav-right{display:flex;align-items:center;gap:1rem;}
+.nav-back-link{font-size:0.82rem;color:rgba(253,246,236,0.6);text-decoration:none;}
+.nav-back-link:hover{color:var(--gold);}
+.cart-btn{background:var(--caramel);color:#fff;border:none;border-radius:8px;padding:0.45rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:0.5rem;transition:background 0.2s;}
+.cart-btn:hover{background:#a8611a;}
+.cart-count{background:var(--gold);color:var(--brown);width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;}
+
+/* HERO */
+.shop-hero{background:linear-gradient(135deg,var(--brown) 0%,#5a2d0c 100%);padding:3rem 5%;position:relative;overflow:hidden;}
+.shop-hero::before{content:'';position:absolute;width:400px;height:400px;border-radius:50%;background:rgba(232,168,62,0.08);top:-150px;right:-100px;}
+.shop-hero-tag{display:inline-block;background:rgba(232,168,62,0.15);color:var(--gold);font-size:0.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:0.28rem 0.9rem;border-radius:100px;margin-bottom:0.7rem;}
+.shop-hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:var(--cream);margin-bottom:0.4rem;}
+.shop-hero h1 em{color:var(--gold);font-style:italic;}
+.shop-hero p{color:rgba(253,246,236,0.55);font-size:0.92rem;font-weight:300;}
+.delivery-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(45,106,79,0.2);color:#8ecfa0;font-size:0.75rem;font-weight:600;padding:0.3rem 0.8rem;border-radius:100px;margin-top:0.8rem;border:1px solid rgba(45,106,79,0.3);}
+
+/* FILTER BAR */
+.filter-bar{background:var(--warm);border-bottom:1px solid rgba(196,123,43,0.12);padding:1rem 5%;display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;position:sticky;top:66px;z-index:100;}
+.filter-btn{background:var(--cream);border:1.5px solid rgba(196,123,43,0.2);border-radius:100px;padding:0.38rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:500;color:var(--soft);cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.filter-btn:hover{border-color:var(--caramel);color:var(--caramel);}
+.filter-btn.active{background:var(--caramel);border-color:var(--caramel);color:#fff;}
+.search-input{flex:1;min-width:180px;padding:0.38rem 0.9rem;border:1.5px solid rgba(196,123,43,0.2);border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.82rem;color:var(--brown);background:var(--cream);outline:none;}
+.search-input:focus{border-color:var(--caramel);}
+
+/* PRODUCTS GRID */
+.shop-main{max-width:1100px;margin:0 auto;padding:2rem 5%;}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem;}
+
+/* PRODUCT CARD */
+.product-card{background:var(--warm);border:1px solid rgba(196,123,43,0.15);border-radius:16px;overflow:hidden;transition:box-shadow 0.2s,transform 0.2s;display:flex;flex-direction:column;}
+.product-card:hover{box-shadow:0 16px 40px rgba(59,31,13,0.1);transform:translateY(-3px);}
+.product-card.out-of-stock{opacity:0.65;}
+.product-img{height:180px;background:linear-gradient(135deg,var(--tan) 0%,#e8d0a8 100%);display:flex;align-items:center;justify-content:center;font-size:3.5rem;position:relative;overflow:hidden;}
+.product-img img{width:100%;height:100%;object-fit:cover;}
+.product-badge{position:absolute;top:10px;left:10px;font-size:0.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:0.22rem 0.6rem;border-radius:100px;}
+.badge-new{background:var(--green);color:#fff;}
+.badge-hot{background:var(--caramel);color:#fff;}
+.badge-out{background:var(--red);color:#fff;}
+.stock-bar{position:absolute;bottom:0;left:0;right:0;background:rgba(30,15,5,0.65);padding:0.32rem 0.7rem;display:flex;align-items:center;justify-content:space-between;}
+.stock-text{font-size:0.65rem;font-weight:600;color:var(--cream);}
+.stock-dots{display:flex;gap:2px;}
+.sdot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.25);}
+.sdot.on{background:var(--gold);}
+.product-body{padding:1.2rem;flex:1;display:flex;flex-direction:column;}
+.product-cat{font-size:0.65rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--caramel);margin-bottom:0.3rem;}
+.product-name{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--brown);margin-bottom:0.4rem;line-height:1.3;}
+.product-desc{font-size:0.8rem;color:var(--soft);line-height:1.5;margin-bottom:0.5rem;flex:1;}
+.product-unit-lbl{font-size:0.7rem;color:var(--soft);opacity:0.65;margin-bottom:0.8rem;}
+.product-footer{display:flex;align-items:center;justify-content:space-between;gap:0.4rem;flex-wrap:wrap;}
+.product-price{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--brown);}
+.foot-right{display:flex;align-items:center;gap:0.4rem;}
+.qty-ctrl{display:flex;align-items:center;gap:0.3rem;}
+.qbtn{width:26px;height:26px;border-radius:6px;border:1.5px solid rgba(196,123,43,0.22);background:var(--cream);color:var(--brown);font-size:0.95rem;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:600;transition:all 0.15s;}
+.qbtn:hover{background:var(--caramel);color:#fff;border-color:var(--caramel);}
+.qnum{font-size:0.82rem;font-weight:600;min-width:18px;text-align:center;}
+.atc-btn{background:var(--brown);color:var(--cream);border:none;border-radius:7px;padding:0.45rem 0.8rem;font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;cursor:pointer;transition:background 0.2s,transform 0.15s;white-space:nowrap;}
+.atc-btn:hover{background:var(--caramel);transform:translateY(-1px);}
+.atc-btn:disabled{opacity:0.4;cursor:not-allowed;transform:none;}
+.atc-btn.added{background:var(--green);}
+.empty-state{text-align:center;padding:4rem 2rem;color:var(--soft);}
+.empty-state .ei{font-size:3rem;margin-bottom:1rem;}
+
+/* CART SIDEBAR */
+.cart-overlay{position:fixed;inset:0;background:rgba(30,15,5,0.5);z-index:300;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.cart-overlay.open{opacity:1;pointer-events:all;}
+.cart-sidebar{position:fixed;top:0;right:0;bottom:0;width:400px;max-width:100vw;background:var(--cream);z-index:301;transform:translateX(100%);transition:transform 0.32s ease;display:flex;flex-direction:column;box-shadow:-6px 0 32px rgba(59,31,13,0.15);}
+.cart-sidebar.open{transform:translateX(0);}
+.cart-hdr{background:var(--brown);padding:1.1rem 1.4rem;display:flex;align-items:center;justify-content:space-between;}
+.cart-hdr h2{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--cream);}
+.cart-x{background:none;border:none;color:rgba(253,246,236,0.55);font-size:1.4rem;cursor:pointer;transition:color 0.2s;}
+.cart-x:hover{color:var(--gold);}
+.cart-body{flex:1;overflow-y:auto;padding:1.1rem 1.4rem;}
+.cart-empty-msg{text-align:center;padding:2.5rem 1rem;color:var(--soft);}
+.cart-empty-msg .ce{font-size:2.2rem;margin-bottom:0.6rem;}
+.citem{display:grid;grid-template-columns:52px 1fr auto;gap:0.75rem;padding:0.85rem 0;border-bottom:1px solid rgba(196,123,43,0.1);align-items:center;}
+.citem:last-child{border:none;}
+.ci-thumb{width:52px;height:52px;border-radius:8px;background:linear-gradient(135deg,var(--tan),#e8d0a8);display:flex;align-items:center;justify-content:center;font-size:1.4rem;overflow:hidden;flex-shrink:0;}
+.ci-thumb img{width:100%;height:100%;object-fit:cover;}
+.ci-name{font-size:0.83rem;font-weight:600;color:var(--brown);margin-bottom:0.15rem;line-height:1.3;}
+.ci-unit{font-size:0.7rem;color:var(--soft);}
+.ci-qrow{display:flex;align-items:center;gap:0.4rem;margin-top:0.35rem;}
+.ciqbtn{width:20px;height:20px;border-radius:4px;border:1px solid rgba(196,123,43,0.2);background:var(--warm);color:var(--brown);font-size:0.85rem;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.ciqbtn:hover{background:var(--caramel);color:#fff;border-color:var(--caramel);}
+.ciqnum{font-size:0.78rem;font-weight:600;min-width:16px;text-align:center;}
+.ci-right{display:flex;flex-direction:column;align-items:flex-end;gap:0.25rem;}
+.ci-price{font-family:'Playfair Display',serif;font-size:0.92rem;font-weight:700;color:var(--caramel);white-space:nowrap;}
+.ci-rm{background:none;border:none;color:rgba(196,43,43,0.45);font-size:0.9rem;cursor:pointer;transition:color 0.2s;}
+.ci-rm:hover{color:var(--red);}
+.cart-ftr{padding:1.1rem 1.4rem;border-top:1px solid rgba(196,123,43,0.12);background:var(--warm);}
+.ctrow{display:flex;justify-content:space-between;font-size:0.83rem;margin-bottom:0.4rem;}
+.ctrow.main{font-size:0.95rem;font-weight:600;padding-top:0.45rem;border-top:1px solid rgba(196,123,43,0.1);margin-top:0.4rem;}
+.ctrow span:last-child{font-family:'Playfair Display',serif;font-weight:700;}
+.checkout-btn{width:100%;background:var(--caramel);color:#fff;border:none;border-radius:10px;padding:0.85rem;font-family:'DM Sans',sans-serif;font-size:0.92rem;font-weight:600;cursor:pointer;margin-top:0.85rem;transition:background 0.2s;}
+.checkout-btn:hover{background:#a8611a;}
+.checkout-btn:disabled{opacity:0.38;cursor:not-allowed;}
+
+/* CHECKOUT MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(30,15,5,0.6);z-index:400;display:none;align-items:center;justify-content:center;padding:1rem;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--cream);border-radius:20px;width:100%;max-width:500px;max-height:92vh;overflow-y:auto;animation:mIn 0.28s ease;}
+@keyframes mIn{from{opacity:0;transform:scale(0.95)}to{opacity:1;transform:scale(1)}}
+.modal-hdr{background:var(--brown);padding:1.2rem 1.6rem;border-radius:20px 20px 0 0;display:flex;align-items:center;justify-content:space-between;}
+.modal-hdr h2{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--cream);}
+.modal-x{background:none;border:none;color:rgba(253,246,236,0.55);font-size:1.4rem;cursor:pointer;}
+.modal-x:hover{color:var(--gold);}
+.modal-bd{padding:1.6rem;}
+.step-ind{display:flex;gap:0.4rem;margin-bottom:1.4rem;}
+.sdot2{flex:1;height:3px;border-radius:2px;background:rgba(196,123,43,0.18);}
+.sdot2.done{background:var(--green);}
+.sdot2.cur{background:var(--caramel);}
+.mstep{display:none;}
+.mstep.active{display:block;}
+.msec-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--brown);margin-bottom:0.9rem;}
+.ff{margin-bottom:0.85rem;}
+.ff label{display:block;font-size:0.73rem;font-weight:600;color:var(--soft);margin-bottom:0.22rem;letter-spacing:0.3px;}
+.ff input,.ff select,.ff textarea{width:100%;padding:0.6rem 0.85rem;border:1.5px solid rgba(196,123,43,0.2);border-radius:9px;font-family:'DM Sans',sans-serif;font-size:0.86rem;color:var(--brown);background:var(--warm);outline:none;transition:border-color 0.2s;}
+.ff input:focus,.ff select:focus,.ff textarea:focus{border-color:var(--caramel);}
+.ff textarea{resize:none;height:65px;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:0.7rem;}
+
+/* Payment */
+.pay-opts{display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1rem;}
+.pay-opt{border:2px solid rgba(196,123,43,0.16);border-radius:11px;padding:0.85rem 1.1rem;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:0.8rem;}
+.pay-opt:hover{border-color:var(--caramel);}
+.pay-opt.sel{border-color:var(--caramel);background:#fff9f0;}
+.pay-opt input[type="radio"]{accent-color:var(--caramel);width:15px;height:15px;flex-shrink:0;}
+.poi{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.poi-pod{background:var(--tan);}
+.poi-mtn{background:#fff3b0;}
+.poi-air{background:#ffe0e3;}
+.po-lbl{font-size:0.86rem;font-weight:600;color:var(--brown);}
+.po-sub{font-size:0.73rem;color:var(--soft);margin-top:1px;}
+.mm-box{background:var(--warm);border:1px solid rgba(196,123,43,0.14);border-radius:9px;padding:0.9rem;margin-top:0.5rem;display:none;}
+.mm-box.show{display:block;}
+.mm-note{font-size:0.76rem;color:var(--soft);background:var(--tan);padding:0.55rem 0.75rem;border-radius:7px;line-height:1.5;margin-top:0.5rem;}
+
+/* Order summary */
+.ord-sum{background:var(--warm);border-radius:11px;padding:0.95rem 1.1rem;margin-bottom:1rem;}
+.ord-sum-ttl{font-size:0.68rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--soft);margin-bottom:0.6rem;}
+.osi{display:flex;justify-content:space-between;font-size:0.81rem;padding:0.28rem 0;border-bottom:1px solid rgba(196,123,43,0.07);}
+.osi:last-child{border:none;}
+.osi.tot{font-weight:700;font-size:0.9rem;padding-top:0.45rem;border-top:1px solid rgba(196,123,43,0.12);margin-top:0.25rem;}
+.osi.tot span:last-child{color:var(--caramel);}
+
+/* Buttons */
+.btn-nxt{width:100%;background:var(--caramel);color:#fff;border:none;border-radius:10px;padding:0.8rem;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;cursor:pointer;margin-top:0.45rem;transition:background 0.2s;}
+.btn-nxt:hover{background:#a8611a;}
+.btn-bk{width:100%;background:transparent;color:var(--soft);border:1.5px solid rgba(196,123,43,0.18);border-radius:10px;padding:0.68rem;font-family:'DM Sans',sans-serif;font-size:0.83rem;cursor:pointer;margin-top:0.45rem;}
+.btn-bk:hover{border-color:var(--caramel);}
+
+/* Success */
+.success-wrap{text-align:center;padding:0.5rem 0;}
+.sicon{font-size:3.2rem;margin-bottom:0.9rem;}
+.stitle{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;color:var(--brown);margin-bottom:0.45rem;}
+.ssub{font-size:0.86rem;color:var(--soft);line-height:1.65;margin-bottom:1.2rem;}
+.order-ref-tag{display:inline-block;background:var(--tan);border-radius:8px;padding:0.45rem 1.1rem;font-size:0.83rem;font-weight:700;color:var(--brown);letter-spacing:1px;margin-bottom:1rem;}
+.pay-instr{font-size:0.8rem;color:var(--soft);background:var(--tan);border-radius:9px;padding:0.85rem 1rem;margin-bottom:1.1rem;line-height:1.6;text-align:left;}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:0.5rem;background:#25D366;color:#fff;border:none;border-radius:10px;padding:0.8rem 1.4rem;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:600;cursor:pointer;text-decoration:none;width:100%;transition:background 0.2s;}
+.wa-btn:hover{background:#1da84e;}
+
+/* Toast */
+.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(80px);background:var(--brown);color:var(--cream);padding:0.65rem 1.3rem;border-radius:100px;font-size:0.81rem;font-weight:500;z-index:500;transition:transform 0.28s ease;white-space:nowrap;box-shadow:0 6px 20px rgba(59,31,13,0.18);}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+@media(max-width:600px){
+  .cart-sidebar{width:100%;}
+  .frow{grid-template-columns:1fr;}
+  .products-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <img src="logo.png" alt="BakeOnline" onerror="this.style.display='none';document.getElementById('nlt').style.display='block'"/>
+    <span class="nav-logo-text" id="nlt" style="display:none;">Bake<span>Online</span></span>
+  </div>
+  <div class="nav-right">
+    <a href="index.html" class="nav-back-link">← Home</a>
+    <button class="cart-btn" onclick="openCart()">
+      🛒 Cart <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</nav>
+
+<div class="shop-hero">
+  <span class="shop-hero-tag">🛒 Baking Supplies</span>
+  <h1>Quality supplies for <em>serious bakers</em></h1>
+  <p>Ingredients, packaging, and tools — sourced and curated for your bakery.</p>
+  <div class="delivery-badge">✅ Pay on Delivery &nbsp;·&nbsp; 📱 MTN &amp; Airtel Money accepted</div>
+</div>
+
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filter('all',this)">All</button>
+  <button class="filter-btn" onclick="filter('ingredients',this)">🥚 Ingredients</button>
+  <button class="filter-btn" onclick="filter('packaging',this)">📦 Packaging</button>
+  <button class="filter-btn" onclick="filter('tools',this)">🎂 Tools</button>
+  <input type="text" class="search-input" id="searchInput" placeholder="Search products..." oninput="search(this.value)"/>
+</div>
+
+<div class="shop-main">
+  <div class="products-grid" id="grid"></div>
+  <div class="empty-state" id="emptyState" style="display:none;">
+    <div class="ei">🔍</div>
+    <p>No products found.</p>
+  </div>
+</div>
+
+<!-- CART -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-hdr">
+    <h2>Your Cart</h2>
+    <button class="cart-x" onclick="closeCart()">×</button>
+  </div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-ftr">
+    <div class="ctrow"><span>Subtotal</span><span id="cSub">UGX 0</span></div>
+    <div class="ctrow"><span>Delivery</span><span>At checkout</span></div>
+    <div class="ctrow main"><span>Total</span><span id="cTot">UGX 0</span></div>
+    <button class="checkout-btn" id="checkoutBtn" onclick="openCheckout()" disabled>Proceed to Checkout →</button>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal-overlay" id="checkoutModal">
+  <div class="modal">
+    <div class="modal-hdr">
+      <h2 id="mTitle">Checkout</h2>
+      <button class="modal-x" onclick="closeCheckout()">×</button>
+    </div>
+    <div class="modal-bd">
+      <div class="step-ind">
+        <div class="sdot2 cur" id="d1"></div>
+        <div class="sdot2" id="d2"></div>
+        <div class="sdot2" id="d3"></div>
+      </div>
+
+      <!-- STEP 1 -->
+      <div class="mstep active" id="s1">
+        <div class="msec-title">Delivery Details</div>
+        <div class="frow">
+          <div class="ff"><label>First Name *</label><input id="fn" placeholder="Sarah"/></div>
+          <div class="ff"><label>Last Name *</label><input id="ln" placeholder="Nakato"/></div>
+        </div>
+        <div class="ff"><label>Phone Number *</label><input id="ph" type="tel" placeholder="+256 700 000 000"/></div>
+        <div class="ff"><label>Email</label><input id="em" type="email" placeholder="sarah@email.com"/></div>
+        <div class="ff"><label>Delivery Address *</label><input id="addr" placeholder="Street, Area"/></div>
+        <div class="frow">
+          <div class="ff"><label>City / Town *</label><input id="city" placeholder="Kampala"/></div>
+          <div class="ff"><label>District</label><input id="dist" placeholder="Wakiso"/></div>
+        </div>
+        <div class="ff"><label>Delivery Notes</label><textarea id="notes" placeholder="Any special instructions..."></textarea></div>
+        <button class="btn-nxt" onclick="toStep2()">Continue to Payment →</button>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="mstep" id="s2">
+        <div class="msec-title">Payment Method</div>
+        <div class="pay-opts">
+          <label class="pay-opt sel" onclick="selPay('pod',this)">
+            <input type="radio" name="pay" checked/>
+            <div class="poi poi-pod">🚚</div>
+            <div><div class="po-lbl">Pay on Delivery</div><div class="po-sub">Pay cash when your order arrives</div></div>
+          </label>
+          <label class="pay-opt" onclick="selPay('mtn',this)">
+            <input type="radio" name="pay"/>
+            <div class="poi poi-mtn">📱</div>
+            <div><div class="po-lbl">MTN Mobile Money</div><div class="po-sub">Send payment before delivery</div></div>
+          </label>
+          <label class="pay-opt" onclick="selPay('airtel',this)">
+            <input type="radio" name="pay"/>
+            <div class="poi poi-air">📲</div>
+            <div><div class="po-lbl">Airtel Money</div><div class="po-sub">Send payment before delivery</div></div>
+          </label>
+        </div>
+        <div class="mm-box" id="mtn-box">
+          <div class="ff"><label>MTN Number</label><input id="mtn-num" placeholder="0771 000 000"/></div>
+          <div class="mm-note">Send <strong id="mtn-amt"></strong> to <strong>MTN: 0771 000 000 — BakeOnline</strong>. Use your order number as reference.</div>
+        </div>
+        <div class="mm-box" id="air-box">
+          <div class="ff"><label>Airtel Number</label><input id="air-num" placeholder="0751 000 000"/></div>
+          <div class="mm-note">Send <strong id="air-amt"></strong> to <strong>Airtel: 0751 000 000 — BakeOnline</strong>. Use your order number as reference.</div>
+        </div>
+        <div class="ord-sum" id="ordSum"></div>
+        <button class="btn-nxt" onclick="placeOrder()">Place Order →</button>
+        <button class="btn-bk" onclick="toStep(1)">← Back</button>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="mstep" id="s3">
+        <div class="success-wrap">
+          <div class="sicon">🎉</div>
+          <div class="stitle">Order Placed!</div>
+          <p class="ssub">Thank you! Your order has been received.<br/>We will contact you to confirm delivery.</p>
+          <div class="order-ref-tag" id="ordRef">ORDER #000000</div>
+          <div class="pay-instr" id="payInstr"></div>
+          <a class="wa-btn" id="waBtn" href="#" target="_blank">💬 Confirm on WhatsApp</a>
+          <button class="btn-bk" style="margin-top:0.6rem;" onclick="closeCheckout();location.reload();">Continue Shopping</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const PRODUCTS = [
+  {id:1,cat:'ingredients',name:'Cake Flour (2kg)',desc:'Premium soft wheat flour — ideal for light, fluffy cakes and sponges.',price:12000,unit:'per 2kg bag',stock:15,badge:'hot',emoji:'🌾'},
+  {id:2,cat:'ingredients',name:'Caster Sugar (1kg)',desc:'Fine white caster sugar — dissolves evenly for smooth batters and buttercream.',price:7500,unit:'per 1kg pack',stock:20,badge:'new',emoji:'🍬'},
+  {id:3,cat:'ingredients',name:'Unsalted Butter (500g)',desc:'High-quality unsalted butter for rich, creamy buttercream and moist cakes.',price:18000,unit:'per 500g block',stock:10,badge:'',emoji:'🧈'},
+  {id:4,cat:'ingredients',name:'Dark Chocolate (500g)',desc:'Rich 70% dark couverture chocolate — perfect for ganache and drip cakes.',price:32000,unit:'per 500g pack',stock:8,badge:'hot',emoji:'🍫'},
+  {id:5,cat:'ingredients',name:'Vanilla Essence (100ml)',desc:'Pure Madagascar vanilla extract — strong, aromatic flavour for all bakes.',price:9500,unit:'per 100ml bottle',stock:25,badge:'',emoji:'🫙'},
+  {id:6,cat:'ingredients',name:'Baking Powder (200g)',desc:'Double-acting baking powder for consistent rise every time.',price:4500,unit:'per 200g tin',stock:30,badge:'',emoji:'🥄'},
+  {id:7,cat:'packaging',name:'Cake Box 8 inch (10pk)',desc:'Sturdy white kraft cake boxes with window lid — perfect for 8-inch cakes.',price:22000,unit:'pack of 10',stock:12,badge:'new',emoji:'📦'},
+  {id:8,cat:'packaging',name:'Cake Board 8 inch (10pk)',desc:'Gold foil-covered round cake boards — strong and presentation-ready.',price:8000,unit:'pack of 10',stock:18,badge:'',emoji:'🟡'},
+  {id:9,cat:'packaging',name:'Cello Wrap Roll (10m)',desc:'Clear cellophane wrap roll — ideal for wrapping individual cakes and treats.',price:15000,unit:'per 10m roll',stock:6,badge:'',emoji:'🎁'},
+  {id:10,cat:'packaging',name:'Satin Ribbon (10m)',desc:'Elegant satin ribbon in assorted colours — professional finishing touch.',price:6000,unit:'per 10m roll',stock:0,badge:'out',emoji:'🎀'},
+  {id:11,cat:'packaging',name:'BakeOnline Label Stickers (50pk)',desc:'Branded round stickers for your packaging — professional and memorable.',price:12000,unit:'pack of 50',stock:40,badge:'new',emoji:'🏷️'},
+  {id:12,cat:'tools',name:'Offset Spatula 8 inch',desc:'Stainless steel offset spatula — essential for smooth, professional frosting.',price:25000,unit:'per piece',stock:7,badge:'',emoji:'🔧'},
+  {id:13,cat:'tools',name:'Cake Turntable',desc:'Heavy-duty aluminium turntable — smooth rotation for flawless frosting.',price:85000,unit:'per piece',stock:4,badge:'hot',emoji:'🎂'},
+  {id:14,cat:'tools',name:'Piping Bags (50pk)',desc:'Large disposable piping bags — strong, leak-proof, and easy to use.',price:18000,unit:'pack of 50',stock:15,badge:'',emoji:'🧁'},
+  {id:15,cat:'tools',name:'Nozzle Set (12pc)',desc:'Stainless steel piping nozzle set — 12 tips for all decorating styles.',price:45000,unit:'set of 12',stock:9,badge:'new',emoji:'⭐'},
+];
+
+let cart = [], selPayment = 'pod', curCat = 'all', curSearch = '';
+const qty = {};
+
+const f = n => 'UGX ' + Math.round(n).toLocaleString('en-US');
+
+function getFiltered() {
+  return PRODUCTS.filter(p =>
+    (curCat === 'all' || p.cat === curCat) &&
+    (p.name.toLowerCase().includes(curSearch) || p.desc.toLowerCase().includes(curSearch))
+  );
+}
+
+function render() {
+  const list = getFiltered();
+  const grid = document.getElementById('grid');
+  document.getElementById('emptyState').style.display = list.length ? 'none' : 'block';
+  if (!list.length) { grid.innerHTML = ''; return; }
+  grid.innerHTML = list.map(p => {
+    const out = p.stock === 0;
+    const q = qty[p.id] || 1;
+    const dots = [0,1,2,3,4].map(i => `<div class="sdot ${i < Math.ceil(p.stock/4) ? 'on' : ''}"></div>`).join('');
+    const stockLbl = out ? 'Out of stock' : p.stock <= 5 ? `Only ${p.stock} left` : `${p.stock} in stock`;
+    const inCart = cart.find(c => c.id === p.id);
+    return `<div class="product-card${out ? ' out-of-stock' : ''}">
+      <div class="product-img">
+        <span>${p.emoji}</span>
+        ${p.badge && p.badge !== 'out' ? `<span class="product-badge badge-${p.badge}">${p.badge === 'hot' ? 'Popular' : 'New'}</span>` : ''}
+        ${out ? '<span class="product-badge badge-out">Out of Stock</span>' : ''}
+        <div class="stock-bar"><span class="stock-text">${stockLbl}</span><div class="stock-dots">${dots}</div></div>
+      </div>
+      <div class="product-body">
+        <div class="product-cat">${p.cat}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.desc}</div>
+        <div class="product-unit-lbl">${p.unit}</div>
+        <div class="product-footer">
+          <div class="product-price">${f(p.price)}</div>
+          <div class="foot-right">
+            <div class="qty-ctrl">
+              <button class="qbtn" onclick="chgQty(${p.id},-1)">−</button>
+              <span class="qnum" id="q${p.id}">${q}</span>
+              <button class="qbtn" onclick="chgQty(${p.id},1)">+</button>
+            </div>
+            <button class="atc-btn${inCart ? ' added' : ''}" id="atc${p.id}" onclick="addCart(${p.id})" ${out ? 'disabled' : ''}>
+              ${out ? 'N/A' : inCart ? 'Added ✓' : 'Add'}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function chgQty(id, d) {
+  qty[id] = Math.max(1, (qty[id] || 1) + d);
+  const el = document.getElementById('q'+id);
+  if (el) el.textContent = qty[id];
+}
+
+function addCart(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  if (!p || p.stock === 0) return;
+  const q = qty[id] || 1;
+  const ex = cart.find(c => c.id === id);
+  if (ex) ex.qty += q; else cart.push({...p, qty: q});
+  const btn = document.getElementById('atc'+id);
+  if (btn) { btn.textContent = 'Added ✓'; btn.classList.add('added'); }
+  updateCart();
+  showToast(p.name + ' added to cart!');
+}
+
+function updateCart() {
+  const total = cart.reduce((s,c) => s + c.price * c.qty, 0);
+  const count = cart.reduce((s,c) => s + c.qty, 0);
+  document.getElementById('cartCount').textContent = count;
+  document.getElementById('cSub').textContent = f(total);
+  document.getElementById('cTot').textContent = f(total);
+  document.getElementById('checkoutBtn').disabled = !cart.length;
+  const body = document.getElementById('cartBody');
+  if (!cart.length) {
+    body.innerHTML = '<div class="cart-empty-msg"><div class="ce">🛒</div><p>Your cart is empty.</p></div>';
+    return;
+  }
+  body.innerHTML = cart.map(c => `
+    <div class="citem">
+      <div class="ci-thumb">${c.emoji}</div>
+      <div>
+        <div class="ci-name">${c.name}</div>
+        <div class="ci-unit">${c.unit}</div>
+        <div class="ci-qrow">
+          <button class="ciqbtn" onclick="cQty(${c.id},-1)">−</button>
+          <span class="ciqnum">${c.qty}</span>
+          <button class="ciqbtn" onclick="cQty(${c.id},1)">+</button>
+        </div>
+      </div>
+      <div class="ci-right">
+        <div class="ci-price">${f(c.price * c.qty)}</div>
+        <button class="ci-rm" onclick="rmCart(${c.id})">🗑</button>
+      </div>
+    </div>`).join('');
+}
+
+function cQty(id, d) {
+  const item = cart.find(c => c.id === id);
+  if (!item) return;
+  item.qty += d;
+  if (item.qty <= 0) cart = cart.filter(c => c.id !== id);
+  updateCart();
+}
+
+function rmCart(id) { cart = cart.filter(c => c.id !== id); updateCart(); }
+function openCart() { document.getElementById('cartSidebar').classList.add('open'); document.getElementById('cartOverlay').classList.add('open'); }
+function closeCart() { document.getElementById('cartSidebar').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('open'); }
+
+function filter(cat, btn) {
+  curCat = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+function search(val) { curSearch = val.toLowerCase(); render(); }
+
+function openCheckout() {
+  closeCart();
+  sessionStorage.setItem('bo_cart', JSON.stringify(cart));
+  window.location.href = 'checkout.html';
+}
+function closeCheckout() { document.getElementById('checkoutModal').classList.remove('open'); }
+
+function toStep(n) {
+  ['s1','s2','s3'].forEach((id,i) => document.getElementById(id).classList.toggle('active', i+1===n));
+  ['d1','d2','d3'].forEach((id,i) => {
+    const el = document.getElementById(id);
+    el.className = 'sdot2' + (i+1 < n ? ' done' : i+1===n ? ' cur' : '');
+  });
+  const titles = ['Delivery Details','Payment','Order Confirmed!'];
+  document.getElementById('mTitle').textContent = titles[n-1];
+}
+
+function toStep2() {
+  const fn = document.getElementById('fn').value.trim();
+  const ph = document.getElementById('ph').value.trim();
+  const addr = document.getElementById('addr').value.trim();
+  const city = document.getElementById('city').value.trim();
+  if (!fn || !ph || !addr || !city) { showToast('Please fill in all required fields'); return; }
+  buildSum();
+  toStep(2);
+}
+
+function buildSum() {
+  const total = cart.reduce((s,c) => s + c.price * c.qty, 0);
+  document.getElementById('mtn-amt').textContent = f(total);
+  document.getElementById('air-amt').textContent = f(total);
+  document.getElementById('ordSum').innerHTML =
+    '<div class="ord-sum-ttl">Order Summary</div>' +
+    cart.map(c => `<div class="osi"><span>${c.name} x${c.qty}</span><span>${f(c.price*c.qty)}</span></div>`).join('') +
+    `<div class="osi tot"><span>Total</span><span>${f(total)}</span></div>`;
+}
+
+function selPay(type, lbl) {
+  selPayment = type;
+  document.querySelectorAll('.pay-opt').forEach(o => o.classList.remove('sel'));
+  lbl.classList.add('sel');
+  document.getElementById('mtn-box').classList.toggle('show', type === 'mtn');
+  document.getElementById('air-box').classList.toggle('show', type === 'airtel');
+}
+
+function placeOrder() {
+  const ref = 'BO' + Date.now().toString().slice(-6);
+  const fn = document.getElementById('fn').value.trim();
+  const ph = document.getElementById('ph').value.trim();
+  const addr = document.getElementById('addr').value.trim();
+  const city = document.getElementById('city').value.trim();
+  const notes = document.getElementById('notes').value.trim();
+  const total = cart.reduce((s,c) => s + c.price * c.qty, 0);
+  document.getElementById('ordRef').textContent = 'ORDER #' + ref;
+
+  const pi = document.getElementById('payInstr');
+  if (selPayment === 'pod') {
+    pi.innerHTML = '<strong>Pay on Delivery:</strong> Have <strong>' + f(total) + '</strong> ready when your order arrives. We will call you to confirm.';
+  } else {
+    const net = selPayment === 'mtn' ? 'MTN' : 'Airtel';
+    const num = selPayment === 'mtn' ? '0771 000 000' : '0751 000 000';
+    pi.innerHTML = '<strong>Payment Instructions:</strong><br/>Send <strong>' + f(total) + '</strong> via ' + net + ' Money to:<br/><strong>' + num + ' — BakeOnline</strong><br/>Reference: <strong>#' + ref + '</strong><br/><br/>Order will be delivered after payment confirmation.';
+  }
+
+  const items = cart.map(c => '• ' + c.name + ' x' + c.qty + ' = ' + f(c.price*c.qty)).join('%0A');
+  const payLbls = {pod:'Pay on Delivery', mtn:'MTN Mobile Money', airtel:'Airtel Money'};
+  const msg = '*New BakeOnline Order* %0A%0A*Order %23' + ref + '*%0A%0A*Customer:* ' + fn + '%0A*Phone:* ' + ph + '%0A*Address:* ' + addr + ', ' + city + (notes ? '%0A*Notes:* ' + notes : '') + '%0A%0A*Items:*%0A' + items + '%0A%0A*Total:* ' + f(total) + '%0A*Payment:* ' + payLbls[selPayment];
+  document.getElementById('waBtn').href = 'https://wa.me/256700000000?text=' + msg;
+  toStep(3);
+  cart = [];
+  updateCart();
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2400);
+}
+
+updateCart();
+render();
+</script>
+</body>
+</html>
