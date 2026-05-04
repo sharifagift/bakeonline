@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Terms of Use — BakeOnline</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --cream: #FDF6EC;
+  --warm-white: #FFFAF3;
+  --brown: #3B1F0D;
+  --caramel: #C47B2B;
+  --gold: #E8A83E;
+  --soft-brown: #8C5A2E;
+  --light-tan: #F0DFC0;
+  --dark: #1E0F05;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--brown); overflow-x: hidden; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(253,246,236,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(196,123,43,0.15);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5%; height: 68px;
+}
+.logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900; color: var(--brown); letter-spacing: -0.5px; text-decoration: none; }
+.logo span { color: var(--caramel); }
+.nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+.nav-links a { text-decoration: none; font-size: 0.88rem; font-weight: 500; color: var(--brown); transition: color 0.2s; }
+.nav-links a:hover { color: var(--caramel); }
+.nav-cta { background: var(--brown); color: var(--cream) !important; padding: 0.45rem 1.2rem; border-radius: 100px; font-size: 0.85rem !important; }
+.nav-cta:hover { background: var(--caramel) !important; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--brown); border-radius: 2px; }
+.mobile-menu { display: none; position: fixed; top: 68px; left: 0; right: 0; background: var(--cream); border-bottom: 1px solid rgba(196,123,43,0.15); padding: 1rem 5%; z-index: 99; }
+.mobile-menu.open { display: block; }
+.mobile-menu ul { list-style: none; }
+.mobile-menu ul li a { display: block; padding: 0.75rem 0; font-size: 0.95rem; font-weight: 500; color: var(--brown); text-decoration: none; border-bottom: 1px solid rgba(196,123,43,0.08); }
+@media(max-width:768px) { .nav-links { display: none; } .hamburger { display: flex; } }
+
+/* HERO */
+.policy-hero {
+  padding: 130px 5% 60px;
+  background: var(--brown);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.policy-hero::before {
+  content: ''; position: absolute;
+  width: 500px; height: 500px; border-radius: 50%;
+  background: rgba(232,168,62,0.07);
+  top: -150px; left: -100px; pointer-events: none;
+}
+.section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+.policy-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; color: var(--cream); margin-bottom: 0.8rem; }
+.policy-hero p { font-size: 0.9rem; color: rgba(253,246,236,0.5); max-width: 500px; margin: 0 auto; line-height: 1.7; }
+.last-updated { display: inline-block; margin-top: 1.2rem; background: rgba(232,168,62,0.12); color: var(--gold); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.5px; padding: 0.3rem 0.9rem; border-radius: 100px; }
+
+/* LAYOUT */
+.policy-wrap {
+  max-width: 1050px; margin: 0 auto;
+  padding: 60px 5% 80px;
+  display: grid; grid-template-columns: 220px 1fr; gap: 3rem; align-items: start;
+}
+@media(max-width:800px) { .policy-wrap { grid-template-columns: 1fr; } }
+
+/* SIDEBAR */
+.policy-sidebar { position: sticky; top: 90px; }
+.sidebar-title { font-size: 0.68rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--soft-brown); margin-bottom: 0.8rem; }
+.sidebar-nav { list-style: none; display: flex; flex-direction: column; gap: 0.15rem; }
+.sidebar-nav a { display: block; padding: 0.45rem 0.8rem; font-size: 0.8rem; color: var(--soft-brown); text-decoration: none; border-radius: 8px; border-left: 2px solid transparent; transition: all 0.2s; line-height: 1.4; }
+.sidebar-nav a:hover { color: var(--caramel); background: rgba(196,123,43,0.06); border-left-color: var(--caramel); }
+@media(max-width:800px) { .policy-sidebar { display: none; } }
+
+/* CONTENT */
+.policy-content { min-width: 0; }
+.policy-section { margin-bottom: 3rem; scroll-margin-top: 90px; }
+.policy-section h2 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--brown); margin-bottom: 0.9rem; padding-bottom: 0.6rem; border-bottom: 1px solid rgba(196,123,43,0.15); display: flex; align-items: center; gap: 0.6rem; }
+.policy-section p { font-size: 0.88rem; color: var(--soft-brown); line-height: 1.8; margin-bottom: 0.9rem; }
+.policy-section ul { list-style: none; margin: 0.5rem 0 0.9rem; display: flex; flex-direction: column; gap: 0.45rem; }
+.policy-section ul li { font-size: 0.88rem; color: var(--soft-brown); line-height: 1.6; padding-left: 1.2rem; position: relative; }
+.policy-section ul li::before { content: '→'; position: absolute; left: 0; color: var(--caramel); font-size: 0.78rem; }
+.highlight-box { background: var(--warm-white); border: 1px solid rgba(196,123,43,0.18); border-left: 3px solid var(--caramel); border-radius: 0 10px 10px 0; padding: 1rem 1.2rem; margin: 1rem 0; font-size: 0.85rem; color: var(--brown); line-height: 1.6; }
+.highlight-box strong { color: var(--caramel); }
+.warning-box { background: #FFF8E6; border: 1px solid rgba(232,168,62,0.3); border-left: 3px solid var(--gold); border-radius: 0 10px 10px 0; padding: 1rem 1.2rem; margin: 1rem 0; font-size: 0.85rem; color: var(--brown); line-height: 1.6; }
+.contact-box { background: var(--brown); border-radius: 14px; padding: 1.5rem; margin-top: 1rem; }
+.contact-box h3 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--cream); margin-bottom: 0.8rem; }
+.contact-box p { font-size: 0.82rem; color: rgba(253,246,236,0.6); line-height: 1.6; margin-bottom: 0.4rem; }
+.contact-box a { color: var(--gold); text-decoration: none; }
+.contact-box a:hover { text-decoration: underline; }
+
+/* FOOTER */
+footer { background: var(--dark); padding: 2rem 5%; }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; border-top: 1px solid rgba(255,255,255,0.07); padding-top: 1.5rem; }
+.footer-copy { font-size: 0.75rem; color: rgba(253,246,236,0.25); }
+.footer-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 900; color: var(--cream); }
+.footer-logo span { color: var(--gold); }
+.footer-links-row { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.footer-links-row a { font-size: 0.78rem; color: rgba(253,246,236,0.35); text-decoration: none; transition: color 0.2s; }
+.footer-links-row a:hover { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">Bake<span>Online</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#tools">Tools</a></li>
+    <li><a href="index.html#resources">Resources</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="baker-login.html" class="nav-cta">🧑‍🍳 Baker Login</a></li>
+  </ul>
+  <button class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="privacy.html">Privacy Policy</a></li>
+    <li><a href="baker-login.html">Baker Login</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<div class="policy-hero">
+  <p class="section-label">📄 Legal</p>
+  <h1>Terms of Use</h1>
+  <p>Please read these terms carefully before using BakeOnline's website, tools, or services.</p>
+  <span class="last-updated">Last updated: May 2025</span>
+</div>
+
+<!-- CONTENT -->
+<div class="policy-wrap">
+
+  <!-- SIDEBAR -->
+  <div class="policy-sidebar">
+    <p class="sidebar-title">On this page</p>
+    <ul class="sidebar-nav">
+      <li><a href="#acceptance">1. Acceptance of Terms</a></li>
+      <li><a href="#services">2. Our Services</a></li>
+      <li><a href="#accounts">3. Baker Accounts</a></li>
+      <li><a href="#free-resources">4. Free Resources</a></li>
+      <li><a href="#consultations">5. Consultations</a></li>
+      <li><a href="#community">6. Community Rules</a></li>
+      <li><a href="#intellectual">7. Intellectual Property</a></li>
+      <li><a href="#disclaimer">8. Disclaimer</a></li>
+      <li><a href="#liability">9. Limitation of Liability</a></li>
+      <li><a href="#conduct">10. Acceptable Use</a></li>
+      <li><a href="#termination">11. Termination</a></li>
+      <li><a href="#governing">12. Governing Law</a></li>
+      <li><a href="#contact-us">13. Contact Us</a></li>
+    </ul>
+  </div>
+
+  <!-- TERMS CONTENT -->
+  <div class="policy-content">
+
+    <div class="policy-section" id="acceptance">
+      <h2>1. ✅ Acceptance of Terms</h2>
+      <p>By accessing or using the BakeOnline website, tools, templates, or any services we offer, you agree to be bound by these Terms of Use. If you do not agree with any part of these terms, please do not use our platform.</p>
+      <p>These terms apply to all visitors, registered bakers, consultation clients, and community members.</p>
+      <div class="highlight-box"><strong>By using BakeOnline, you confirm that you are at least 18 years old</strong> and have the legal capacity to enter into these terms.</div>
+    </div>
+
+    <div class="policy-section" id="services">
+      <h2>2. 🍰 Our Services</h2>
+      <p>BakeOnline provides the following to bakery operators:</p>
+      <ul>
+        <li>Free pricing and business tools (calculators, trackers)</li>
+        <li>Free downloadable templates and workbooks</li>
+        <li>Paid guides, ebooks, and masterclass training</li>
+        <li>One-on-one business consultations (paid)</li>
+        <li>The Modern Bakers Club community</li>
+        <li>A baker account portal for managing your activity</li>
+      </ul>
+      <p>We reserve the right to modify, suspend, or discontinue any part of our services at any time with or without notice. We will not be liable to you or any third party for any such changes.</p>
+    </div>
+
+    <div class="policy-section" id="accounts">
+      <h2>3. 🧑‍🍳 Baker Accounts</h2>
+      <p>When you create a baker account on BakeOnline, you agree to:</p>
+      <ul>
+        <li>Provide accurate and truthful information during registration</li>
+        <li>Keep your password secure and not share it with others</li>
+        <li>Notify us immediately if you suspect unauthorised access to your account</li>
+        <li>Use your account only for your own bakery business purposes</li>
+        <li>Not create multiple accounts or impersonate another baker or business</li>
+      </ul>
+      <p>You are responsible for all activity that occurs under your account. BakeOnline is not liable for any loss resulting from unauthorised use of your account.</p>
+      <div class="warning-box">⚠️ Account data is currently stored in your browser's local storage. If you clear your browser cache, your account data on that device will be lost. We recommend noting your login details safely.</div>
+    </div>
+
+    <div class="policy-section" id="free-resources">
+      <h2>4. 📥 Free Resources & Templates</h2>
+      <p>Our free resources — including the Order Tracker, Profit Tracker, and Customer Profiling Guide — are provided for your personal business use. By downloading them, you agree that:</p>
+      <ul>
+        <li>You may use them freely for your own bakery business</li>
+        <li>You may not resell, redistribute, or claim them as your own creation</li>
+        <li>You may not remove any BakeOnline branding from the templates</li>
+        <li>You may share the download link from our website with other bakers, but not the files directly</li>
+      </ul>
+      <p>These resources are provided "as is." While we've built them carefully, we make no guarantee that they will be error-free or suitable for every business situation.</p>
+    </div>
+
+    <div class="policy-section" id="consultations">
+      <h2>5. 📅 Consultations</h2>
+      <p>When you book a paid consultation with BakeOnline:</p>
+      <ul>
+        <li>Payment is required to confirm your session — details shared via WhatsApp after booking</li>
+        <li>We accept Mobile Money (MTN & Airtel) and bank transfer</li>
+        <li>Sessions are 45–60 minutes unless otherwise stated</li>
+        <li>Rescheduling is allowed with at least 24 hours notice</li>
+        <li>Cancellations made less than 24 hours before the session are non-refundable</li>
+        <li>Refunds for cancellations made more than 24 hours in advance will be processed within 5 business days</li>
+      </ul>
+      <div class="highlight-box"><strong>Consultation advice</strong> is provided in good faith based on general business and bakery industry knowledge. It does not constitute legal, financial, or accounting advice. Always consult a qualified professional for regulated matters.</div>
+    </div>
+
+    <div class="policy-section" id="community">
+      <h2>6. 👥 Community Rules</h2>
+      <p>The Modern Bakers Club is a space for bakers to learn, share, and grow. By joining, you agree to:</p>
+      <ul>
+        <li>Be respectful and supportive of all other members</li>
+        <li>Not spam, promote unrelated businesses, or post irrelevant content</li>
+        <li>Not share harmful, offensive, or discriminatory content</li>
+        <li>Not share other members' private information without their consent</li>
+        <li>Contribute positively and constructively to discussions</li>
+      </ul>
+      <p>BakeOnline reserves the right to remove any member from the community who violates these rules, without notice or refund.</p>
+    </div>
+
+    <div class="policy-section" id="intellectual">
+      <h2>7. ©️ Intellectual Property</h2>
+      <p>All content on the BakeOnline website — including text, graphics, logos, tool designs, guides, and templates — is owned by BakeOnline and protected under applicable intellectual property laws.</p>
+      <ul>
+        <li>You may not copy, reproduce, or republish our content without written permission</li>
+        <li>You may share links to our pages freely</li>
+        <li>Screenshots for educational or review purposes are permitted with attribution</li>
+        <li>Our brand name "BakeOnline" and logo may not be used without permission</li>
+      </ul>
+      <p>If you'd like to collaborate, feature our content, or use our materials in any way beyond personal use, please contact us at hello@bakeonline.co.</p>
+    </div>
+
+    <div class="policy-section" id="disclaimer">
+      <h2>8. ⚠️ Disclaimer</h2>
+      <p>BakeOnline's tools, templates, guides, and advice are designed to help you run your bakery business more effectively. However:</p>
+      <ul>
+        <li>Results from using our tools will vary depending on your specific business situation</li>
+        <li>We do not guarantee specific financial outcomes or profits</li>
+        <li>Pricing calculators and trackers are aids — not substitutes for professional financial advice</li>
+        <li>We are not accountants, lawyers, or certified financial advisors</li>
+      </ul>
+      <div class="warning-box">⚠️ The information provided on BakeOnline is for educational and practical guidance purposes only. Always verify important business decisions with a qualified professional in Uganda.</div>
+    </div>
+
+    <div class="policy-section" id="liability">
+      <h2>9. 🛡️ Limitation of Liability</h2>
+      <p>To the fullest extent permitted by law, BakeOnline shall not be liable for:</p>
+      <ul>
+        <li>Any indirect, incidental, or consequential loss arising from use of our platform</li>
+        <li>Loss of data, revenue, or business opportunities</li>
+        <li>Errors or inaccuracies in our tools or templates</li>
+        <li>Downtime, technical issues, or service interruptions</li>
+        <li>Actions taken based on our advice, guides, or consultations</li>
+      </ul>
+      <p>Our total liability to you for any claim shall not exceed the amount you paid us in the 30 days preceding the claim, or UGX 50,000 — whichever is lower.</p>
+    </div>
+
+    <div class="policy-section" id="conduct">
+      <h2>10. 🚫 Acceptable Use</h2>
+      <p>You agree not to use BakeOnline to:</p>
+      <ul>
+        <li>Violate any applicable Ugandan or international laws</li>
+        <li>Attempt to hack, scrape, or disrupt our website or services</li>
+        <li>Submit false or misleading information through our forms</li>
+        <li>Impersonate BakeOnline, our team, or other bakers</li>
+        <li>Use our platform for any commercial purpose that competes with BakeOnline without permission</li>
+        <li>Upload or transmit malicious code, viruses, or harmful content</li>
+      </ul>
+      <p>We reserve the right to block access to anyone who violates these terms.</p>
+    </div>
+
+    <div class="policy-section" id="termination">
+      <h2>11. 🔚 Termination</h2>
+      <p>We may suspend or terminate your access to BakeOnline at our discretion if we believe you have violated these Terms of Use, without prior notice.</p>
+      <p>You may also close your account at any time by contacting us at hello@bakeonline.co. Upon termination, your access to the baker portal will end, though these terms will continue to apply where relevant.</p>
+    </div>
+
+    <div class="policy-section" id="governing">
+      <h2>12. ⚖️ Governing Law</h2>
+      <p>These Terms of Use are governed by and construed in accordance with the laws of the Republic of Uganda. Any disputes arising from these terms shall be subject to the jurisdiction of Ugandan courts.</p>
+      <p>We encourage resolving any issues amicably first — please reach out to us directly before pursuing formal dispute resolution.</p>
+    </div>
+
+    <div class="policy-section" id="contact-us">
+      <h2>13. 📬 Contact Us</h2>
+      <p>If you have any questions about these Terms of Use, please get in touch:</p>
+      <div class="contact-box">
+        <h3>BakeOnline — Legal Enquiries</h3>
+        <p>📧 Email: <a href="mailto:hello@bakeonline.co">hello@bakeonline.co</a></p>
+        <p>💬 WhatsApp: <a href="https://wa.me/256700000000">+256 700 000 000</a></p>
+        <p>📍 Kampala, Uganda</p>
+        <p style="margin-top:0.8rem;">We aim to respond within 5 business days.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-bottom">
+    <div class="footer-logo">Bake<span>Online</span></div>
+    <div class="footer-links-row">
+      <a href="index.html">Home</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="baker-login.html">Baker Login</a>
+    </div>
+    <div class="footer-copy">© 2025 BakeOnline. Made in Uganda 🇺🇬</div>
+  </div>
+</footer>
+
+</body>
+</html>
