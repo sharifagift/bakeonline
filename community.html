@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Modern Bakers Club — BakeOnline</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<style>
+:root {
+  --cream: #FDF6EC;
+  --warm-white: #FFFAF3;
+  --brown: #3B1F0D;
+  --caramel: #C47B2B;
+  --gold: #E8A83E;
+  --rust: #C45B2B;
+  --sage: #7A8C6E;
+  --soft-brown: #8C5A2E;
+  --light-tan: #F0DFC0;
+  --dark: #1E0F05;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--brown); overflow-x: hidden; }
+
+/* ---- NAV ---- */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(253,246,236,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(196,123,43,0.15);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5%; height: 68px;
+}
+.logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900; color: var(--brown); letter-spacing: -0.5px; text-decoration: none; }
+.logo span { color: var(--caramel); }
+.nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+.nav-links a { text-decoration: none; font-size: 0.88rem; font-weight: 500; color: var(--brown); transition: color 0.2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--caramel); }
+.nav-cta { background: var(--brown); color: var(--cream) !important; padding: 0.45rem 1.2rem; border-radius: 100px; }
+.nav-cta:hover { background: var(--caramel) !important; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--brown); border-radius: 2px; transition: all 0.3s; }
+.mobile-menu { display: none; position: fixed; top: 68px; left: 0; right: 0; background: var(--cream); border-bottom: 1px solid rgba(196,123,43,0.15); padding: 1rem 5%; z-index: 99; }
+.mobile-menu.open { display: block; }
+.mobile-menu ul { list-style: none; }
+.mobile-menu ul li a { display: block; padding: 0.75rem 0; font-size: 0.95rem; font-weight: 500; color: var(--brown); text-decoration: none; border-bottom: 1px solid rgba(196,123,43,0.08); }
+.mobile-menu ul li a:hover { color: var(--caramel); }
+@media(max-width:768px) { .nav-links { display: none; } .hamburger { display: flex; } }
+
+/* ---- HERO ---- */
+.hero {
+  min-height: 100vh;
+  background: var(--brown);
+  display: flex; align-items: center; justify-content: center;
+  padding: 120px 5% 80px;
+  position: relative; overflow: hidden; text-align: center;
+}
+.hero-bg-circle {
+  position: absolute; border-radius: 50%; pointer-events: none;
+}
+.hero-bg-circle.c1 { width: 700px; height: 700px; background: rgba(232,168,62,0.06); top: -250px; right: -200px; }
+.hero-bg-circle.c2 { width: 500px; height: 500px; background: rgba(232,168,62,0.04); bottom: -200px; left: -150px; }
+.hero-bg-circle.c3 { width: 300px; height: 300px; background: rgba(196,123,43,0.08); top: 50%; left: 50%; transform: translate(-50%,-50%); }
+
+.hero-inner { position: relative; z-index: 2; max-width: 720px; margin: 0 auto; }
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(232,168,62,0.12); border: 1px solid rgba(232,168,62,0.25);
+  color: var(--gold); font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 1.5rem;
+}
+.badge-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 900; color: var(--cream);
+  line-height: 1.1; margin-bottom: 1.2rem; letter-spacing: -1px;
+}
+.hero h1 em { font-style: italic; color: var(--gold); }
+.hero h1 span { display: block; }
+
+.hero-desc {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: rgba(253,246,236,0.6); line-height: 1.8;
+  font-weight: 300; margin-bottom: 2.5rem;
+  max-width: 560px; margin-left: auto; margin-right: auto;
+}
+
+.hero-cta-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; }
+.btn-join-hero {
+  background: var(--gold); color: var(--brown);
+  padding: 0.9rem 2.2rem; border-radius: 100px;
+  font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700;
+  text-decoration: none; transition: background 0.2s, transform 0.15s;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+}
+.btn-join-hero:hover { background: #f0c050; transform: translateY(-2px); }
+.btn-learn-more {
+  background: transparent; color: rgba(253,246,236,0.7);
+  padding: 0.9rem 2rem; border-radius: 100px;
+  border: 1.5px solid rgba(253,246,236,0.2);
+  font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500;
+  text-decoration: none; transition: all 0.2s;
+}
+.btn-learn-more:hover { border-color: rgba(253,246,236,0.5); color: var(--cream); }
+
+/* Member count strip */
+.member-strip {
+  display: flex; align-items: center; justify-content: center;
+  gap: 1.5rem; flex-wrap: wrap;
+}
+.member-avatars { display: flex; }
+.member-avatars .av {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 2.5px solid var(--brown); margin-left: -10px;
+  font-size: 1rem; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--caramel), var(--gold));
+  font-family: 'Playfair Display', serif; font-weight: 700; color: var(--brown);
+}
+.member-avatars .av:first-child { margin-left: 0; }
+.member-text { font-size: 0.82rem; color: rgba(253,246,236,0.5); line-height: 1.5; }
+.member-text strong { color: var(--gold); font-weight: 600; }
+
+/* ---- SECTION SHARED ---- */
+section { padding: 90px 5%; }
+.section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--caramel); margin-bottom: 0.6rem; }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; color: var(--brown); line-height: 1.15; margin-bottom: 0.8rem; }
+.section-title em { font-style: italic; color: var(--caramel); }
+.section-desc { font-size: 0.95rem; color: var(--soft-brown); line-height: 1.8; font-weight: 300; max-width: 600px; }
+.inner { max-width: 1100px; margin: 0 auto; }
+
+/* ---- WHY JOIN ---- */
+#why { background: var(--cream); }
+.why-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 3rem;
+}
+@media(max-width:900px) { .why-grid { grid-template-columns: 1fr 1fr; } }
+@media(max-width:560px) { .why-grid { grid-template-columns: 1fr; } }
+
+.why-card {
+  background: var(--warm-white);
+  border: 1px solid rgba(196,123,43,0.15);
+  border-radius: 18px; padding: 1.6rem;
+  transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+  position: relative; overflow: hidden;
+}
+.why-card::before {
+  content: ''; position: absolute;
+  width: 120px; height: 120px; border-radius: 50%;
+  background: rgba(232,168,62,0.06);
+  top: -40px; right: -40px; pointer-events: none;
+}
+.why-card:hover { box-shadow: 0 16px 40px rgba(59,31,13,0.1); transform: translateY(-4px); border-color: var(--caramel); }
+.why-card.featured {
+  background: var(--brown); border-color: var(--brown);
+  grid-column: span 1;
+}
+.why-card.featured .wc-title { color: var(--cream); }
+.why-card.featured .wc-desc { color: rgba(253,246,236,0.6); }
+.why-card.featured::before { background: rgba(232,168,62,0.08); }
+
+.wc-icon {
+  width: 50px; height: 50px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; margin-bottom: 1rem;
+}
+.wc-icon.orange { background: #FDE8C8; }
+.wc-icon.green  { background: #D4EDDA; }
+.wc-icon.blue   { background: #D6E4FF; }
+.wc-icon.purple { background: #EAD6FF; }
+.wc-icon.pink   { background: #FFD6E8; }
+.wc-icon.gold   { background: rgba(232,168,62,0.15); }
+.why-card.featured .wc-icon { background: rgba(232,168,62,0.12); }
+
+.wc-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--brown); margin-bottom: 0.45rem; }
+.wc-desc { font-size: 0.83rem; color: var(--soft-brown); line-height: 1.65; }
+
+/* ---- FOR WHO ---- */
+#for-who { background: var(--brown); }
+#for-who .section-label { color: var(--gold); }
+#for-who .section-title { color: var(--cream); }
+#for-who .section-desc { color: rgba(253,246,236,0.55); }
+
+.baker-types {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-top: 3rem;
+}
+@media(max-width:900px) { .baker-types { grid-template-columns: 1fr 1fr; } }
+@media(max-width:500px) { .baker-types { grid-template-columns: 1fr; } }
+
+.baker-type-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(232,168,62,0.15);
+  border-radius: 16px; padding: 1.4rem 1.1rem;
+  text-align: center;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  cursor: default;
+}
+.baker-type-card:hover { background: rgba(232,168,62,0.08); border-color: rgba(232,168,62,0.35); transform: translateY(-3px); }
+.bt-emoji { font-size: 2.2rem; margin-bottom: 0.7rem; line-height: 1; }
+.bt-name { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 700; color: var(--cream); margin-bottom: 0.35rem; }
+.bt-desc { font-size: 0.75rem; color: rgba(253,246,236,0.45); line-height: 1.5; }
+
+/* ---- TESTIMONIALS ---- */
+#stories { background: var(--light-tan); }
+.stories-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; margin-top: 3rem; }
+@media(max-width:800px) { .stories-grid { grid-template-columns: 1fr; } }
+
+.story-card {
+  background: var(--cream); border-radius: 16px;
+  padding: 1.5rem; border: 1px solid rgba(196,123,43,0.12);
+  transition: box-shadow 0.2s;
+}
+.story-card:hover { box-shadow: 0 12px 32px rgba(59,31,13,0.1); }
+.story-stars { color: var(--gold); font-size: 0.85rem; margin-bottom: 0.8rem; letter-spacing: 2px; }
+.story-text { font-size: 0.88rem; color: var(--soft-brown); line-height: 1.75; font-style: italic; margin-bottom: 1.1rem; }
+.story-author { display: flex; align-items: center; gap: 0.7rem; }
+.story-av {
+  width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--caramel), var(--gold));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 700; color: var(--brown);
+}
+.story-name { font-size: 0.85rem; font-weight: 600; color: var(--brown); }
+.story-role { font-size: 0.72rem; color: var(--soft-brown); }
+
+/* ---- WHAT YOU GET ---- */
+#get { background: var(--warm-white); }
+.get-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+@media(max-width:800px) { .get-inner { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+.get-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+.get-item {
+  display: flex; align-items: flex-start; gap: 1rem;
+  background: var(--cream); border: 1px solid rgba(196,123,43,0.13);
+  border-radius: 14px; padding: 1rem 1.2rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.get-item:hover { border-color: var(--caramel); box-shadow: 0 6px 18px rgba(59,31,13,0.07); }
+.get-item-icon { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+.gi-o { background: #FDE8C8; }
+.gi-g { background: #D4EDDA; }
+.gi-b { background: #D6E4FF; }
+.gi-p { background: #EAD6FF; }
+.gi-y { background: #FFF3CD; }
+.gi-r { background: #FFD6D6; }
+.get-item-title { font-size: 0.9rem; font-weight: 600; color: var(--brown); margin-bottom: 0.2rem; }
+.get-item-desc { font-size: 0.78rem; color: var(--soft-brown); line-height: 1.5; }
+
+/* Visual side */
+.get-visual {
+  background: var(--brown); border-radius: 24px; padding: 2.5rem;
+  position: relative; overflow: hidden;
+}
+.get-visual::before {
+  content: ''; position: absolute; width: 300px; height: 300px; border-radius: 50%;
+  background: rgba(232,168,62,0.07); top: -100px; right: -80px; pointer-events: none;
+}
+.gv-tag { font-size: 0.68rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+.gv-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--cream); margin-bottom: 0.4rem; line-height: 1.3; }
+.gv-sub { font-size: 0.8rem; color: rgba(253,246,236,0.45); margin-bottom: 1.8rem; line-height: 1.5; }
+.gv-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1.8rem; }
+.gv-stat { background: rgba(255,255,255,0.05); border: 1px solid rgba(232,168,62,0.12); border-radius: 12px; padding: 1rem; text-align: center; }
+.gv-stat-num { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--gold); }
+.gv-stat-lbl { font-size: 0.65rem; color: rgba(253,246,236,0.4); margin-top: 3px; }
+.gv-members { display: flex; align-items: center; gap: 0.8rem; }
+.gv-avatars { display: flex; }
+.gv-avatars .gva { width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--brown); margin-left: -8px; background: linear-gradient(135deg,var(--caramel),var(--gold)); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; color: var(--brown); }
+.gv-avatars .gva:first-child { margin-left: 0; }
+.gv-members-text { font-size: 0.78rem; color: rgba(253,246,236,0.5); }
+.gv-members-text strong { color: var(--gold); }
+
+/* ---- JOIN FORM ---- */
+#join { background: var(--brown); }
+#join .section-label { color: var(--gold); }
+#join .section-title { color: var(--cream); }
+#join .section-desc { color: rgba(253,246,236,0.5); }
+
+.join-inner { display: grid; grid-template-columns: 1fr 1.3fr; gap: 5rem; align-items: start; margin-top: 3rem; }
+@media(max-width:860px) { .join-inner { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+/* perks list on left */
+.join-perks { display: flex; flex-direction: column; gap: 0.8rem; }
+.join-perk {
+  display: flex; align-items: center; gap: 0.8rem;
+  font-size: 0.88rem; color: rgba(253,246,236,0.7);
+}
+.jp-tick {
+  width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
+  background: rgba(232,168,62,0.15); display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; color: var(--gold);
+}
+
+.join-free-tag {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: rgba(232,168,62,0.12); border: 1px solid rgba(232,168,62,0.2);
+  color: var(--gold); font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase;
+  padding: 0.35rem 0.9rem; border-radius: 100px; margin-top: 1.5rem;
+}
+
+/* FORM */
+.join-form-card {
+  background: var(--cream); border-radius: 20px; overflow: hidden;
+}
+.jfc-header {
+  background: var(--caramel); padding: 1.5rem 1.8rem;
+}
+.jfc-header h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.2rem; }
+.jfc-header p { font-size: 0.78rem; color: rgba(255,255,255,0.7); }
+.jfc-body { padding: 1.8rem; }
+
+.form-field { margin-bottom: 1rem; }
+.form-field label { font-size: 0.7rem; font-weight: 600; color: var(--soft-brown); display: block; margin-bottom: 0.28rem; letter-spacing: 0.3px; }
+.form-field input,
+.form-field select {
+  width: 100%; padding: 0.65rem 0.9rem;
+  border: 1.5px solid rgba(196,123,43,0.2); border-radius: 9px;
+  font-family: 'DM Sans', sans-serif; font-size: 0.85rem;
+  color: var(--brown); background: var(--warm-white); outline: none;
+  transition: border-color 0.2s;
+}
+.form-field input:focus, .form-field select:focus { border-color: var(--caramel); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+@media(max-width:480px) { .form-row { grid-template-columns: 1fr; } }
+
+/* Baker type selector */
+.baker-type-selector { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.3rem; }
+@media(max-width:480px) { .baker-type-selector { grid-template-columns: 1fr; } }
+.bt-option { display: none; }
+.bt-option + label {
+  display: flex; align-items: center; gap: 0.6rem;
+  background: var(--warm-white); border: 1.5px solid rgba(196,123,43,0.2);
+  border-radius: 9px; padding: 0.6rem 0.8rem;
+  font-size: 0.78rem; color: var(--soft-brown); cursor: pointer;
+  transition: all 0.15s; line-height: 1.3;
+}
+.bt-option + label .bto-icon { font-size: 1rem; flex-shrink: 0; }
+.bt-option:checked + label { background: rgba(196,123,43,0.08); border-color: var(--caramel); color: var(--brown); font-weight: 600; }
+
+.btn-join-submit {
+  width: 100%; background: var(--caramel); color: #fff;
+  border: none; border-radius: 10px; padding: 0.9rem;
+  font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 700;
+  cursor: pointer; margin-top: 0.5rem;
+  transition: background 0.2s, transform 0.15s;
+  display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+}
+.btn-join-submit:hover { background: var(--rust); transform: translateY(-1px); }
+.btn-join-submit:disabled { opacity: 0.6; transform: none; cursor: not-allowed; }
+
+.form-disclaimer { font-size: 0.68rem; color: var(--soft-brown); opacity: 0.55; text-align: center; margin-top: 0.6rem; line-height: 1.5; }
+
+/* Success */
+.join-success {
+  display: none; padding: 2.5rem 1.5rem; text-align: center;
+  background: var(--cream);
+}
+.js-icon { font-size: 3rem; margin-bottom: 0.8rem; }
+.js-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--brown); margin-bottom: 0.5rem; }
+.js-sub { font-size: 0.85rem; color: var(--soft-brown); line-height: 1.7; }
+.js-wa {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: #25D366; color: #fff;
+  padding: 0.65rem 1.5rem; border-radius: 100px;
+  font-size: 0.88rem; font-weight: 700; text-decoration: none;
+  margin-top: 1.2rem; transition: background 0.2s;
+}
+.js-wa:hover { background: #1fb855; }
+
+/* ---- FAQ ---- */
+#faq { background: var(--cream); }
+.faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 2.5rem; }
+@media(max-width:700px) { .faq-grid { grid-template-columns: 1fr; } }
+.faq-item { background: var(--warm-white); border: 1px solid rgba(196,123,43,0.13); border-radius: 12px; overflow: hidden; }
+.faq-q { padding: 1rem 1.2rem; font-size: 0.88rem; font-weight: 600; color: var(--brown); cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; user-select: none; }
+.faq-q:hover { color: var(--caramel); }
+.faq-arrow { font-size: 0.72rem; color: var(--caramel); transition: transform 0.25s; flex-shrink: 0; }
+.faq-item.open .faq-arrow { transform: rotate(180deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 0.83rem; color: var(--soft-brown); line-height: 1.7; }
+.faq-item.open .faq-a { max-height: 200px; }
+.faq-a-inner { padding: 0 1.2rem 1rem; }
+
+/* ---- FINAL CTA ---- */
+#final-cta {
+  background: linear-gradient(135deg, var(--caramel) 0%, var(--rust) 100%);
+  padding: 80px 5%; text-align: center;
+}
+#final-cta h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; color: #fff; margin-bottom: 0.8rem; }
+#final-cta p { font-size: 0.95rem; color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+.btn-final {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: #fff; color: var(--caramel);
+  padding: 0.9rem 2.2rem; border-radius: 100px;
+  font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700;
+  text-decoration: none; transition: transform 0.15s, box-shadow 0.2s;
+}
+.btn-final:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,0.15); }
+
+/* ---- FOOTER ---- */
+footer { background: var(--dark); padding: 2rem 5%; }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; border-top: 1px solid rgba(255,255,255,0.07); padding-top: 1.5rem; }
+.footer-copy { font-size: 0.75rem; color: rgba(253,246,236,0.25); }
+.footer-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 900; color: var(--cream); }
+.footer-logo span { color: var(--gold); }
+.footer-links-row { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.footer-links-row a { font-size: 0.78rem; color: rgba(253,246,236,0.35); text-decoration: none; transition: color 0.2s; }
+.footer-links-row a:hover { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">Bake<span>Online</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#tools">Tools</a></li>
+    <li><a href="index.html#resources">Resources</a></li>
+    <li><a href="index.html#guides">Guides</a></li>
+    <li><a href="community.html" class="active">Community</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="baker-login.html" class="nav-cta">🧑‍🍳 Baker Login</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="index.html" onclick="closeMenu()">Home</a></li>
+    <li><a href="index.html#tools" onclick="closeMenu()">Tools</a></li>
+    <li><a href="index.html#resources" onclick="closeMenu()">Resources</a></li>
+    <li><a href="community.html" onclick="closeMenu()">Community</a></li>
+    <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
+    <li><a href="baker-login.html" onclick="closeMenu()">Baker Login</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg-circle c1"></div>
+  <div class="hero-bg-circle c2"></div>
+  <div class="hero-bg-circle c3"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      Now open for new members
+    </div>
+    <h1>
+      <span>Where serious bakers</span>
+      <em>grow together</em>
+    </h1>
+    <p class="hero-desc">The Modern Bakers Club is BakeOnline's community for bakery operators who are done guessing and ready to build a real, profitable business.</p>
+    <div class="hero-cta-row">
+      <a href="#join" class="btn-join-hero">🍰 Join the Club - It's Free</a>
+      <a href="#why" class="btn-learn-more">See what's included ↓</a>
+    </div>
+    <div class="member-strip">
+      <div class="member-avatars">
+        <div class="av">S</div>
+        <div class="av">A</div>
+        <div class="av">R</div>
+        <div class="av">M</div>
+        <div class="av">J</div>
+      </div>
+      <div class="member-text">
+        <strong>50+ bakers</strong> already in the club<br>
+        across Uganda and beyond 🇺🇬
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY JOIN -->
+<section id="why">
+  <div class="inner">
+    <p class="section-label">✨ Why Join</p>
+    <h2 class="section-title">Everything you get as a <em>member</em></h2>
+    <p class="section-desc">The Modern Bakers Club gives you practical tools, real community, and the knowledge to run your bakery like a business - not just a hobby.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="wc-icon orange">💬</div>
+        <div class="wc-title">Private WhatsApp Community</div>
+        <div class="wc-desc">Join a group of serious bakers. Ask questions, share wins, get feedback, and never feel alone in your business again.</div>
+      </div>
+      <div class="why-card">
+        <div class="wc-icon green">📥</div>
+        <div class="wc-title">Free Templates & Workbooks</div>
+        <div class="wc-desc">Instant access to our Order Tracker, Profit Tracker, and Customer Profiling Guide - tools built specifically for bakeries.</div>
+      </div>
+      <div class="why-card">
+        <div class="wc-icon blue">🎓</div>
+        <div class="wc-title">Monthly Training Sessions</div>
+        <div class="wc-desc">Live sessions covering pricing, marketing, operations, customer retention, and growing your bakery income.</div>
+      </div>
+      <div class="why-card">
+        <div class="wc-icon purple">💡</div>
+        <div class="wc-title">Pricing & Business Advice</div>
+        <div class="wc-desc">Get real answers on how to price your products, handle corporate orders, manage costs, and increase your profit margin.</div>
+      </div>
+      <div class="why-card featured">
+        <div class="wc-icon gold">⭐</div>
+        <div class="wc-title">Early Access to Everything</div>
+        <div class="wc-desc">Members get first access to new guides, tools, discounts on consultations, and BakeOnline product launches before anyone else.</div>
+      </div>
+      <div class="why-card">
+        <div class="wc-icon pink">🤝</div>
+        <div class="wc-title">Bakers Meetup (Monthly)</div>
+        <div class="wc-desc">A monthly in-person or virtual meetup where members network, share ideas, and build real business relationships.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHO -->
+<section id="for-who">
+  <div class="inner">
+    <p class="section-label">👩‍🍳 Who It's For</p>
+    <h2 class="section-title" style="color:var(--cream);">Built for every kind of <em style="color:var(--gold);">baker</em></h2>
+    <p class="section-desc">Whether you bake from home or run a full commercial kitchen - if you're serious about your craft and your business, this club is for you.</p>
+    <div class="baker-types">
+      <div class="baker-type-card">
+        <div class="bt-emoji">🏠</div>
+        <div class="bt-name">Home Baker</div>
+        <div class="bt-desc">Baking from your kitchen and ready to turn it into a real income</div>
+      </div>
+      <div class="baker-type-card">
+        <div class="bt-emoji">🧁</div>
+        <div class="bt-name">Small Bakery Owner</div>
+        <div class="bt-desc">Running your own bakery shop and looking to grow and systemise</div>
+      </div>
+      <div class="baker-type-card">
+        <div class="bt-emoji">🏭</div>
+        <div class="bt-name">Commercial Baker</div>
+        <div class="bt-desc">Operating at scale and needing smarter tools and industry connections</div>
+      </div>
+      <div class="baker-type-card">
+        <div class="bt-emoji">🎂</div>
+        <div class="bt-name">Cake Decorator</div>
+        <div class="bt-desc">Turning your artistic skills into a profitable custom cake business</div>
+      </div>
+      <div class="baker-type-card">
+        <div class="bt-emoji">🥐</div>
+        <div class="bt-name">Pastry Chef</div>
+        <div class="bt-desc">Ready to step out of the kitchen and build your own brand and business</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="stories">
+  <div class="inner">
+    <p class="section-label">💬 Member Stories</p>
+    <h2 class="section-title">What bakers are <em>saying</em></h2>
+    <p class="section-desc">Real feedback from real bakers in the Modern Bakers Club community.</p>
+    <div class="stories-grid">
+      <div class="story-card">
+        <div class="story-stars">★★★★★</div>
+        <p class="story-text">"Before joining, I had no idea I was selling my cakes at a loss. The profit tracker showed me exactly where my money was going. I've since increased my prices and I'm finally making real profit."</p>
+        <div class="story-author">
+          <div class="story-av">S</div>
+          <div>
+            <div class="story-name">Sarah N.</div>
+            <div class="story-role">Home Baker — Kampala</div>
+          </div>
+        </div>
+      </div>
+      <div class="story-card">
+        <div class="story-stars">★★★★★</div>
+        <p class="story-text">"The WhatsApp group alone is worth it. I've gotten referrals, answered my biggest business questions, and made friends who understand the baking hustle. I wish I'd found this earlier."</p>
+        <div class="story-author">
+          <div class="story-av">A</div>
+          <div>
+            <div class="story-name">Amina K.</div>
+            <div class="story-role">Cake Decorator — Entebbe</div>
+          </div>
+        </div>
+      </div>
+      <div class="story-card">
+        <div class="story-stars">★★★★★</div>
+        <p class="story-text">"The monthly training on pricing corporate orders changed everything for me. I now have 3 regular corporate clients and my monthly income has more than doubled in 4 months."</p>
+        <div class="story-author">
+          <div class="story-av">R</div>
+          <div>
+            <div class="story-name">Rose M.</div>
+            <div class="story-role">Small Bakery Owner — Jinja</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section id="get">
+  <div class="inner">
+    <div class="get-inner">
+      <div>
+        <p class="section-label">📦 Full Breakdown</p>
+        <h2 class="section-title">Every single thing <em>included</em></h2>
+        <p class="section-desc">No hidden fees. No premium tiers. Everything below is free for every club member.</p>
+        <div class="get-list">
+          <div class="get-item">
+            <div class="get-item-icon gi-o">💬</div>
+            <div><div class="get-item-title">Private WhatsApp Community Group</div><div class="get-item-desc">Active daily group with bakers, advice, opportunities, and peer support</div></div>
+          </div>
+          <div class="get-item">
+            <div class="get-item-icon gi-g">📊</div>
+            <div><div class="get-item-title">Order Tracker Template</div><div class="get-item-desc">Excel/Google Sheets template to manage every customer order end to end</div></div>
+          </div>
+          <div class="get-item">
+            <div class="get-item-icon gi-b">📈</div>
+            <div><div class="get-item-title">Profit Tracker Template</div><div class="get-item-desc">Know your real margins on every product — stop guessing, start knowing</div></div>
+          </div>
+          <div class="get-item">
+            <div class="get-item-icon gi-p">👤</div>
+            <div><div class="get-item-title">Customer Profiling Workbook</div><div class="get-item-desc">Step-by-step PDF guide to understanding and growing your customer base</div></div>
+          </div>
+          <div class="get-item">
+            <div class="get-item-icon gi-y">🎓</div>
+            <div><div class="get-item-title">Monthly Live Training Sessions</div><div class="get-item-desc">Practical sessions on pricing, operations, marketing, and bakery growth</div></div>
+          </div>
+          <div class="get-item">
+            <div class="get-item-icon gi-r">⭐</div>
+            <div><div class="get-item-title">Early Access & Member Discounts</div><div class="get-item-desc">First access to new tools plus discounts on consultations and paid guides</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="get-visual">
+        <div class="gv-tag">🏅 Modern Bakers Club</div>
+        <div class="gv-title">Your membership dashboard</div>
+        <div class="gv-sub">Track your growth, access resources, and connect with the community — all in one place.</div>
+        <div class="gv-stats">
+          <div class="gv-stat"><div class="gv-stat-num">500+</div><div class="gv-stat-lbl">Active Members</div></div>
+          <div class="gv-stat"><div class="gv-stat-num">100%</div><div class="gv-stat-lbl">Free to Join</div></div>
+          <div class="gv-stat"><div class="gv-stat-num">12+</div><div class="gv-stat-lbl">Trainings per year</div></div>
+          <div class="gv-stat"><div class="gv-stat-num">🇺🇬</div><div class="gv-stat-lbl">Uganda-focused</div></div>
+        </div>
+        <div class="gv-members">
+          <div class="gv-avatars">
+            <div class="gva">S</div><div class="gva">A</div><div class="gva">R</div><div class="gva">M</div><div class="gva">+</div>
+          </div>
+          <div class="gv-members-text">Join <strong>500+ bakers</strong> already inside</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN FORM -->
+<section id="join">
+  <div class="inner">
+    <div class="join-inner">
+      <div>
+        <p class="section-label">🍰 Join Today</p>
+        <h2 class="section-title" style="color:var(--cream);">Ready to bake <em style="color:var(--gold);">smarter?</em></h2>
+        <p class="section-desc">Fill in the form and you'll be added to the Modern Bakers Club WhatsApp group and emailed your free resources immediately.</p>
+        <div class="join-perks" style="margin-top:2rem;">
+          <div class="join-perk"><div class="jp-tick">✓</div>Instant access to the WhatsApp community</div>
+          <div class="join-perk"><div class="jp-tick">✓</div>Order Tracker & Profit Tracker sent to your email</div>
+          <div class="join-perk"><div class="jp-tick">✓</div>Customer Profiling Guide — yours immediately</div>
+          <div class="join-perk"><div class="jp-tick">✓</div>Invited to the next monthly training session</div>
+          <div class="join-perk"><div class="jp-tick">✓</div>Discounts on consultations as a member</div>
+          <div class="join-perk"><div class="jp-tick">✓</div>Early access to all new BakeOnline tools</div>
+        </div>
+        <div class="join-free-tag">🎉 100% Free — Always</div>
+      </div>
+
+      <!-- FORM CARD -->
+      <div class="join-form-card">
+        <div class="jfc-header">
+          <h3>Join the Modern Bakers Club</h3>
+          <p>Takes less than 2 minutes. No payment required.</p>
+        </div>
+
+        <div class="jfc-body" id="join-form-body">
+          <div class="form-row">
+            <div class="form-field">
+              <label>Your Name *</label>
+              <input type="text" id="jf-name" placeholder="e.g. Sarah Nakato"/>
+            </div>
+            <div class="form-field">
+              <label>WhatsApp Number *</label>
+              <input type="tel" id="jf-phone" placeholder="+256 700 000 000"/>
+            </div>
+          </div>
+          <div class="form-field">
+            <label>Email Address *</label>
+            <input type="email" id="jf-email" placeholder="sarah@example.com"/>
+          </div>
+          <div class="form-field">
+            <label>Your Location</label>
+            <input type="text" id="jf-location" placeholder="e.g. Kampala, Entebbe, Jinja..."/>
+          </div>
+          <div class="form-field">
+            <label>I am a... *</label>
+            <div class="baker-type-selector">
+              <input type="radio" name="baker-type" id="bt-home" value="Home Baker" class="bt-option"/>
+              <label for="bt-home"><span class="bto-icon">🏠</span> Home Baker</label>
+
+              <input type="radio" name="baker-type" id="bt-small" value="Small Bakery Owner" class="bt-option"/>
+              <label for="bt-small"><span class="bto-icon">🧁</span> Small Bakery Owner</label>
+
+              <input type="radio" name="baker-type" id="bt-commercial" value="Commercial Baker" class="bt-option"/>
+              <label for="bt-commercial"><span class="bto-icon">🏭</span> Commercial Baker</label>
+
+              <input type="radio" name="baker-type" id="bt-decorator" value="Cake Decorator" class="bt-option"/>
+              <label for="bt-decorator"><span class="bto-icon">🎂</span> Cake Decorator</label>
+
+              <input type="radio" name="baker-type" id="bt-pastry" value="Pastry Chef" class="bt-option"/>
+              <label for="bt-pastry"><span class="bto-icon">🥐</span> Pastry Chef</label>
+            </div>
+          </div>
+
+          <button class="btn-join-submit" id="join-btn" onclick="submitJoinForm()">
+            🍰 Join the Club — It's Free
+          </button>
+          <p class="form-disclaimer">By joining you agree to receive WhatsApp messages and emails from BakeOnline. You can leave anytime. We never spam.</p>
+        </div>
+
+        <!-- SUCCESS -->
+        <div class="join-success" id="join-success">
+          <div class="js-icon">🎉</div>
+          <div class="js-title">Welcome to the Club!</div>
+          <div class="js-sub">You're in! Check your email for your free resources. You'll be added to the WhatsApp community group shortly — watch out for a message from us.</div>
+          <a href="https://wa.me/256700000000?text=Hi%20BakeOnline!%20I%20just%20joined%20the%20Modern%20Bakers%20Club%20%F0%9F%8D%B0" class="js-wa" target="_blank">
+            💬 Say Hi on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="inner" style="max-width:860px;">
+    <p class="section-label" style="text-align:center;">❓ Questions</p>
+    <h2 class="section-title" style="text-align:center;">Frequently asked <em>questions</em></h2>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Is it really free to join? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a"><div class="faq-a-inner">Yes — 100% free, always. There are no hidden charges, no premium tiers, and no subscriptions. The Modern Bakers Club is our way of giving back to the baking community.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How do I get added to the WhatsApp group? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a"><div class="faq-a-inner">After you submit the form, we'll send you a WhatsApp message with the group invite link within 24 hours. Make sure your WhatsApp number is correct!</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">When are the monthly training sessions? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a"><div class="faq-a-inner">Training sessions happen once a month — dates are announced in the WhatsApp group at least a week in advance. Some are in-person in Kampala, others are online via Zoom or WhatsApp video.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Can I join if I'm outside Kampala? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a"><div class="faq-a-inner">Absolutely! We have members from across Uganda and beyond. The WhatsApp community and online trainings are accessible from anywhere.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">I'm just starting out — is the club for me? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a"><div class="faq-a-inner">Yes! In fact, joining early is the best decision you can make. You'll learn the right way to price, manage orders, and build your business from day one — avoiding the costly mistakes most bakers make.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How do I leave the club if I want to? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a"><div class="faq-a-inner">You can leave the WhatsApp group anytime, and you can unsubscribe from emails with one click. No hard feelings — though we'll be sad to see you go!</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="final-cta">
+  <h2>Your bakery deserves better. Join free today.</h2>
+  <p>Hundreds of bakers have already made the decision to run their business with more confidence, clarity, and profit. It starts here.</p>
+  <a href="#join" class="btn-final">🍰 Join the Modern Bakers Club</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-bottom">
+    <div class="footer-logo">Bake<span>Online</span></div>
+    <div class="footer-links-row">
+      <a href="index.html">Home</a>
+      <a href="index.html#resources">Resources</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="baker-login.html">Baker Login</a>
+    </div>
+    <div class="footer-copy">© 2025 BakeOnline. Made in Uganda 🇺🇬</div>
+  </div>
+</footer>
+
+<script>
+/* ===== EMAILJS ===== */
+const EJS = {
+  publicKey:           'tSmk7ntgYhtwyGoi0',
+  serviceId:           'service_aj6hief',
+  communityTemplateId: 'template_pw4ugvq'
+};
+
+/* ===== NAV ===== */
+function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+function closeMenu()  { document.getElementById('mobileMenu').classList.remove('open'); }
+
+/* ===== JOIN FORM ===== */
+function submitJoinForm() {
+  const name     = document.getElementById('jf-name').value.trim();
+  const phone    = document.getElementById('jf-phone').value.trim();
+  const email    = document.getElementById('jf-email').value.trim();
+  const location = document.getElementById('jf-location').value.trim();
+  const typeEl   = document.querySelector('input[name="baker-type"]:checked');
+  const bakerType = typeEl ? typeEl.value : '';
+
+  if (!name || !phone || !email) {
+    alert('Please fill in your name, WhatsApp number, and email address.');
+    return;
+  }
+  if (!email.includes('@')) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+  if (!bakerType) {
+    alert('Please select your baker type so we can personalise your experience.');
+    return;
+  }
+
+  const btn = document.getElementById('join-btn');
+  btn.textContent = '⏳ Joining…';
+  btn.disabled = true;
+
+  // Save to localStorage for admin
+  const members = JSON.parse(localStorage.getItem('bo_members') || '[]');
+  members.push({ name, phone, email, location, type: bakerType, date: new Date().toISOString() });
+  localStorage.setItem('bo_members', JSON.stringify(members));
+
+  // Update visitor stats
+  const stats = JSON.parse(localStorage.getItem('bo_stats') || '{"visitors":0,"downloads":0,"calcs":0,"members":0}');
+  stats.members = (stats.members || 0) + 1;
+  localStorage.setItem('bo_stats', JSON.stringify(stats));
+
+  const params = {
+    to_name:    name,
+    to_email:   email,
+    whatsapp:   phone,
+    baker_type: bakerType,
+    location:   location || 'Not provided',
+    reply_to:   'hello@bakeonline.co'
+  };
+
+  function done() {
+    document.getElementById('join-form-body').style.display = 'none';
+    document.getElementById('join-success').style.display = 'block';
+  }
+
+  if (EJS.publicKey !== 'YOUR_EMAILJS_PUBLIC_KEY' && typeof emailjs !== 'undefined') {
+    emailjs.init(EJS.publicKey);
+    emailjs.send(EJS.serviceId, EJS.communityTemplateId, params).then(done).catch(done);
+  } else {
+    console.log('Community join (EmailJS not yet configured):', params);
+    done();
+  }
+}
+
+/* ===== FAQ ===== */
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>
