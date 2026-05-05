@@ -6,6 +6,8 @@
 <title>BakeOnline — Everything a Baker Needs</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+ 
+<script>emailjs.init("YOUR_PUBLIC_KEY");</script>
 <style>
   :root {
     --cream: #FDF6EC;
@@ -778,14 +780,6 @@ footer { background:var(--dark); padding:3rem 5%; }
   .tr-month-select { width:100%; padding:0.5rem 0.7rem; border:1.5px solid rgba(196,123,43,0.18); border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.83rem; color:var(--brown); background:var(--cream); outline:none; margin-bottom:1rem; }
   @media(max-width:760px){ .tracker-wrap { grid-template-columns:1fr; } .tracker-results { position:static; } }
 
-  /* ---- WOOCOMMERCE SHOP ---- */
-  .woo-notice { background:var(--light-tan); border:1px solid rgba(196,123,43,0.2); border-radius:10px; padding:0.8rem 1.1rem; font-size:0.82rem; color:var(--soft-brown); margin-bottom:1.5rem; display:flex; align-items:center; gap:0.6rem; }
-  .shop-cta-bar { background:var(--brown); border-radius:14px; padding:1.5rem 2rem; display:flex; align-items:center; justify-content:space-between; margin-top:1.5rem; gap:1rem; flex-wrap:wrap; }
-  .shop-cta-text h3 { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--cream); margin-bottom:0.2rem; }
-  .shop-cta-text p { font-size:0.8rem; color:rgba(253,246,236,0.55); }
-  .btn-shop-woo { background:var(--gold); color:var(--brown); padding:0.65rem 1.4rem; border-radius:8px; font-size:0.85rem; font-weight:700; text-decoration:none; transition:background 0.2s; white-space:nowrap; }
-  .btn-shop-woo:hover { background:#f0b84a; }
-
   /* ---- COMMUNITY EMAIL FORM ---- */
   .community-form { background:var(--warm-white); border:1px solid rgba(196,123,43,0.18); border-radius:14px; padding:1.5rem; margin-top:1.5rem; text-align:left; }
   .community-form-title { font-family:'Playfair Display',serif; font-size:1rem; font-weight:700; color:var(--brown); margin-bottom:0.4rem; }
@@ -1357,6 +1351,21 @@ footer { background:var(--dark); padding:3rem 5%; }
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
+  <style>
+#jc-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;align-items:center;justify-content:center;}
+#jc-overlay.show{display:flex;}
+#jc-popup{background:#fff;border-radius:12px;padding:28px 24px;width:90%;max-width:420px;position:relative;font-family:sans-serif;}
+#jc-popup h3{margin:0 0 4px;font-size:17px;font-weight:600;color:#1a1a1a;}
+#jc-popup p.sub{margin:0 0 16px;font-size:13px;color:#666;}
+#jc-popup label{font-size:12px;font-weight:500;color:#555;display:block;margin-bottom:4px;}
+#jc-popup input,#jc-popup select{width:100%;box-sizing:border-box;padding:8px 10px;font-size:13px;border:1px solid #ddd;border-radius:8px;margin-bottom:12px;outline:none;}
+#jc-popup input:focus,#jc-popup select:focus{border-color:#BA7517;}
+#jc-popup button.submit{width:100%;background:#BA7517;color:#fff;border:none;border-radius:8px;padding:10px;font-size:14px;font-weight:500;cursor:pointer;margin-top:4px;}
+#jc-popup button.close-btn{position:absolute;top:12px;right:14px;background:none;border:none;font-size:18px;color:#aaa;cursor:pointer;}
+#jc-status{font-size:12px;color:#3B6D11;margin-top:8px;text-align:center;min-height:18px;}
+#jc-privacy{font-size:11px;color:#aaa;text-align:center;margin-top:6px;}
+.jc-trigger{background:#BA7517;color:#fff;border:none;border-radius:8px;padding:11px 28px;font-size:14px;font-weight:500;cursor:pointer;}
+</style>
 
 <!-- NAV -->
 <nav>
@@ -1621,6 +1630,34 @@ footer { background:var(--dark); padding:3rem 5%; }
       </div>
     </div>
   </div>
+  <!-- Popup overlay -->
+<div id="jc-overlay">
+  <div id="jc-popup">
+    <button class="close-btn" onclick="closePopup()">&times;</button>
+    <h3>Be the first to know</h3>
+    <p class="sub">Get notified when our next masterclass opens. In-person · Kampala.</p>
+    <form id="baker-form">
+      <label>Full name *</label>
+      <input name="from_name" type="text" required placeholder="Your full name" />
+      <label>Business name *</label>
+      <input name="business_name" type="text" required placeholder="Your bakery name" />
+      <label>Phone number *</label>
+      <input name="phone" type="tel" required placeholder="07XX XXX XXXX" />
+      <label>Email address *</label>
+      <input name="from_email" type="email" required placeholder="your@email.com" />
+      <label>Which masterclass interests you? *</label>
+      <select name="masterclass_interest" required>
+        <option value="">Select one</option>
+        <option>Pricing Masterclass</option>
+        <option>Systems Masterclass</option>
+        <option>Both</option>
+      </select>
+      <button class="submit" type="submit">Notify me</button>
+      <p id="jc-status"></p>
+    </form>
+    <p id="jc-privacy">We will only contact you about masterclass updates.</p>
+  </div>
+</div>
 </section>
 
 <!-- GUIDES -->
