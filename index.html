@@ -1758,36 +1758,7 @@ footer { background:var(--dark); padding:3rem 5%; }
       <li><span class="benefit-icon">📣</span> Networking with serious bakers</li>
       <li><span class="benefit-icon">🔖</span> Private member discounts</li>
     </ul>
-    <div class="community-form">
-      <div class="community-form-title">Join Modern Bakers Club</div>
-      <div class="community-form-sub">Enter your details and we'll send you a welcome email with everything you need to get started.</div>
-      <div id="cf-form-wrap">
-        <div class="cf-row">
-          <div class="cf-field">
-            <label>Your Name</label>
-            <input type="text" id="cf-name" placeholder="e.g. Sarah Nakato"/>
-          </div>
-          <div class="cf-field">
-            <label>Email Address</label>
-            <input type="email" id="cf-email" placeholder="sarah@example.com"/>
-          </div>
-        </div>
-        <div class="cf-row">
-          <div class="cf-field">
-            <label>WhatsApp Number</label>
-            <input type="tel" id="cf-whatsapp" placeholder="+256 700 000 000"/>
-          </div>
-          <div class="cf-field">
-            <label>Type of Baker</label>
-            <select id="cf-type">
-              <option value="">Select one</option>
-              <option>Home Baker</option>
-              <option>Small Bakery Business</option>
-              <option>Cake Studio</option>
-              <option>Aspiring Baker</option>
-            </select>
-          </div>
-        </div>
+    
         <button class="cf-submit" onclick="submitCommunityForm()">👥 Join the Club — It's Free</button>
         <p class="cf-disclaimer">No spam. We'll only send you bakery business tips and community updates.</p>
       </div>
@@ -2036,7 +2007,44 @@ footer { background:var(--dark); padding:3rem 5%; }
     </div>
   </div>
 </footer>
+<script>
+/* ===== EMAILJS ===== */
+const EJS = {
+  publicKey:           'tSmk7ntgYhtwyGoi0',
+  serviceId:           'service_aj6hief',
+  communityTemplateId: 'template_pw4ugvq'
+};
 
+ /* ===== JOIN FORM ===== */
+function submitJoinForm() {
+  const name     = document.getElementById('jf-name').value.trim();
+  const phone    = document.getElementById('jf-phone').value.trim();
+  const email    = document.getElementById('jf-email').value.trim();
+  const location = document.getElementById('jf-location').value.trim();
+  const typeEl   = document.querySelector('input[name="baker-type"]:checked');
+  const bakerType = typeEl ? typeEl.value : '';
+
+  if (!name || !phone || !email) {
+    alert('Please fill in your name, WhatsApp number, and email address.');
+    return;
+  }
+  if (!email.includes('@')) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+  if (!bakerType) {
+    alert('Please select your baker type so we can personalise your experience.');
+    return;
+  }
+
+  const btn = document.getElementById('join-btn');
+  btn.textContent = '⏳ Joining…';
+  btn.disabled = true;
+
+  // Save to localStorage for admin
+  const members = JSON.parse(localStorage.getItem('bo_members') || '[]');
+  members.push({ name, phone, email, location, type: bakerType, date: new Date().toISOString() });
+  localStorage.setItem('bo_members', JSON.stringify(members));
 
 <script>
 /* ===== MOBILE MENU ===== */
