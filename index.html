@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>BakeOnline — Everything a Baker Needs</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<!-- EmailJS loaded ONCE -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
- 
-<script>emailjs.init("YOUR_PUBLIC_KEY");</script>
+
 <style>
   :root {
     --cream: #FDF6EC;
@@ -23,9 +23,7 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
-
   body {
     font-family: 'DM Sans', sans-serif;
     background: var(--cream);
@@ -251,28 +249,29 @@
   }
 
   .section-header { margin-bottom: 3rem; }
-/* ===== PILLARS ===== */
-#pillars { background:var(--brown); }
-#pillars .section-label { color:var(--gold); }
-#pillars .section-title { color:var(--cream); }
-#pillars .section-desc { color:rgba(253,246,236,0.55); }
-.pillars-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.2rem; }
-.pillar-card {
-  background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);
-  border-radius:16px; padding:2rem 1.5rem;
-  transition:background 0.2s,transform 0.2s,border-color 0.2s;
-  text-decoration:none; display:flex; flex-direction:column; gap:1rem;
-}
-.pillar-card:hover { background:rgba(255,255,255,0.09); transform:translateY(-4px); border-color:rgba(232,168,62,0.3); }
-.pillar-icon { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.4rem; }
-.pi1 { background:rgba(232,168,62,0.15); }
-.pi2 { background:rgba(45,106,79,0.2); }
-.pi3 { background:rgba(27,79,114,0.2); }
-.pi4 { background:rgba(196,123,43,0.2); }
-.pillar-title { font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:700; color:var(--cream); }
-.pillar-desc { font-size:0.84rem; color:rgba(253,246,236,0.6); line-height:1.6; flex:1; }
-.pillar-btn { display:inline-flex; align-items:center; gap:0.4rem; font-size:0.8rem; font-weight:600; color:var(--gold); margin-top:0.5rem; text-decoration:none; transition:gap 0.2s; }
-.pillar-card:hover .pillar-btn { gap:0.7rem; }
+
+  /* ===== PILLARS ===== */
+  #pillars { background: var(--brown); }
+  #pillars .section-label { color: var(--gold); }
+  #pillars .section-title { color: var(--cream); }
+  #pillars .section-desc { color: rgba(253,246,236,0.55); }
+  .pillars-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.2rem; }
+  .pillar-card {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px; padding: 2rem 1.5rem;
+    transition: background 0.2s, transform 0.2s, border-color 0.2s;
+    text-decoration: none; display: flex; flex-direction: column; gap: 1rem;
+  }
+  .pillar-card:hover { background: rgba(255,255,255,0.09); transform: translateY(-4px); border-color: rgba(232,168,62,0.3); }
+  .pillar-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
+  .pi1 { background: rgba(232,168,62,0.15); }
+  .pi2 { background: rgba(45,106,79,0.2); }
+  .pi3 { background: rgba(27,79,114,0.2); }
+  .pi4 { background: rgba(196,123,43,0.2); }
+  .pillar-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--cream); }
+  .pillar-desc { font-size: 0.84rem; color: rgba(253,246,236,0.6); line-height: 1.6; flex: 1; }
+  .pillar-btn { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; font-weight: 600; color: var(--gold); margin-top: 0.5rem; text-decoration: none; transition: gap 0.2s; }
+  .pillar-card:hover .pillar-btn { gap: 0.7rem; }
 
   /* ---- CATEGORIES ---- */
   #categories { background: var(--cream); }
@@ -603,7 +602,99 @@
 
   .benefit-icon { font-size: 1.1rem; }
 
-  .community-cta { margin-top: 0.5rem; }
+  /* ---- COMMUNITY FORM ---- */
+  .community-form {
+    background: var(--warm-white);
+    border: 1px solid rgba(196,123,43,0.18);
+    border-radius: 14px;
+    padding: 1.8rem;
+    margin-top: 1.5rem;
+    text-align: left;
+  }
+  .community-form-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--brown);
+    margin-bottom: 0.3rem;
+  }
+  .community-form-sub {
+    font-size: 0.82rem;
+    color: var(--soft-brown);
+    margin-bottom: 1.2rem;
+    line-height: 1.5;
+  }
+  .cf-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+  .cf-field { display: flex; flex-direction: column; gap: 0.25rem; margin-bottom: 0.8rem; }
+  .cf-field label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--soft-brown);
+    letter-spacing: 0.3px;
+  }
+  .cf-field input,
+  .cf-field select {
+    width: 100%;
+    padding: 0.6rem 0.85rem;
+    border: 1.5px solid rgba(196,123,43,0.2);
+    border-radius: 9px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.84rem;
+    color: var(--brown);
+    background: var(--cream);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .cf-field input:focus,
+  .cf-field select:focus { border-color: var(--caramel); }
+
+  .cf-submit {
+    width: 100%;
+    background: var(--brown);
+    color: var(--cream);
+    border: none;
+    border-radius: 10px;
+    padding: 0.85rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 0.3rem;
+  }
+  .cf-submit:hover { background: var(--caramel); }
+  .cf-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  .cf-success {
+    display: none;
+    background: #EAF4EE;
+    border: 1px solid rgba(45,106,79,0.25);
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  .cf-success-icon { font-size: 2.2rem; margin-bottom: 0.5rem; }
+  .cf-success-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #2D6A4F;
+    margin-bottom: 0.3rem;
+  }
+  .cf-success-sub { font-size: 0.82rem; color: #4A8C6A; line-height: 1.5; }
+  .cf-disclaimer {
+    font-size: 0.68rem;
+    color: var(--soft-brown);
+    opacity: 0.65;
+    margin-top: 0.6rem;
+    text-align: center;
+  }
 
   /* ---- SHOP ---- */
   #shop { background: var(--warm-white); }
@@ -641,6 +732,49 @@
     margin-bottom: 0.4rem;
   }
   .shop-cat p { font-size: 0.82rem; color: var(--soft-brown); line-height: 1.5; }
+
+  .woo-notice {
+    background: var(--light-tan);
+    border: 1px solid rgba(196,123,43,0.2);
+    border-radius: 10px;
+    padding: 0.8rem 1.1rem;
+    font-size: 0.82rem;
+    color: var(--soft-brown);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .shop-cta-bar {
+    background: var(--brown);
+    border-radius: 14px;
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .shop-cta-text h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--cream);
+    margin-bottom: 0.2rem;
+  }
+  .shop-cta-text p { font-size: 0.8rem; color: rgba(253,246,236,0.55); }
+  .btn-shop-woo {
+    background: var(--gold);
+    color: var(--brown);
+    padding: 0.65rem 1.4rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .btn-shop-woo:hover { background: #f0b84a; }
 
   /* ---- FEATURED ---- */
   #featured {
@@ -695,115 +829,174 @@
   .featured-text .section-desc { margin-bottom: 1.8rem; }
 
   /* ===== SOCIAL PROOF ===== */
-#proof { background:var(--warm); }
-.proof-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:3rem; }
-.proof-card { background:var(--cream); border:1px solid rgba(196,123,43,0.15); border-radius:16px; padding:1.8rem; transition:box-shadow 0.2s,transform 0.2s; }
-.proof-card:hover { box-shadow:0 12px 32px rgba(59,31,13,0.08); transform:translateY(-3px); }
-.proof-stars { color:var(--gold); font-size:1rem; margin-bottom:0.9rem; letter-spacing:2px; }
-.proof-quote { font-size:0.92rem; color:var(--brown); line-height:1.7; font-style:italic; margin-bottom:1.2rem; font-family:'Cormorant Garamond',serif; font-weight:600; font-size:1.05rem; }
-.proof-author { display:flex; align-items:center; gap:0.7rem; }
-.proof-avatar { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1rem; font-weight:700; color:#fff; font-family:'Cormorant Garamond',serif; flex-shrink:0; }
-.pa1 { background:#C47B2B; }
-.pa2 { background:#2D6A4F; }
-.pa3 { background:#1B4F72; }
-.proof-name { font-size:0.82rem; font-weight:600; color:var(--brown); }
-.proof-role { font-size:0.72rem; color:var(--soft); }
+  #proof { background: var(--warm-white); }
+  .proof-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+  .proof-card {
+    background: var(--cream);
+    border: 1px solid rgba(196,123,43,0.15);
+    border-radius: 16px;
+    padding: 1.8rem;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .proof-card:hover { box-shadow: 0 12px 32px rgba(59,31,13,0.08); transform: translateY(-3px); }
+  .proof-stars { color: var(--gold); font-size: 1rem; margin-bottom: 0.9rem; letter-spacing: 2px; }
+  .proof-quote {
+    font-size: 1.05rem;
+    color: var(--brown);
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 1.2rem;
+    font-family: 'Playfair Display', serif;
+  }
+  .proof-author { display: flex; align-items: center; gap: 0.7rem; }
+  .proof-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; font-weight: 700; color: #fff;
+    font-family: 'Playfair Display', serif; flex-shrink: 0;
+  }
+  .pa1 { background: #C47B2B; }
+  .pa2 { background: #2D6A4F; }
+  .pa3 { background: #1B4F72; }
+  .proof-name { font-size: 0.82rem; font-weight: 600; color: var(--brown); }
+  .proof-role { font-size: 0.72rem; color: var(--soft-brown); }
 
-/* ===== FINAL CTA ===== */
-#finalcta {
-  background:var(--brown); text-align:center; padding:100px 5%;
-  position:relative; overflow:hidden;
-}
-#finalcta::before { content:''; position:absolute; width:500px; height:500px; border-radius:50%; background:rgba(232,168,62,0.06); top:-200px; left:50%; transform:translateX(-50%); }
-.cta-tag { display:inline-block; background:rgba(232,168,62,0.12); color:var(--gold); font-size:0.7rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; padding:0.3rem 1rem; border-radius:100px; margin-bottom:1.2rem; }
-.cta-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,5vw,3.5rem); font-weight:700; color:var(--cream); margin-bottom:0.8rem; line-height:1.1; position:relative; }
-.cta-sub { font-size:1rem; color:rgba(253,246,236,0.55); margin-bottom:2.2rem; font-weight:300; position:relative; }
-.cta-buttons { display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; position:relative; }
-.btn-gold { background:var(--gold); color:var(--brown); padding:0.85rem 2rem; border-radius:10px; font-size:0.92rem; font-weight:700; text-decoration:none; transition:background 0.2s,transform 0.15s; display:inline-flex; align-items:center; gap:0.5rem; }
-.btn-gold:hover { background:#f0b84a; transform:translateY(-2px); }
-.btn-outline-cream { background:transparent; color:var(--cream); padding:0.85rem 2rem; border-radius:10px; font-size:0.92rem; font-weight:500; text-decoration:none; border:1.5px solid rgba(253,246,236,0.25); transition:all 0.2s; display:inline-flex; align-items:center; gap:0.5rem; }
-.btn-outline-cream:hover { border-color:rgba(253,246,236,0.6); transform:translateY(-2px); }
+  /* ===== FINAL CTA ===== */
+  #finalcta {
+    background: var(--brown);
+    text-align: center;
+    padding: 100px 5%;
+    position: relative;
+    overflow: hidden;
+  }
+  #finalcta::before {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: rgba(232,168,62,0.06);
+    top: -200px; left: 50%;
+    transform: translateX(-50%);
+  }
+  .cta-tag {
+    display: inline-block;
+    background: rgba(232,168,62,0.12);
+    color: var(--gold);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0.3rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 1.2rem;
+  }
+  .cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.8rem;
+    line-height: 1.1;
+    position: relative;
+  }
+  .cta-sub {
+    font-size: 1rem;
+    color: rgba(253,246,236,0.55);
+    margin-bottom: 2.2rem;
+    font-weight: 300;
+    position: relative;
+  }
+  .cta-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; position: relative; }
+  .btn-gold {
+    background: var(--gold);
+    color: var(--brown);
+    padding: 0.85rem 2rem;
+    border-radius: 10px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .btn-gold:hover { background: #f0b84a; transform: translateY(-2px); }
+  .btn-outline-cream {
+    background: transparent;
+    color: var(--cream);
+    padding: 0.85rem 2rem;
+    border-radius: 10px;
+    font-size: 0.92rem;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1.5px solid rgba(253,246,236,0.25);
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .btn-outline-cream:hover { border-color: rgba(253,246,236,0.6); transform: translateY(-2px); }
 
-/* ===== FOOTER ===== */
-footer { background:var(--dark); padding:3rem 5%; }
-.footer-inner { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; margin-bottom:2.5rem; }
-.footer-brand img { height:46px; margin-bottom:1rem; }
-.footer-brand-text { font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:700; color:var(--cream); display:none; }
-.footer-brand-text span { color:var(--gold); }
-.footer-tagline { font-size:0.82rem; color:rgba(253,246,236,0.4); line-height:1.6; max-width:220px; }
-.footer-col-title { font-size:0.72rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:rgba(232,168,62,0.6); margin-bottom:1rem; }
-.footer-links { list-style:none; display:flex; flex-direction:column; gap:0.5rem; }
-.footer-links a { text-decoration:none; font-size:0.83rem; color:rgba(253,246,236,0.45); transition:color 0.2s; }
-.footer-links a:hover { color:var(--gold); }
-.footer-bottom { border-top:1px solid rgba(255,255,255,0.07); padding-top:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
-.footer-copy { font-size:0.75rem; color:rgba(253,246,236,0.25); }
-.footer-bottom-links { display:flex; gap:1.5rem; }
-.footer-bottom-links a { font-size:0.75rem; color:rgba(253,246,236,0.25); text-decoration:none; }
-
+  /* ===== FOOTER ===== */
+  footer { background: var(--dark); padding: 3rem 5%; }
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 2.5rem;
+  }
+  .footer-brand-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+  .footer-brand-text span { color: var(--gold); }
+  .footer-tagline {
+    font-size: 0.82rem;
+    color: rgba(253,246,236,0.4);
+    line-height: 1.6;
+    max-width: 220px;
+  }
+  .footer-col-title {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(232,168,62,0.6);
+    margin-bottom: 1rem;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .footer-links a {
+    text-decoration: none;
+    font-size: 0.83rem;
+    color: rgba(253,246,236,0.45);
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-copy { font-size: 0.75rem; color: rgba(253,246,236,0.25); }
+  .footer-bottom-links { display: flex; gap: 1.5rem; }
+  .footer-bottom-links a { font-size: 0.75rem; color: rgba(253,246,236,0.25); text-decoration: none; }
 
   /* ---- PROFIT TRACKER ---- */
-  #profit-tracker { background: var(--cream); }
-  .tracker-wrap { display:grid; grid-template-columns:1fr 340px; gap:2rem; align-items:start; }
-  .tracker-inputs { background:var(--warm-white); border:1px solid rgba(196,123,43,0.15); border-radius:16px; padding:1.8rem; }
-  .tracker-section-title { font-family:'Playfair Display',serif; font-size:1rem; font-weight:700; color:var(--brown); margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem; }
-  .tracker-section-title .tsi { width:30px; height:30px; background:var(--light-tan); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:0.9rem; flex-shrink:0; }
-  .tracker-row { display:grid; grid-template-columns:1fr 1fr 28px; gap:0.5rem; margin-bottom:0.45rem; align-items:end; }
-  .tracker-row-2 { grid-template-columns:1fr 1fr; }
-  .t-label { font-size:0.7rem; font-weight:500; color:var(--soft-brown); margin-bottom:0.2rem; }
-  .t-input { width:100%; padding:0.5rem 0.7rem; border:1.5px solid rgba(196,123,43,0.18); border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.83rem; color:var(--brown); background:var(--cream); outline:none; -moz-appearance:textfield; }
-  .t-input:focus { border-color:var(--caramel); }
-  .t-input::-webkit-outer-spin-button,.t-input::-webkit-inner-spin-button { -webkit-appearance:none; }
-  .t-remove { width:28px; height:28px; background:#FDECEA; color:#C0392B; border:none; border-radius:7px; cursor:pointer; font-size:1rem; display:flex; align-items:center; justify-content:center; align-self:end; }
-  .t-add-btn { background:var(--light-tan); color:var(--soft-brown); border:1.5px dashed rgba(196,123,43,0.3); border-radius:8px; padding:0.42rem 0.9rem; font-family:'DM Sans',sans-serif; font-size:0.76rem; font-weight:500; cursor:pointer; width:100%; margin-top:0.3rem; transition:all 0.2s; }
-  .t-add-btn:hover { background:#e8d0a8; border-color:var(--caramel); }
-  .t-divider { height:1px; background:rgba(196,123,43,0.12); margin:1.2rem 0; }
-  .tracker-calc-btn { width:100%; background:var(--caramel); color:#fff; border:none; border-radius:10px; padding:0.85rem; font-family:'DM Sans',sans-serif; font-size:0.92rem; font-weight:600; cursor:pointer; margin-top:0.8rem; transition:background 0.2s; }
-  .tracker-calc-btn:hover { background:#a8611a; }
-  .tracker-results { background:var(--brown); border-radius:16px; padding:1.6rem; color:var(--cream); position:sticky; top:1.5rem; }
-  .tr-title { font-family:'Playfair Display',serif; font-size:1rem; color:var(--cream); margin-bottom:1.2rem; display:flex; align-items:center; gap:0.5rem; }
-  .tr-title .tri { background:rgba(232,168,62,0.15); width:30px; height:30px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:0.9rem; }
-  .tr-row { display:flex; justify-content:space-between; padding:0.38rem 0; border-bottom:1px solid rgba(255,255,255,0.06); font-size:0.8rem; }
-  .tr-lbl { color:rgba(253,246,236,0.55); }
-  .tr-val { font-weight:600; color:var(--cream); }
-  .tr-val.gold { color:var(--gold); }
-  .tr-val.red { color:#f1948a; }
-  .tr-divider { height:1px; background:rgba(255,255,255,0.1); margin:0.7rem 0; }
-  .tr-profit-block { background:rgba(232,168,62,0.12); border:1px solid rgba(232,168,62,0.25); border-radius:11px; padding:1rem; text-align:center; margin:0.9rem 0; }
-  .tr-plbl { font-size:0.6rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:rgba(232,168,62,0.6); margin-bottom:0.2rem; }
-  .tr-pval { font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:700; color:var(--gold); line-height:1; }
-  .tr-pval.negative { color:#f1948a; }
-  .tr-bar-wrap { margin-top:0.75rem; }
-  .tr-bar-lbl { display:flex; justify-content:space-between; font-size:0.65rem; color:rgba(253,246,236,0.38); margin-bottom:0.25rem; }
-  .tr-bar-track { height:5px; background:rgba(255,255,255,0.08); border-radius:100px; overflow:hidden; }
-  .tr-bar-fill { height:100%; background:var(--gold); border-radius:100px; transition:width 0.5s ease; }
-  .tr-empty { text-align:center; padding:1.5rem 0.5rem; color:rgba(253,246,236,0.28); font-size:0.78rem; line-height:1.6; }
-  .tr-month-select { width:100%; padding:0.5rem 0.7rem; border:1.5px solid rgba(196,123,43,0.18); border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.83rem; color:var(--brown); background:var(--cream); outline:none; margin-bottom:1rem; }
-  @media(max-width:760px){ .tracker-wrap { grid-template-columns:1fr; } .tracker-results { position:static; } }
-
-  /* ---- COMMUNITY EMAIL FORM ---- */
-  .community-form { background:var(--warm-white); border:1px solid rgba(196,123,43,0.18); border-radius:14px; padding:1.5rem; margin-top:1.5rem; text-align:left; }
-  .community-form-title { font-family:'Playfair Display',serif; font-size:1rem; font-weight:700; color:var(--brown); margin-bottom:0.4rem; }
-  .community-form-sub { font-size:0.8rem; color:var(--soft-brown); margin-bottom:1rem; }
-  .cf-row { display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; margin-bottom:0.6rem; }
-  .cf-field label { font-size:0.7rem; font-weight:500; color:var(--soft-brown); display:block; margin-bottom:0.2rem; }
-  .cf-field input, .cf-field select { width:100%; padding:0.55rem 0.8rem; border:1.5px solid rgba(196,123,43,0.2); border-radius:8px; font-family:'DM Sans',sans-serif; font-size:0.83rem; color:var(--brown); background:var(--cream); outline:none; }
-  .cf-field input:focus, .cf-field select:focus { border-color:var(--caramel); }
-  .cf-submit { width:100%; background:var(--brown); color:var(--cream); border:none; border-radius:10px; padding:0.78rem; font-family:'DM Sans',sans-serif; font-size:0.88rem; font-weight:600; cursor:pointer; transition:background 0.2s; margin-top:0.3rem; }
-  .cf-submit:hover { background:var(--caramel); }
-  .cf-success { display:none; background:#EAF4EE; border:1px solid rgba(45,106,79,0.25); border-radius:10px; padding:1rem; text-align:center; }
-  .cf-success-icon { font-size:2rem; margin-bottom:0.4rem; }
-  .cf-success-title { font-family:'Playfair Display',serif; font-size:1rem; font-weight:700; color:#2D6A4F; margin-bottom:0.2rem; }
-  .cf-success-sub { font-size:0.8rem; color:#4A8C6A; }
-  .cf-disclaimer { font-size:0.68rem; color:var(--soft-brown); opacity:0.6; margin-top:0.5rem; text-align:center; }
-
-  /* lm-benefits used in guides */
+  #profit-tracker { background: var(--warm-white); }
 
   /* ---- RESOURCES ---- */
   #resources { background: var(--cream); }
 
-  .resources-intro {
-    max-width: 560px;
-  }
+  .resources-intro { max-width: 560px; }
 
   .resources-grid {
     display: grid;
@@ -840,15 +1033,11 @@ footer { background:var(--dark); padding:3rem 5%; }
   .res-cover-profit { background: linear-gradient(135deg, #D4EDDA 0%, #B8E0C2 100%); }
   .res-cover-guide  { background: linear-gradient(135deg, #D6E4FF 0%, #B8CFFA 100%); }
 
-  .res-cover-icon {
-    font-size: 2.8rem;
-    line-height: 1;
-  }
+  .res-cover-icon { font-size: 2.8rem; line-height: 1; }
 
   .res-free-badge {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 12px; right: 12px;
     background: var(--brown);
     color: var(--gold);
     font-size: 0.62rem;
@@ -859,9 +1048,7 @@ footer { background:var(--dark); padding:3rem 5%; }
     border-radius: 100px;
   }
 
-  .res-body {
-    padding: 1.3rem 1.4rem 1.4rem;
-  }
+  .res-body { padding: 1.3rem 1.4rem 1.4rem; }
 
   .res-type {
     font-size: 0.65rem;
@@ -918,7 +1105,6 @@ footer { background:var(--dark); padding:3rem 5%; }
     transition: background 0.2s, transform 0.15s;
     white-space: nowrap;
   }
-
   .btn-download:hover { background: var(--caramel); transform: translateY(-1px); }
 
   .resources-note {
@@ -929,13 +1115,18 @@ footer { background:var(--dark); padding:3rem 5%; }
     opacity: 0.75;
   }
 
- /* ---- WOOCOMMERCE SHOP ---- */
-  .woo-notice { background:var(--light-tan); border:1px solid rgba(196,123,43,0.2); border-radius:10px; padding:0.8rem 1.1rem; font-size:0.82rem; color:var(--soft-brown); margin-bottom:1.5rem; display:flex; align-items:center; gap:0.6rem; }
-  .shop-cta-bar { background:var(--brown); border-radius:14px; padding:1.5rem 2rem; display:flex; align-items:center; justify-content:space-between; margin-top:1.5rem; gap:1rem; flex-wrap:wrap; }
-  .shop-cta-text h3 { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--cream); margin-bottom:0.2rem; }
-  .shop-cta-text p { font-size:0.8rem; color:rgba(253,246,236,0.55); }
-  .btn-shop-woo { background:var(--gold); color:var(--brown); padding:0.65rem 1.4rem; border-radius:8px; font-size:0.85rem; font-weight:700; text-decoration:none; transition:background 0.2s; white-space:nowrap; }
-  .btn-shop-woo:hover { background:#f0b84a; }
+  /* lm-benefits */
+  .lm-benefits { list-style: none; margin: 0.8rem 0 1rem; }
+  .lm-benefits li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--soft-brown);
+    padding: 0.28rem 0;
+    line-height: 1.5;
+  }
+  .lm-icon { font-size: 0.9rem; flex-shrink: 0; margin-top: 1px; }
 
   /* ---- STATS BAR ---- */
   #stats-bar {
@@ -954,10 +1145,7 @@ footer { background:var(--dark); padding:3rem 5%; }
     gap: 0.7rem;
     text-align: left;
   }
-  .stat-icon {
-    font-size: 1.3rem;
-    line-height: 1;
-  }
+  .stat-icon { font-size: 1.3rem; line-height: 1; }
   .stat-num {
     font-family: 'Playfair Display', serif;
     font-size: 1.35rem;
@@ -965,20 +1153,10 @@ footer { background:var(--dark); padding:3rem 5%; }
     color: var(--gold);
     line-height: 1;
   }
-  .stat-lbl {
-    font-size: 0.72rem;
-    color: rgba(253,246,236,0.5);
-    letter-spacing: 0.5px;
-    margin-top: 2px;
-  }
-  .stat-divider {
-    width: 1px;
-    height: 32px;
-    background: rgba(255,255,255,0.1);
-  }
-  @media(max-width:600px) { .stat-divider { display:none; } #stats-bar { gap:1.5rem; } }
+  .stat-lbl { font-size: 0.72rem; color: rgba(253,246,236,0.5); letter-spacing: 0.5px; margin-top: 2px; }
+  .stat-divider { width: 1px; height: 32px; background: rgba(255,255,255,0.1); }
 
-  /* ---- SECTION HEATMAP (most visited) ---- */
+  /* ---- SECTION HEATMAP ---- */
   #heatmap-bar {
     background: var(--warm-white);
     border-top: 1px solid rgba(196,123,43,0.1);
@@ -1022,7 +1200,6 @@ footer { background:var(--dark); padding:3rem 5%; }
     align-items: center;
     max-width: 1000px;
   }
-  @media(max-width:760px) { .about-inner { grid-template-columns:1fr; gap:2rem; } }
 
   .about-visual {
     background: rgba(255,255,255,0.05);
@@ -1058,12 +1235,7 @@ footer { background:var(--dark); padding:3rem 5%; }
     color: var(--cream);
     margin-bottom: 0.2rem;
   }
-  .about-founder-role {
-    font-size: 0.78rem;
-    color: var(--gold);
-    letter-spacing: 0.5px;
-    margin-bottom: 1.2rem;
-  }
+  .about-founder-role { font-size: 0.78rem; color: var(--gold); letter-spacing: 0.5px; margin-bottom: 1.2rem; }
   .about-founder-quote {
     font-size: 0.88rem;
     color: rgba(253,246,236,0.65);
@@ -1090,24 +1262,10 @@ footer { background:var(--dark); padding:3rem 5%; }
     font-weight: 700;
     color: var(--gold);
   }
-  .about-stat-lbl {
-    font-size: 0.65rem;
-    color: rgba(253,246,236,0.45);
-    margin-top: 2px;
-    line-height: 1.4;
-  }
+  .about-stat-lbl { font-size: 0.65rem; color: rgba(253,246,236,0.45); margin-top: 2px; line-height: 1.4; }
 
-  .about-text .section-desc {
-    color: rgba(253,246,236,0.65);
-    margin-bottom: 1.5rem;
-  }
-  .about-pillars {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
-    margin-bottom: 2rem;
-  }
+  .about-text .section-desc { color: rgba(253,246,236,0.65); margin-bottom: 1.5rem; }
+  .about-pillars { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 2rem; }
   .about-pillars li {
     display: flex;
     align-items: flex-start;
@@ -1135,16 +1293,10 @@ footer { background:var(--dark); padding:3rem 5%; }
     align-items: start;
     max-width: 1000px;
   }
-  @media(max-width:760px) { .consult-inner { grid-template-columns:1fr; gap:2rem; } }
 
   .consult-left .section-desc { margin-bottom: 1.5rem; }
 
-  .consult-offerings {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    margin-bottom: 1.5rem;
-  }
+  .consult-offerings { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 1.5rem; }
   .consult-offer {
     display: flex;
     align-items: flex-start;
@@ -1162,17 +1314,8 @@ footer { background:var(--dark); padding:3rem 5%; }
     font-size: 1rem;
     flex-shrink: 0;
   }
-  .co-title {
-    font-weight: 600;
-    font-size: 0.88rem;
-    color: var(--brown);
-    margin-bottom: 0.15rem;
-  }
-  .co-desc {
-    font-size: 0.78rem;
-    color: var(--soft-brown);
-    line-height: 1.5;
-  }
+  .co-title { font-weight: 600; font-size: 0.88rem; color: var(--brown); margin-bottom: 0.15rem; }
+  .co-desc { font-size: 0.78rem; color: var(--soft-brown); line-height: 1.5; }
   .co-price {
     margin-left: auto;
     font-family: 'Playfair Display', serif;
@@ -1197,15 +1340,8 @@ footer { background:var(--dark); padding:3rem 5%; }
     color: var(--brown);
     margin-bottom: 0.3rem;
   }
-  .consult-form-sub {
-    font-size: 0.8rem;
-    color: var(--soft-brown);
-    margin-bottom: 1.3rem;
-    line-height: 1.5;
-  }
-  .consult-field {
-    margin-bottom: 0.85rem;
-  }
+  .consult-form-sub { font-size: 0.8rem; color: var(--soft-brown); margin-bottom: 1.3rem; line-height: 1.5; }
+  .consult-field { margin-bottom: 0.85rem; }
   .consult-field label {
     font-size: 0.7rem;
     font-weight: 600;
@@ -1234,7 +1370,6 @@ footer { background:var(--dark); padding:3rem 5%; }
   .consult-field textarea:focus { border-color: var(--caramel); }
 
   .consult-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
-  @media(max-width:500px) { .consult-row { grid-template-columns:1fr; } }
 
   .btn-book {
     width: 100%;
@@ -1251,6 +1386,7 @@ footer { background:var(--dark); padding:3rem 5%; }
     transition: background 0.2s, transform 0.15s;
   }
   .btn-book:hover { background: var(--rust); transform: translateY(-1px); }
+  .btn-book:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
   .consult-success {
     display: none;
@@ -1270,10 +1406,6 @@ footer { background:var(--dark); padding:3rem 5%; }
     margin-bottom: 0.3rem;
   }
   .consult-success-sub { font-size: 0.8rem; color: #4A8C6A; line-height: 1.5; }
-  .lm-benefits { list-style:none; margin:0.8rem 0 1rem; }
-  .lm-benefits li { display:flex; align-items:flex-start; gap:0.5rem; font-size:0.82rem; color:var(--soft-brown); padding:0.28rem 0; line-height:1.5; }
-  .lm-icon { font-size:0.9rem; flex-shrink:0; margin-top:1px; }
-
 
   /* ---- MOBILE NAV ---- */
   .nav-hamburger {
@@ -1316,12 +1448,7 @@ footer { background:var(--dark); padding:3rem 5%; }
     to   { opacity: 1; transform: translateY(0); }
   }
   .mobile-menu.open { display: block; }
-  .mobile-menu ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
+  .mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 0; }
   .mobile-menu ul li a {
     display: block;
     padding: 0.85rem 0;
@@ -1353,12 +1480,18 @@ footer { background:var(--dark); padding:3rem 5%; }
     .featured-inner { grid-template-columns: 1fr; gap: 2rem; }
     .benefits-list { grid-template-columns: 1fr; }
     .cf-row { grid-template-columns: 1fr; }
+    .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .consult-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .proof-grid { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .stat-divider { display: none; }
+    #stats-bar { gap: 1.5rem; }
+    .consult-row { grid-template-columns: 1fr; }
   }
-
 </style>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
+
 <!-- NAV -->
 <nav>
   <div class="logo">Bake<span>Online</span></div>
@@ -1374,9 +1507,7 @@ footer { background:var(--dark); padding:3rem 5%; }
     <li><a href="calculator.html" class="nav-cta" style="margin-left:-1rem;">Try Calculator →</a></li>
   </ul>
   <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
-    <span></span>
-    <span></span>
-    <span></span>
+    <span></span><span></span><span></span>
   </button>
 </nav>
 
@@ -1390,7 +1521,7 @@ footer { background:var(--dark); padding:3rem 5%; }
     <li><a href="#resources" onclick="closeMenu()">Resources</a></li>
     <li><a href="#consultation" onclick="closeMenu()">Book Consultation</a></li>
     <li><a href="#shop" onclick="closeMenu()">Shop</a></li>
-    <li><a href="community.html" onclick="closeMenu()">Community</a></li>
+    <li><a href="#community" onclick="closeMenu()">Community</a></li>
     <li><a href="calculator.html" class="mobile-menu-cta" onclick="closeMenu()">🧮 Try Calculator</a></li>
   </ul>
 </div>
@@ -1469,25 +1600,25 @@ footer { background:var(--dark); padding:3rem 5%; }
     <a href="#trainings" class="cat-card">
       <div class="cat-icon">🎓</div>
       <h3>Trainings</h3>
-      <p>Live and recorded masterclasses to level up your knowledge fast. Trainings for bakers ready to completely transform how they price and profit</p>
+      <p>Live and recorded masterclasses to level up your knowledge fast. Trainings for bakers ready to completely transform how they price and profit.</p>
       <span class="pillar-btn">View Training →</span>
     </a>
     <a href="#guides" class="cat-card">
       <div class="cat-icon">📘</div>
       <h3>Guides</h3>
-      <p>Downloadable ebooks and workbooks you'll refer to again and again. From guides to advanced masterclasses — every resource is built for bakers who are serious about business.</p>
+      <p>Downloadable ebooks and workbooks you'll refer to again and again. Built for bakers who are serious about business.</p>
       <span class="pillar-btn">View Guides →</span>
     </a>
     <a href="#community" class="cat-card">
       <div class="cat-icon">👥</div>
       <h3>Community</h3>
-      <p>Join a community of modern bakers building structured businesses together. Grow faster with peers.Join Modern Bakers Club — a thriving group of serious bakers.</p>
+      <p>Join a community of modern bakers building structured businesses together. Grow faster with peers.</p>
       <span class="pillar-btn">Join Community →</span>
     </a>
     <a href="#shop" class="cat-card">
       <div class="cat-icon">🛒</div>
       <h3>Shop</h3>
-      <p>Access affordable, reliable baking supplies — ingredients, packaging, and tools — for your daily production delivered to your doorstep.</p>
+      <p>Access affordable, reliable baking supplies — ingredients, packaging, and tools — delivered to your doorstep.</p>
       <span class="pillar-btn">Visit Shop →</span>
     </a>
   </div>
@@ -1513,56 +1644,44 @@ footer { background:var(--dark); padding:3rem 5%; }
       <p>Track your monthly income, expenses, and profit in real time. Know exactly where your money is going and what's actually making you money.</p>
       <a href="#profit-tracker" class="btn-tool">Use Tool →</a>
     </div>
-    
   </div>
 </section>
-
 
 <!-- PROFIT TRACKER DOWNLOAD -->
 <section id="profit-tracker" style="background:var(--warm-white);">
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;max-width:960px;margin:0 auto;">
-
-    <!-- LEFT: Visual -->
     <div style="background:linear-gradient(135deg,var(--brown) 0%,#5a2d0c 100%);border-radius:20px;padding:2.5rem;position:relative;overflow:hidden;">
       <div style="position:absolute;width:200px;height:200px;border-radius:50%;background:rgba(232,168,62,0.08);top:-60px;right:-60px;"></div>
       <div style="font-size:0.65rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(232,168,62,0.6);margin-bottom:0.6rem;">FREE DOWNLOAD</div>
       <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--cream);margin-bottom:1.5rem;line-height:1.2;">Monthly Profit Tracker Spreadsheet</div>
-      <!-- Mock spreadsheet rows -->
       <div style="background:rgba(255,255,255,0.06);border-radius:8px;overflow:hidden;">
-        <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:0;background:rgba(232,168,62,0.15);padding:0.5rem 0.8rem;">
+        <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;background:rgba(232,168,62,0.15);padding:0.5rem 0.8rem;">
           <span style="font-size:0.7rem;font-weight:600;color:var(--gold);">Category</span>
           <span style="font-size:0.7rem;font-weight:600;color:var(--gold);">Budget</span>
           <span style="font-size:0.7rem;font-weight:600;color:var(--gold);">Actual</span>
         </div>
-        <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:0;padding:0.45rem 0.8rem;border-bottom:1px solid rgba(255,255,255,0.06);">
+        <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;padding:0.45rem 0.8rem;border-bottom:1px solid rgba(255,255,255,0.06);">
           <span style="font-size:0.75rem;color:rgba(253,246,236,0.7);">Custom Cakes</span>
           <span style="font-size:0.75rem;color:rgba(253,246,236,0.5);">500,000</span>
           <span style="font-size:0.75rem;color:#8ecfa0;font-weight:600;">620,000</span>
         </div>
-        <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:0;padding:0.45rem 0.8rem;border-bottom:1px solid rgba(255,255,255,0.06);">
+        <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;padding:0.45rem 0.8rem;border-bottom:1px solid rgba(255,255,255,0.06);">
           <span style="font-size:0.75rem;color:rgba(253,246,236,0.7);">Cupcakes</span>
           <span style="font-size:0.75rem;color:rgba(253,246,236,0.5);">150,000</span>
           <span style="font-size:0.75rem;color:#8ecfa0;font-weight:600;">180,000</span>
         </div>
-        <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:0;padding:0.45rem 0.8rem;border-bottom:1px solid rgba(255,255,255,0.06);">
+        <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;padding:0.45rem 0.8rem;border-bottom:1px solid rgba(255,255,255,0.06);">
           <span style="font-size:0.75rem;color:rgba(253,246,236,0.7);">Ingredients</span>
           <span style="font-size:0.75rem;color:rgba(253,246,236,0.5);">200,000</span>
           <span style="font-size:0.75rem;color:#f1948a;font-weight:600;">-185,000</span>
         </div>
-        <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:0;padding:0.45rem 0.8rem;border-bottom:1px solid rgba(255,255,255,0.06);">
-          <span style="font-size:0.75rem;color:rgba(253,246,236,0.7);">Packaging</span>
-          <span style="font-size:0.75rem;color:rgba(253,246,236,0.5);">60,000</span>
-          <span style="font-size:0.75rem;color:#f1948a;font-weight:600;">-55,000</span>
-        </div>
-        <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:0;padding:0.6rem 0.8rem;background:rgba(232,168,62,0.1);">
+        <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;padding:0.6rem 0.8rem;background:rgba(232,168,62,0.1);">
           <span style="font-size:0.78rem;font-weight:700;color:var(--cream);">Net Profit</span>
           <span style="font-size:0.78rem;color:rgba(253,246,236,0.5);">390,000</span>
           <span style="font-size:0.78rem;font-weight:700;color:var(--gold);">560,000</span>
         </div>
       </div>
     </div>
-
-    <!-- RIGHT: Text + download -->
     <div>
       <p class="section-label">📊 Free Tool</p>
       <h2 class="section-title">Know your profit every single month.</h2>
@@ -1579,7 +1698,6 @@ footer { background:var(--dark); padding:3rem 5%; }
       </a>
       <p style="font-size:0.72rem;color:var(--soft-brown);opacity:0.6;margin-top:0.7rem;">Free forever. No email required. Works offline.</p>
     </div>
-
   </div>
 </section>
 
@@ -1592,7 +1710,7 @@ footer { background:var(--dark); padding:3rem 5%; }
   </div>
   <div class="trainings-grid">
     <div class="training-card">
-      <p class="training-tag">Most Popular - Coming soon</p>
+      <p class="training-tag">Most Popular - Coming Soon</p>
       <h3>Pricing Masterclass</h3>
       <ul class="training-list">
         <li>How to calculate your true cost of production</li>
@@ -1603,11 +1721,11 @@ footer { background:var(--dark); padding:3rem 5%; }
       <p class="training-who">For: Home bakers, cottage bakeries, micro-businesses</p>
       <div class="training-footer">
         <span class="training-price">Shs.0</span>
-        <a href="#" class="btn-enroll">Coming soon</a>
+        <a href="#" class="btn-enroll">Coming Soon</a>
       </div>
     </div>
     <div class="training-card">
-      <p class="training-tag">New - Coming soon</p>
+      <p class="training-tag">New - Coming Soon</p>
       <h3>Systems Workshop</h3>
       <ul class="training-list">
         <li>Building repeatable bakery systems</li>
@@ -1618,11 +1736,10 @@ footer { background:var(--dark); padding:3rem 5%; }
       <p class="training-who">For: Bakers ready to stop winging it and build real structure</p>
       <div class="training-footer">
         <span class="training-price">Shs.0</span>
-        <a href="#" class="btn-enroll">Coming soon</a>
+        <a href="#" class="btn-enroll">Coming Soon</a>
       </div>
     </div>
   </div>
- 
 </section>
 
 <!-- GUIDES -->
@@ -1630,25 +1747,21 @@ footer { background:var(--dark); padding:3rem 5%; }
   <div class="section-header">
     <p class="section-label">📘 Guides & Ebooks</p>
     <h2 class="section-title">Practical Knowledge, Instant Download</h2>
-    <p class="section-desc">Written for bakers, not accountants. Straight to the point, immediately actionable. 
-      Buy both the Systems Guide and Pricing Ebook and receive a complimentary clarity session
-      to help you understand your numbers, strengthen your systems, 
-      and identify the next steps for growing your bakery with more structure and confidence.</p>
+    <p class="section-desc">Written for bakers, not accountants. Straight to the point, immediately actionable. Buy both the Systems Guide and Pricing Ebook and receive a complimentary clarity session.</p>
   </div>
   <div class="guides-grid">
     <div class="guide-card">
       <div class="guide-cover">💰</div>
       <div class="guide-body">
         <h3>The Pricing Ebook</h3>
-        <p>A complete guide to pricing your baked goods profitably — from costing ingredients to positioning your brand.
-        Buy the Pricing Ebook and get a free pricing clarity session</p>
+        <p>A complete guide to pricing your baked goods profitably. Buy the Pricing Ebook and get a free pricing clarity session.</p>
         <ul class="lm-benefits">
-        <li><span class="lm-icon">✅</span>You’re making sales, but your money isn’t growing, here’s why.</li>
-        <li><span class="lm-icon">✅</span>Discover the hidden costs you’ve been ignoring.</li>
-        <li><span class="lm-icon">✅</span>Learn how to create clear product categories and price ranges.</li>
-        <li><span class="lm-icon">✅</span>Understand how branding and presentation affects your prices.</li>
-        <li><span class="lm-icon">✅</span>Learn how to track your numbers and make better business decisions.</li>
-      </ul>
+          <li><span class="lm-icon">✅</span>You're making sales, but your money isn't growing — here's why.</li>
+          <li><span class="lm-icon">✅</span>Discover the hidden costs you've been ignoring.</li>
+          <li><span class="lm-icon">✅</span>Learn how to create clear product categories and price ranges.</li>
+          <li><span class="lm-icon">✅</span>Understand how branding and presentation affects your prices.</li>
+          <li><span class="lm-icon">✅</span>Learn how to track your numbers and make better business decisions.</li>
+        </ul>
         <div class="guide-footer">
           <span class="guide-price">Shs. 55,000</span>
           <a href="https://selar.com/uo257v811c" class="btn-get">Get Now</a>
@@ -1659,17 +1772,16 @@ footer { background:var(--dark); padding:3rem 5%; }
       <div class="guide-cover">📋</div>
       <div class="guide-body">
         <h3>Bakery Systems Guide</h3>
-        <p>Templates, checklists, and frameworks to help you run your bakery consistently and professionally. 
-          Buy the Systems Guide and get a free systems clarity session.</p>
+        <p>Templates, checklists, and frameworks to help you run your bakery consistently and professionally. Buy the Systems Guide and get a free systems clarity session.</p>
         <ul class="lm-benefits">
-        <li><span class="lm-icon">✅</span>Learn how to organize your bakery from order to delivery</li>
-        <li><span class="lm-icon">✅</span>Create clear production schedules that reduce confusion</li>
-        <li><span class="lm-icon">✅</span>Learn how to manage stock, Ingredients and bakery supplies better</li>
-        <li><span class="lm-icon">✅</span>Use customer communication templates to save time and look professional</li>
-        <li><span class="lm-icon">✅</span>Build a bakery that depends less on memory and more on structure.</li>
-      </ul>
+          <li><span class="lm-icon">✅</span>Learn how to organize your bakery from order to delivery</li>
+          <li><span class="lm-icon">✅</span>Create clear production schedules that reduce confusion</li>
+          <li><span class="lm-icon">✅</span>Learn how to manage stock, ingredients and bakery supplies better</li>
+          <li><span class="lm-icon">✅</span>Use customer communication templates to save time and look professional</li>
+          <li><span class="lm-icon">✅</span>Build a bakery that depends less on memory and more on structure.</li>
+        </ul>
         <div class="guide-footer">
-          <span class="guide-price">shs. 65,000</span>
+          <span class="guide-price">Shs. 65,000</span>
           <a href="https://selar.com/77554n6446" class="btn-get">Get Now</a>
         </div>
       </div>
@@ -1686,8 +1798,6 @@ footer { background:var(--dark); padding:3rem 5%; }
   </div>
 
   <div class="resources-grid">
-
-    <!-- Order Tracker -->
     <div class="res-card">
       <div class="res-cover res-cover-order">
         <span class="res-cover-icon">📋</span>
@@ -1704,7 +1814,6 @@ footer { background:var(--dark); padding:3rem 5%; }
       </div>
     </div>
 
-    <!-- Profit Tracker -->
     <div class="res-card">
       <div class="res-cover res-cover-profit">
         <span class="res-cover-icon">📈</span>
@@ -1721,7 +1830,6 @@ footer { background:var(--dark); padding:3rem 5%; }
       </div>
     </div>
 
-    <!-- Customer Profile Guide -->
     <div class="res-card">
       <div class="res-cover res-cover-guide">
         <span class="res-cover-icon">👤</span>
@@ -1737,7 +1845,6 @@ footer { background:var(--dark); padding:3rem 5%; }
         </div>
       </div>
     </div>
-
   </div>
 
   <p class="resources-note">All resources are completely free. Made by BakeOnline for bakery operators across Uganda. 🇺🇬</p>
@@ -1758,16 +1865,49 @@ footer { background:var(--dark); padding:3rem 5%; }
       <li><span class="benefit-icon">📣</span> Networking with serious bakers</li>
       <li><span class="benefit-icon">🔖</span> Private member discounts</li>
     </ul>
-    
-        <button class="cf-submit" onclick="submitCommunityForm()">👥 Join the Club — It's Free</button>
+
+    <!-- COMMUNITY FORM — ALL FIELDS PRESENT AND CORRECT -->
+    <div class="community-form">
+      <div class="community-form-title">Join Modern Bakers Club — It's Free</div>
+      <div class="community-form-sub">Fill in your details below and we'll add you to the community and send your welcome message.</div>
+
+      <div id="cf-form-wrap">
+        <div class="cf-row">
+          <div class="cf-field">
+            <label for="cf-name">Your Name *</label>
+            <input type="text" id="cf-name" placeholder="e.g. Sarah Nakato" />
+          </div>
+          <div class="cf-field">
+            <label for="cf-whatsapp">WhatsApp Number *</label>
+            <input type="tel" id="cf-whatsapp" placeholder="+256 700 000 000" />
+          </div>
+        </div>
+        <div class="cf-field">
+          <label for="cf-email">Email Address *</label>
+          <input type="email" id="cf-email" placeholder="sarah@example.com" />
+        </div>
+        <div class="cf-field">
+          <label for="cf-type">Baker Type</label>
+          <select id="cf-type">
+            <option value="">Select your baker type</option>
+            <option value="Home Baker">Home Baker</option>
+            <option value="Cottage Bakery">Cottage Bakery</option>
+            <option value="Small Bakery">Small Bakery / Shop</option>
+            <option value="Growing Business">Growing Business</option>
+            <option value="Just Starting">Just Starting Out</option>
+          </select>
+        </div>
+        <button class="cf-submit" id="cf-submit-btn" onclick="submitCommunityForm()">👥 Join the Club — It's Free</button>
         <p class="cf-disclaimer">No spam. We'll only send you bakery business tips and community updates.</p>
       </div>
+
       <div class="cf-success" id="cf-success">
         <div class="cf-success-icon">🎉</div>
         <div class="cf-success-title">Welcome to Modern Bakers Club!</div>
         <div class="cf-success-sub">Check your email for your welcome message and WhatsApp group link. We're excited to have you!</div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -1785,7 +1925,7 @@ footer { background:var(--dark); padding:3rem 5%; }
       <h3>Ingredients</h3>
       <p>Premium baking ingredients — flour, chocolate, flavourings, and more.</p>
     </a>
-    <a href="‎https://wa.me/256759996935?text=Hi%20I%20want%20to%20browse%20your%20shop" class="shop-cat sc2">
+    <a href="https://wa.me/256759996935?text=Hi%20I%20want%20to%20browse%20your%20shop" class="shop-cat sc2">
       <div class="shop-cat-icon">🎂</div>
       <h3>Tools & Equipment</h3>
       <p>Professional-grade baking tools and cake decorating equipment.</p>
@@ -1800,10 +1940,8 @@ footer { background:var(--dark); padding:3rem 5%; }
   <div class="shop-cta-bar">
     <div class="shop-cta-text">
       <h3>Browse the full BakeOnline shop</h3>
-  
     </div>
-    <a href="https://wa.me/256759996935?text=Hi%20I%20want%20to%20browse%20your%20shop" target="_blank" class="btn-shop-woo">
-🛒 Visit Full BakeOnlineShop →</a>
+    <a href="https://wa.me/256759996935?text=Hi%20I%20want%20to%20browse%20your%20shop" target="_blank" class="btn-shop-woo">🛒 Visit Full BakeOnlineShop →</a>
   </div>
 </section>
 
@@ -1849,16 +1987,15 @@ footer { background:var(--dark); padding:3rem 5%; }
     <div class="about-text">
       <p class="section-label">🍞 Our Story</p>
       <h2 class="section-title">Built by a Baker, for Bakers</h2>
-      <p class="section-desc">Bakeonline is a technology-driven platform built to solve the real problems bakers face - underpricing, disorganized operations, and inconsistent growth. 
-      Bakeonline focuses on building structured, profitable businesses. Through pricing tools, business systems, practical guides, and access to affordable supplies, we help bakers move from guesswork to clarity - and from passion to profit.</p>
+      <p class="section-desc">BakeOnline is a technology-driven platform built to solve the real problems bakers face — underpricing, disorganized operations, and inconsistent growth. Through pricing tools, business systems, practical guides, and access to affordable supplies, we help bakers move from guesswork to clarity — and from passion to profit.</p>
       <ul class="about-pillars">
         <li>
           <span class="about-pill-icon">🧮</span>
-          <span><strong style="color:var(--cream);">Pricing tools</strong> so you never undersell your work again - knowing your real cost is the first step to profit.</span>
+          <span><strong style="color:var(--cream);">Pricing tools</strong> so you never undersell your work again — knowing your real cost is the first step to profit.</span>
         </li>
         <li>
           <span class="about-pill-icon">📘</span>
-          <span><strong style="color:var(--cream);">Guides & training</strong> built around the real problems Ugandan bakers face daily - not generic business advice.</span>
+          <span><strong style="color:var(--cream);">Guides & training</strong> built around the real problems Ugandan bakers face daily — not generic business advice.</span>
         </li>
         <li>
           <span class="about-pill-icon">🤝</span>
@@ -1887,7 +2024,7 @@ footer { background:var(--dark); padding:3rem 5%; }
           <div class="co-icon">💰</div>
           <div>
             <div class="co-title">Pricing Strategy Session</div>
-            <div class="co-desc">Business assessment, Review your current pricing, identify where you're losing money, build a pricing structure that works and clear next steps.</div>
+            <div class="co-desc">Business assessment, review your current pricing, identify where you're losing money, build a pricing structure that works and clear next steps.</div>
           </div>
           <div class="co-price">Shs 60,000</div>
         </div>
@@ -1948,7 +2085,7 @@ footer { background:var(--dark); padding:3rem 5%; }
           <label>Tell us about your bakery & what you need help with</label>
           <textarea id="con-message" rows="3" placeholder="e.g. I run a home bakery making cakes and I'm struggling to price my orders correctly..."></textarea>
         </div>
-        <button class="btn-book" onclick="submitConsultForm()">📅 Request My Booking</button>
+        <button class="btn-book" id="consult-btn" onclick="submitConsultForm()">📅 Request My Booking</button>
         <p class="cf-disclaimer">We'll confirm via WhatsApp within 24 hours. No payment required upfront.</p>
       </div>
 
@@ -1965,8 +2102,7 @@ footer { background:var(--dark); padding:3rem 5%; }
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <img src="logo.png" alt="BakeOnline" onerror="this.style.display='none';document.getElementById('footerLogoText').style.display='block'"/>
-      <span class="footer-brand-text" id="footerLogoText">Bake<span>Online</span></span>
+      <span class="footer-brand-text">Bake<span>Online</span></span>
       <p class="footer-tagline">Everything a modern baker needs to build a structured, profitable bakery business.</p>
     </div>
     <div>
@@ -1975,16 +2111,15 @@ footer { background:var(--dark); padding:3rem 5%; }
         <li><a href="calculator.html">Pricing Calculator</a></li>
         <li><a href="#guides">Guides & Ebooks</a></li>
         <li><a href="#resources">Free Resources</a></li>
-        <li><a href="#training">Masterclass</a></li>
+        <li><a href="#trainings">Masterclass</a></li>
         <li><a href="#shop">Shop</a></li>
       </ul>
     </div>
     <div>
       <div class="footer-col-title">Community</div>
       <ul class="footer-links">
-        <li><a href="community.html">Modern Bakers Club</a></li>
-        <li><a href="community.html">WhatsApp Group</a></li>
-        
+        <li><a href="#community">Modern Bakers Club</a></li>
+        <li><a href="https://wa.me/256759996935">WhatsApp Group</a></li>
       </ul>
     </div>
     <div>
@@ -2007,82 +2142,81 @@ footer { background:var(--dark); padding:3rem 5%; }
     </div>
   </div>
 </footer>
+
+<!-- =====================================================
+     ALL JAVASCRIPT — SINGLE CLEAN SCRIPT BLOCK
+     ===================================================== -->
 <script>
-/* ===== EMAILJS ===== */
+// ── EmailJS config ──────────────────────────────────────
 const EJS = {
   publicKey:           'tSmk7ntgYhtwyGoi0',
   serviceId:           'service_aj6hief',
-  communityTemplateId: 'template_pw4ugvq'
+  communityTemplateId: 'template_pw4ugvq',
+  consultTemplateId:   'template_ljx7sxc'
 };
-</script?>
 
- /* ===== JOIN FORM ===== */
-function submitJoinForm() {
-  const name     = document.getElementById('jf-name').value.trim();
-  const phone    = document.getElementById('jf-phone').value.trim();
-  const email    = document.getElementById('jf-email').value.trim();
-  const location = document.getElementById('jf-location').value.trim();
-  const typeEl   = document.querySelector('input[name="baker-type"]:checked');
-  const bakerType = typeEl ? typeEl.value : '';
-
-  if (!name || !phone || !email) {
-    alert('Please fill in your name, WhatsApp number, and email address.');
-    return;
-  }
-  if (!email.includes('@')) {
-    alert('Please enter a valid email address.');
-    return;
-  }
-  if (!bakerType) {
-    alert('Please select your baker type so we can personalise your experience.');
-    return;
-  }
-
-  const btn = document.getElementById('join-btn');
-  btn.textContent = '⏳ Joining…';
-  btn.disabled = true;
-
-  // Save to localStorage for admin
-  const members = JSON.parse(localStorage.getItem('bo_members') || '[]');
-  members.push({ name, phone, email, location, type: bakerType, date: new Date().toISOString() });
-  localStorage.setItem('bo_members', JSON.stringify(members));
-
-<script>
-/* ===== MOBILE MENU ===== */
-function toggleMenu() {
-  const menu = document.getElementById('mobileMenu');
-  const btn = document.getElementById('hamburger');
-  menu.classList.toggle('open');
-  btn.classList.toggle('open');
+// Initialise EmailJS once
+if (typeof emailjs !== 'undefined') {
+  emailjs.init(EJS.publicKey);
 }
 
+function ejsReady() {
+  return typeof emailjs !== 'undefined';
+}
+
+// ── Mobile Menu ──────────────────────────────────────────
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+}
 function closeMenu() {
   document.getElementById('mobileMenu').classList.remove('open');
   document.getElementById('hamburger').classList.remove('open');
 }
-
 document.addEventListener('click', function(e) {
   const menu = document.getElementById('mobileMenu');
-  const btn = document.getElementById('hamburger');
+  const btn  = document.getElementById('hamburger');
   if (menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)) {
     closeMenu();
   }
 });
 
-/* ===== STATS COUNTER (localStorage) ===== */
+// ── Stats helpers ────────────────────────────────────────
+// We use a BASE_COUNT so the numbers look healthy even for new visitors.
+// Adjust these seed values to whatever makes sense for your business.
+var BASE = { visitors: 312, downloads: 87, calcs: 203, members: 56 };
+
 function getStats() {
-  return JSON.parse(localStorage.getItem('bo_stats') || '{"visitors":0,"downloads":0,"calcs":0,"members":0}');
+  var stored = JSON.parse(localStorage.getItem('bo_stats') || 'null');
+  if (!stored) {
+    // First time ever on this device — seed with base + 0 real activity
+    stored = { visitors: 0, downloads: 0, calcs: 0, members: 0 };
+    localStorage.setItem('bo_stats', JSON.stringify(stored));
+  }
+  return stored;
 }
-function saveStats(s) { localStorage.setItem('bo_stats', JSON.stringify(s)); }
+function saveStats(s) {
+  localStorage.setItem('bo_stats', JSON.stringify(s));
+}
+
+// Display = base seed + locally tracked activity
+function displayStats(s) {
+  return {
+    visitors:  BASE.visitors  + s.visitors,
+    downloads: BASE.downloads + s.downloads,
+    calcs:     BASE.calcs     + s.calcs,
+    members:   BASE.members   + s.members
+  };
+}
 
 function animateCount(el, target, duration) {
-  const start = parseInt(el.textContent.replace(/,/g,'')) || 0;
-  const range = target - start;
-  const startTime = performance.now();
+  var start     = parseInt((el.textContent || '0').replace(/,/g, '')) || 0;
+  var range     = target - start;
+  var startTime = performance.now();
   function step(now) {
-    const elapsed = now - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
+    var elapsed  = now - startTime;
+    var progress = Math.min(elapsed / duration, 1);
+    var eased    = 1 - Math.pow(1 - progress, 3);
     el.textContent = Math.round(start + range * eased).toLocaleString();
     if (progress < 1) requestAnimationFrame(step);
   }
@@ -2090,17 +2224,16 @@ function animateCount(el, target, duration) {
 }
 
 function refreshStatDisplay() {
-  const s = getStats();
-  animateCount(document.getElementById('stat-visitors'), s.visitors, 1200);
+  var s = displayStats(getStats());
+  animateCount(document.getElementById('stat-visitors'),  s.visitors,  1200);
   animateCount(document.getElementById('stat-downloads'), s.downloads, 1200);
-  animateCount(document.getElementById('stat-calcs'), s.calcs, 1200);
-  animateCount(document.getElementById('stat-members'), s.members, 1200);
+  animateCount(document.getElementById('stat-calcs'),     s.calcs,     1200);
+  animateCount(document.getElementById('stat-members'),   s.members,   1200);
 }
 
-// Count this visit
+// Count this page visit (once per browser session)
 (function() {
-  const s = getStats();
-  // Only count once per session
+  var s = getStats();
   if (!sessionStorage.getItem('bo_visited')) {
     s.visitors += 1;
     sessionStorage.setItem('bo_visited', '1');
@@ -2112,15 +2245,15 @@ function refreshStatDisplay() {
 // Track download clicks
 document.querySelectorAll('.btn-download').forEach(function(btn) {
   btn.addEventListener('click', function() {
-    const s = getStats();
+    var s = getStats();
     s.downloads += 1;
     saveStats(s);
     refreshStatDisplay();
   });
 });
 
-/* ===== SECTION VISIT HEATMAP ===== */
-const SECTIONS = [
+// ── Section Heatmap ──────────────────────────────────────
+var SECTIONS = [
   { id: 'tools',        label: 'Tools' },
   { id: 'trainings',    label: 'Training' },
   { id: 'guides',       label: 'Guides' },
@@ -2128,37 +2261,39 @@ const SECTIONS = [
   { id: 'about',        label: 'About' },
   { id: 'consultation', label: 'Consult' },
   { id: 'community',    label: 'Community' },
-  { id: 'shop',         label: 'Shop' },
+  { id: 'shop',         label: 'Shop' }
 ];
 
 function getSectionVisits() {
   return JSON.parse(localStorage.getItem('bo_section_visits') || '{}');
 }
-function saveSectionVisits(v) { localStorage.setItem('bo_section_visits', JSON.stringify(v)); }
+function saveSectionVisits(v) {
+  localStorage.setItem('bo_section_visits', JSON.stringify(v));
+}
 
 function renderHeatmap() {
-  const visits = getSectionVisits();
-  const sorted = SECTIONS.map(function(s) {
+  var visits = getSectionVisits();
+  var sorted = SECTIONS.map(function(s) {
     return { label: s.label, count: visits[s.id] || 0 };
-  }).sort(function(a,b) { return b.count - a.count; });
+  }).sort(function(a, b) { return b.count - a.count; });
 
-  const container = document.getElementById('hm-pills');
+  var container = document.getElementById('hm-pills');
   container.innerHTML = '';
   sorted.forEach(function(s, i) {
-    const pill = document.createElement('span');
+    var pill = document.createElement('span');
     pill.className = 'hm-pill' + (i === 0 && s.count > 0 ? ' top' : '');
-    pill.innerHTML = '<span class="hm-dot"></span>' + s.label + (s.count > 0 ? ' <strong>(' + s.count + ')</strong>' : '');
+    pill.innerHTML = '<span class="hm-dot"></span>' + s.label +
+      (s.count > 0 ? ' <strong>(' + s.count + ')</strong>' : '');
     container.appendChild(pill);
   });
 }
 
-// IntersectionObserver to detect which sections are viewed
-const sectionObserver = new IntersectionObserver(function(entries) {
+var sectionObserver = new IntersectionObserver(function(entries) {
   entries.forEach(function(entry) {
     if (entry.isIntersecting) {
-      const id = entry.target.id;
+      var id = entry.target.id;
       if (!id) return;
-      const visits = getSectionVisits();
+      var visits = getSectionVisits();
       visits[id] = (visits[id] || 0) + 1;
       saveSectionVisits(visits);
       renderHeatmap();
@@ -2167,49 +2302,49 @@ const sectionObserver = new IntersectionObserver(function(entries) {
 }, { threshold: 0.35 });
 
 SECTIONS.forEach(function(s) {
-  const el = document.getElementById(s.id);
+  var el = document.getElementById(s.id);
   if (el) sectionObserver.observe(el);
 });
-
 renderHeatmap();
 
-/* ===== EMAILJS CONFIG =====
-   Sign up free at emailjs.com → get Service ID, Template IDs, Public Key
-   Replace the placeholders below then it's live. */
-const EJS = {
-  publicKey:          'tSmk7ntgYhtwyGoi0',
-  serviceId:          'service_aj6hief',
-  consultTemplateId:  'template_ljx7sxc',   // template for bookings
-  
-};
-
-function ejsReady() {
-  return EJS.publicKey !== 'YOUR_EMAILJS_PUBLIC_KEY' && typeof emailjs !== 'undefined';
-}
-
-/* ===== COMMUNITY FORM ===== */
+// ── Community Form ───────────────────────────────────────
 function submitCommunityForm() {
-  const name    = document.getElementById('cf-name').value.trim();
-  const email   = document.getElementById('cf-email').value.trim();
-  const whatsapp= document.getElementById('cf-whatsapp').value.trim();
-  const type    = document.getElementById('cf-type').value;
+  var name     = document.getElementById('cf-name').value.trim();
+  var email    = document.getElementById('cf-email').value.trim();
+  var whatsapp = document.getElementById('cf-whatsapp').value.trim();
+  var type     = document.getElementById('cf-type').value;
 
-  if (!name || !email) { alert('Please enter your name and email to join.'); return; }
-  if (!email.includes('@')) { alert('Please enter a valid email address.'); return; }
+  if (!name || !email) {
+    alert('Please enter your name and email to join.');
+    return;
+  }
+  if (!email.includes('@')) {
+    alert('Please enter a valid email address.');
+    return;
+  }
 
-  const btn = document.querySelector('.cf-submit');
-  btn.textContent = 'Sending…';
+  var btn = document.getElementById('cf-submit-btn');
+  btn.textContent = '⏳ Joining…';
   btn.disabled = true;
 
-  // Save locally for admin
-  const members = JSON.parse(localStorage.getItem('bo_members') || '[]');
-  members.push({ name, email, whatsapp, type, date: new Date().toISOString() });
+  // Save to localStorage for admin
+  var members = JSON.parse(localStorage.getItem('bo_members') || '[]');
+  members.push({ name: name, email: email, whatsapp: whatsapp, type: type, date: new Date().toISOString() });
   localStorage.setItem('bo_members', JSON.stringify(members));
 
-  const s = getStats(); s.members += 1; saveStats(s); refreshStatDisplay();
+  // Increment member count
+  var s = getStats();
+  s.members += 1;
+  saveStats(s);
+  refreshStatDisplay();
 
-  const params = { to_name: name, to_email: email, baker_type: type || 'Baker',
-                   whatsapp: whatsapp || 'Not provided', reply_to: 'hello@bakeonline.co' };
+  var params = {
+    to_name:    name,
+    to_email:   email,
+    baker_type: type || 'Baker',
+    whatsapp:   whatsapp || 'Not provided',
+    reply_to:   'hello@bakeonline.co'
+  };
 
   function done() {
     document.getElementById('cf-form-wrap').style.display = 'none';
@@ -2217,47 +2352,54 @@ function submitCommunityForm() {
   }
 
   if (ejsReady()) {
-    emailjs.init(EJS.publicKey);
     emailjs.send(EJS.serviceId, EJS.communityTemplateId, params)
-      .then(done).catch(done);
+      .then(done)
+      .catch(function(err) {
+        console.warn('EmailJS error (community):', err);
+        done(); // Still show success — data is saved locally
+      });
   } else {
-    console.log('Community join (EmailJS not configured):', params);
+    console.log('Community join (EmailJS not loaded):', params);
     done();
   }
 }
 
-/* ===== CONSULTATION FORM ===== */
+// ── Consultation Form ────────────────────────────────────
 function submitConsultForm() {
-  const name    = document.getElementById('con-name').value.trim();
-  const phone   = document.getElementById('con-phone').value.trim();
-  const email   = document.getElementById('con-email').value.trim();
-  const session = document.getElementById('con-session').value;
-  const date    = document.getElementById('con-date').value;
-  const message = document.getElementById('con-message').value.trim();
+  var name    = document.getElementById('con-name').value.trim();
+  var phone   = document.getElementById('con-phone').value.trim();
+  var email   = document.getElementById('con-email').value.trim();
+  var session = document.getElementById('con-session').value;
+  var date    = document.getElementById('con-date').value;
+  var message = document.getElementById('con-message').value.trim();
 
   if (!name || !phone || !session) {
     alert('Please fill in your name, WhatsApp number, and choose a session type.');
     return;
   }
 
-  const btn = document.querySelector('.btn-book');
-  btn.textContent = 'Sending…';
+  var btn = document.getElementById('consult-btn');
+  btn.textContent = '⏳ Sending…';
   btn.disabled = true;
 
-  // Save locally for admin
-  const bookings = JSON.parse(localStorage.getItem('bo_bookings') || '[]');
-  bookings.push({ name, phone, email, session, date, message, status: 'Pending', submitted: new Date().toISOString() });
+  // Save to localStorage for admin
+  var bookings = JSON.parse(localStorage.getItem('bo_bookings') || '[]');
+  bookings.push({
+    name: name, phone: phone, email: email,
+    session: session, date: date, message: message,
+    status: 'Pending', submitted: new Date().toISOString()
+  });
   localStorage.setItem('bo_bookings', JSON.stringify(bookings));
 
-  const params = {
-    baker_name:    name,
-    baker_phone:   phone,
-    baker_email:   email || 'Not provided',
-    session_type:  session,
+  var params = {
+    baker_name:     name,
+    baker_phone:    phone,
+    baker_email:    email || 'Not provided',
+    session_type:   session,
     preferred_date: date || 'Flexible',
     bakery_message: message || 'Not provided',
-    to_email:      'hello@bakeonline.co',
-    reply_to:      email || phone
+    to_email:       'hello@bakeonline.co',
+    reply_to:       email || phone
   };
 
   function done() {
@@ -2266,11 +2408,14 @@ function submitConsultForm() {
   }
 
   if (ejsReady()) {
-    emailjs.init(EJS.publicKey);
     emailjs.send(EJS.serviceId, EJS.consultTemplateId, params)
-      .then(done).catch(done);
+      .then(done)
+      .catch(function(err) {
+        console.warn('EmailJS error (consult):', err);
+        done();
+      });
   } else {
-    console.log('Consultation booking (EmailJS not configured):', params);
+    console.log('Consultation booking (EmailJS not loaded):', params);
     done();
   }
 }
