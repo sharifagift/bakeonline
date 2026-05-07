@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>About BakeOnline — From Passion to Profit</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --cream: #FDF6EC;
+  --warm-white: #FFFAF3;
+  --brown: #3B1F0D;
+  --caramel: #C47B2B;
+  --gold: #E8A83E;
+  --rust: #C45B2B;
+  --sage: #7A8C6E;
+  --soft-brown: #8C5A2E;
+  --light-tan: #F0DFC0;
+  --dark: #1E0F05;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--brown);overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(253,246,236,0.95);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(196,123,43,0.15);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;height:68px;
+}
+.logo{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--brown);letter-spacing:-.5px;text-decoration:none;}
+.logo span{color:var(--caramel);}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center;}
+.nav-links a{text-decoration:none;font-size:.88rem;font-weight:500;color:var(--brown);transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--caramel);}
+.nav-cta{background:var(--brown);color:var(--cream)!important;padding:.45rem 1.2rem;border-radius:100px;}
+.nav-cta:hover{background:var(--caramel)!important;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--brown);border-radius:2px;transition:all .3s;}
+.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;background:var(--cream);border-bottom:1px solid rgba(196,123,43,.15);padding:1rem 5%;z-index:99;}
+.mobile-menu.open{display:block;}
+.mobile-menu ul{list-style:none;}
+.mobile-menu ul li a{display:block;padding:.75rem 0;font-size:.95rem;font-weight:500;color:var(--brown);text-decoration:none;border-bottom:1px solid rgba(196,123,43,.08);}
+.mobile-menu ul li a:hover{color:var(--caramel);}
+@media(max-width:768px){.nav-links{display:none;}.hamburger{display:flex;}}
+@media(max-width:800px){#mvg .inner > div[style*="grid-template-columns:repeat(3"]{grid-template-columns:1fr!important;}}
+@media(max-width:600px){#mvg .inner > div{grid-template-columns:1fr!important;}}
+
+/* ── SHARED ── */
+section{padding:90px 5%;}
+.inner{max-width:1100px;margin:0 auto;}
+.section-label{font-size:.72rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--caramel);margin-bottom:.6rem;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;color:var(--brown);line-height:1.15;margin-bottom:.8rem;}
+.section-title em{font-style:italic;color:var(--caramel);}
+.section-desc{font-size:.95rem;color:var(--soft-brown);line-height:1.8;font-weight:300;max-width:620px;}
+
+/* ── HERO ── */
+.about-hero{
+  min-height:100vh;
+  background:var(--brown);
+  display:flex;align-items:center;
+  padding:120px 5% 80px;
+  position:relative;overflow:hidden;
+}
+.ah-blob{position:absolute;border-radius:50%;pointer-events:none;}
+.ah-blob.b1{width:700px;height:700px;background:rgba(232,168,62,.06);top:-250px;right:-200px;}
+.ah-blob.b2{width:400px;height:400px;background:rgba(196,123,43,.05);bottom:-150px;left:-100px;}
+.ah-blob.b3{width:200px;height:200px;background:rgba(232,168,62,.08);top:40%;left:30%;}
+
+.hero-inner{
+  position:relative;z-index:2;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:5rem;align-items:center;
+  max-width:1100px;margin:0 auto;width:100%;
+}
+@media(max-width:860px){.hero-inner{grid-template-columns:1fr;gap:3rem;}}
+
+.hero-text .section-label{color:var(--gold);}
+.hero-text h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.2rem,5vw,3.5rem);
+  font-weight:900;color:var(--cream);
+  line-height:1.1;margin-bottom:1.2rem;letter-spacing:-.5px;
+}
+.hero-text h1 em{font-style:italic;color:var(--gold);}
+.hero-text p{
+  font-size:1rem;color:rgba(253,246,236,.6);
+  line-height:1.8;font-weight:300;margin-bottom:2rem;
+}
+.hero-btns{display:flex;gap:.8rem;flex-wrap:wrap;}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--gold);color:var(--brown);
+  padding:.8rem 1.8rem;border-radius:100px;
+  font-family:'DM Sans',sans-serif;font-size:.92rem;font-weight:700;
+  text-decoration:none;transition:background .2s,transform .15s;
+}
+.btn-primary:hover{background:#f0c050;transform:translateY(-2px);}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:transparent;color:rgba(253,246,236,.7);
+  padding:.8rem 1.6rem;border-radius:100px;
+  border:1.5px solid rgba(253,246,236,.2);
+  font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:500;
+  text-decoration:none;transition:all .2s;
+}
+.btn-secondary:hover{border-color:rgba(253,246,236,.5);color:var(--cream);}
+
+/* Founder card */
+.founder-card{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(232,168,62,.15);
+  border-radius:24px;padding:2.5rem;
+  position:relative;overflow:hidden;
+}
+.founder-card::before{
+  content:'';position:absolute;
+  width:250px;height:250px;border-radius:50%;
+  background:rgba(232,168,62,.06);
+  top:-80px;right:-80px;pointer-events:none;
+}
+/* photo placeholder */
+.founder-photo{
+  width:100%;aspect-ratio:4/3;
+  border-radius:16px;margin-bottom:1.5rem;
+  background:linear-gradient(135deg,rgba(196,123,43,.2),rgba(232,168,62,.1));
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:.6rem;border:1px dashed rgba(232,168,62,.25);
+  position:relative;overflow:hidden;
+}
+.founder-photo-initials{
+  font-family:'Playfair Display',serif;
+  font-size:4rem;font-weight:900;
+  color:rgba(232,168,62,.4);line-height:1;
+}
+.founder-photo-hint{font-size:.72rem;color:rgba(232,168,62,.3);letter-spacing:.5px;}
+.founder-photo-badge{
+  position:absolute;bottom:12px;right:12px;
+  background:var(--caramel);color:#fff;
+  font-size:.65rem;font-weight:700;letter-spacing:.5px;
+  padding:.25rem .7rem;border-radius:100px;
+}
+.founder-name{
+  font-family:'Playfair Display',serif;
+  font-size:1.3rem;font-weight:700;color:var(--cream);
+  margin-bottom:.15rem;
+}
+.founder-title{font-size:.78rem;color:var(--gold);letter-spacing:.5px;margin-bottom:1rem;}
+.founder-quote{
+  font-size:.85rem;color:rgba(253,246,236,.55);
+  line-height:1.75;font-style:italic;
+  border-left:2px solid rgba(232,168,62,.3);
+  padding-left:1rem;
+}
+.founder-socials{
+  display:flex;gap:.6rem;margin-top:1.2rem;
+}
+.social-pill{
+  display:inline-flex;align-items:center;gap:.4rem;
+  background:rgba(255,255,255,.06);border:1px solid rgba(232,168,62,.15);
+  color:rgba(253,246,236,.5);font-size:.72rem;
+  padding:.3rem .75rem;border-radius:100px;text-decoration:none;
+  transition:all .2s;
+}
+.social-pill:hover{border-color:var(--gold);color:var(--gold);}
+
+/* ── STORY ── */
+#story{background:var(--cream);}
+.story-inner{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:5rem;align-items:start;
+}
+@media(max-width:800px){.story-inner{grid-template-columns:1fr;gap:2.5rem;}}
+
+.story-text p{
+  font-size:.92rem;color:var(--soft-brown);
+  line-height:1.85;margin-bottom:1.1rem;font-weight:300;
+}
+.story-text p strong{color:var(--brown);font-weight:600;}
+
+.story-highlight{
+  background:var(--brown);border-radius:18px;
+  padding:2rem;margin-top:1.5rem;
+}
+.sh-label{font-size:.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem;}
+.sh-quote{
+  font-family:'Playfair Display',serif;
+  font-size:1.15rem;font-weight:700;
+  color:var(--cream);line-height:1.55;
+  font-style:italic;
+}
+.sh-attr{font-size:.75rem;color:rgba(253,246,236,.4);margin-top:.8rem;}
+
+/* problem cards */
+.problem-cards{display:flex;flex-direction:column;gap:.8rem;}
+.problem-card{
+  background:var(--warm-white);
+  border:1px solid rgba(196,123,43,.15);
+  border-radius:14px;padding:1.1rem 1.2rem;
+  display:flex;align-items:flex-start;gap:.9rem;
+  transition:border-color .2s,transform .2s;
+}
+.problem-card:hover{border-color:var(--caramel);transform:translateX(4px);}
+.pc-icon{
+  width:40px;height:40px;border-radius:11px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;flex-shrink:0;
+}
+.pc-i1{background:#FDE8C8;} .pc-i2{background:#D4EDDA;}
+.pc-i3{background:#D6E4FF;} .pc-i4{background:#EAD6FF;}
+.pc-title{font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:.18rem;}
+.pc-desc{font-size:.78rem;color:var(--soft-brown);line-height:1.5;}
+
+/* ── STATS ── */
+#stats{background:var(--caramel);padding:60px 5%;}
+.stats-inner{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;
+}
+@media(max-width:700px){.stats-inner{grid-template-columns:1fr 1fr;}}
+.stat-box{text-align:center;padding:1.5rem 1rem;}
+.stat-num{
+  font-family:'Playfair Display',serif;
+  font-size:2.8rem;font-weight:900;color:#fff;
+  line-height:1;margin-bottom:.3rem;
+}
+.stat-lbl{font-size:.78rem;color:rgba(255,255,255,.65);line-height:1.5;}
+.stat-divider{width:1px;background:rgba(255,255,255,.15);align-self:center;height:60px;}
+@media(max-width:700px){.stat-divider{display:none;}}
+
+/* ── TIMELINE ── */
+#timeline{background:var(--brown);}
+#timeline .section-label{color:var(--gold);}
+#timeline .section-title{color:var(--cream);}
+#timeline .section-desc{color:rgba(253,246,236,.5);}
+
+.timeline{
+  position:relative;margin-top:3.5rem;
+  padding-left:2rem;
+}
+.timeline::before{
+  content:'';position:absolute;
+  left:0;top:0;bottom:0;width:2px;
+  background:linear-gradient(to bottom,var(--caramel),rgba(232,168,62,.1));
+  border-radius:2px;
+}
+.tl-item{
+  position:relative;margin-bottom:2.8rem;
+  padding-left:2rem;
+}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{
+  position:absolute;left:-2.9rem;top:.2rem;
+  width:18px;height:18px;border-radius:50%;
+  background:var(--caramel);border:3px solid var(--brown);
+  box-shadow:0 0 0 3px rgba(196,123,43,.3);
+  z-index:2;
+}
+.tl-dot.gold{background:var(--gold);box-shadow:0 0 0 3px rgba(232,168,62,.3);}
+.tl-year{
+  display:inline-block;
+  background:rgba(232,168,62,.12);color:var(--gold);
+  font-size:.68rem;font-weight:700;letter-spacing:1px;
+  padding:.2rem .7rem;border-radius:100px;margin-bottom:.5rem;
+}
+.tl-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;font-weight:700;
+  color:var(--cream);margin-bottom:.4rem;
+}
+.tl-desc{font-size:.85rem;color:rgba(253,246,236,.5);line-height:1.7;}
+
+/* ── VALUES ── */
+#values{background:var(--light-tan);}
+.values-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1.2rem;margin-top:3rem;
+}
+@media(max-width:800px){.values-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:500px){.values-grid{grid-template-columns:1fr;}}
+
+.value-card{
+  background:var(--cream);
+  border:1px solid rgba(196,123,43,.15);
+  border-radius:18px;padding:1.8rem 1.5rem;
+  transition:box-shadow .2s,transform .2s,border-color .2s;
+  position:relative;overflow:hidden;
+}
+.value-card::after{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--caramel),var(--gold));
+  transform:scaleX(0);transition:transform .3s;transform-origin:left;
+}
+.value-card:hover{box-shadow:0 16px 40px rgba(59,31,13,.1);transform:translateY(-4px);border-color:var(--caramel);}
+.value-card:hover::after{transform:scaleX(1);}
+.value-icon{font-size:1.8rem;margin-bottom:1rem;line-height:1;}
+.value-name{
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;font-weight:700;
+  color:var(--brown);margin-bottom:.45rem;
+}
+.value-desc{font-size:.83rem;color:var(--soft-brown);line-height:1.65;}
+
+/* ── TEAM ── */
+#team{background:var(--warm-white);}
+.team-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;margin-top:3rem;
+}
+@media(max-width:800px){.team-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:500px){.team-grid{grid-template-columns:1fr;}}
+
+.team-card{
+  background:var(--cream);
+  border:1px solid rgba(196,123,43,.15);
+  border-radius:18px;overflow:hidden;
+  transition:box-shadow .2s,transform .2s;
+  text-align:center;
+}
+.team-card:hover{box-shadow:0 14px 36px rgba(59,31,13,.1);transform:translateY(-4px);}
+.team-photo{
+  height:160px;
+  background:linear-gradient(135deg,var(--brown),#5a2d0c);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.team-photo::before{
+  content:'';position:absolute;
+  width:150px;height:150px;border-radius:50%;
+  background:rgba(232,168,62,.08);
+  top:-40px;right:-40px;
+}
+.team-initials{
+  font-family:'Playfair Display',serif;
+  font-size:2.5rem;font-weight:900;
+  color:rgba(232,168,62,.35);
+  position:relative;z-index:2;
+}
+.team-photo-hint{
+  position:absolute;bottom:8px;
+  font-size:.6rem;color:rgba(232,168,62,.25);
+  letter-spacing:.5px;
+}
+.team-body{padding:1.3rem 1.2rem;}
+.team-name{
+  font-family:'Playfair Display',serif;
+  font-size:1rem;font-weight:700;
+  color:var(--brown);margin-bottom:.2rem;
+}
+.team-role{
+  font-size:.72rem;font-weight:600;
+  letter-spacing:.5px;text-transform:uppercase;
+  color:var(--caramel);margin-bottom:.6rem;
+}
+.team-bio{font-size:.78rem;color:var(--soft-brown);line-height:1.6;}
+
+/* placeholder card */
+.team-card.placeholder{
+  border-style:dashed;background:transparent;
+  display:flex;align-items:center;justify-content:center;
+  min-height:280px;cursor:default;
+}
+.team-card.placeholder:hover{transform:none;box-shadow:none;}
+.placeholder-inner{text-align:center;padding:2rem;}
+.placeholder-icon{font-size:2rem;margin-bottom:.7rem;opacity:.4;}
+.placeholder-text{font-size:.78rem;color:var(--soft-brown);opacity:.5;line-height:1.6;}
+
+/* ── MISSION STRIP ── */
+.mission-strip{
+  background:linear-gradient(135deg,var(--caramel) 0%,var(--rust) 100%);
+  padding:70px 5%;text-align:center;
+}
+.mission-strip h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;
+  color:#fff;margin-bottom:.8rem;line-height:1.25;
+}
+.mission-strip p{
+  font-size:.95rem;color:rgba(255,255,255,.75);
+  line-height:1.75;max-width:580px;margin:0 auto 2rem;
+}
+.ms-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-white{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:#fff;color:var(--caramel);
+  padding:.8rem 1.8rem;border-radius:100px;
+  font-family:'DM Sans',sans-serif;font-size:.92rem;font-weight:700;
+  text-decoration:none;transition:transform .15s,box-shadow .2s;
+}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.15);}
+.btn-outline-white{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:transparent;color:rgba(255,255,255,.85);
+  padding:.8rem 1.6rem;border-radius:100px;
+  border:1.5px solid rgba(255,255,255,.35);
+  font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:500;
+  text-decoration:none;transition:all .2s;
+}
+.btn-outline-white:hover{border-color:#fff;color:#fff;}
+
+/* ── SOLUTIONS ── */
+#solutions{background:var(--brown);}
+#solutions .section-label{color:var(--gold);}
+#solutions .section-title{color:var(--cream);}
+#solutions .section-desc{color:rgba(253,246,236,.55);}
+
+.solutions-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:1.5rem;margin-top:3rem;
+}
+@media(max-width:800px){.solutions-grid{grid-template-columns:1fr;}}
+
+.sol-card{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(232,168,62,.12);
+  border-radius:20px;padding:2rem 1.8rem;
+  position:relative;overflow:hidden;
+  transition:border-color .25s,transform .25s,background .25s;
+}
+.sol-card::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--caramel),var(--gold));
+  transform:scaleX(0);transition:transform .35s;transform-origin:left;
+}
+.sol-card:hover{
+  border-color:rgba(232,168,62,.35);
+  background:rgba(255,255,255,.06);
+  transform:translateY(-4px);
+}
+.sol-card:hover::before{transform:scaleX(1);}
+
+.sol-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.1rem;}
+.sol-icon{
+  width:48px;height:48px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;flex-shrink:0;
+}
+.sol-i1{background:rgba(196,123,43,.18);}
+.sol-i2{background:rgba(122,140,110,.18);}
+.sol-i3{background:rgba(100,140,200,.18);}
+.sol-i4{background:rgba(200,100,140,.18);}
+
+.sol-name{
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem;font-weight:700;
+  color:var(--cream);line-height:1.2;
+}
+.sol-tag{
+  display:inline-block;
+  font-size:.62rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  color:var(--gold);background:rgba(232,168,62,.1);
+  padding:.15rem .55rem;border-radius:100px;margin-top:.2rem;
+}
+.sol-desc{
+  font-size:.85rem;color:rgba(253,246,236,.5);
+  line-height:1.75;margin-bottom:1.2rem;
+}
+.sol-features{
+  display:flex;flex-direction:column;gap:.55rem;
+}
+.sol-feat{
+  display:flex;align-items:flex-start;gap:.6rem;
+  font-size:.8rem;color:rgba(253,246,236,.5);line-height:1.5;
+}
+.sol-feat::before{
+  content:'✓';
+  color:var(--gold);font-weight:700;font-size:.85rem;
+  flex-shrink:0;margin-top:.05rem;
+}
+
+.solutions-bottom{
+  margin-top:3rem;
+  background:rgba(232,168,62,.07);
+  border:1px solid rgba(232,168,62,.15);
+  border-radius:18px;
+  padding:2rem 2.5rem;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:2rem;flex-wrap:wrap;
+}
+.sb-text{
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;font-weight:700;
+  color:var(--cream);line-height:1.45;
+}
+.sb-sub{font-size:.82rem;color:rgba(253,246,236,.4);margin-top:.35rem;font-family:'DM Sans',sans-serif;font-weight:300;}
+.sb-link{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--gold);color:var(--brown);
+  padding:.75rem 1.6rem;border-radius:100px;
+  font-size:.88rem;font-weight:700;text-decoration:none;white-space:nowrap;
+  transition:background .2s,transform .15s;flex-shrink:0;
+}
+.sb-link:hover{background:#f0c050;transform:translateY(-2px);}
+
+/* ── FOOTER ── */
+footer{background:var(--dark);padding:2rem 5%;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;border-top:1px solid rgba(255,255,255,.07);padding-top:1.5rem;}
+.footer-copy{font-size:.75rem;color:rgba(253,246,236,.25);}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:900;color:var(--cream);}
+.footer-logo span{color:var(--gold);}
+.footer-links-row{display:flex;gap:1.5rem;flex-wrap:wrap;}
+.footer-links-row a{font-size:.78rem;color:rgba(253,246,236,.35);text-decoration:none;transition:color .2s;}
+.footer-links-row a:hover{color:var(--gold);}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">Bake<span>Online</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#tools">Tools</a></li>
+    <li><a href="index.html#resources">Resources</a></li>
+    <li><a href="community.html">Community</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="baker-login.html" class="nav-cta">Baker Login</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="index.html" onclick="closeMenu()">Home</a></li>
+    <li><a href="index.html#tools" onclick="closeMenu()">Tools</a></li>
+    <li><a href="index.html#resources" onclick="closeMenu()">Resources</a></li>
+    <li><a href="community.html" onclick="closeMenu()">Community</a></li>
+    <li><a href="about.html" onclick="closeMenu()">About</a></li>
+    <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
+    <li><a href="baker-login.html" onclick="closeMenu()">🧑‍🍳 Baker Login</a></li>
+  </ul>
+</div>
+
+<!-- ── HERO ── -->
+<div class="about-hero">
+  <div class="ah-blob b1"></div>
+  <div class="ah-blob b2"></div>
+  <div class="ah-blob b3"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="section-label" style="color:var(--gold);">🍞 About BakeOnline</p>
+      <h1>From passion<br/>to <em>profit</em></h1>
+      <p>BakeOnline is a technology-driven platform built to solve the real problems bakers face, underpricing, disorganized operations, and inconsistent growth.</p>
+      <p style="color:rgba(253,246,236,.55);font-size:.92rem;font-weight:300;line-height:1.8;">The bakery industry is built on skill and passion, but many bakers lack structured business systems. Even though demand for baked products is high, many bakeries remain financially unstable. <strong style="color:var(--gold);font-weight:600;">Not due to lack of customers. Due to lack of structure.</strong></p>
+      <p style="color:rgba(253,246,236,.55);font-size:.92rem;font-weight:300;line-height:1.8;">
+        We built BakeOnline to change that. One baker at a time. 
+        BakeOnline exists because bakers deserve more than passion, they deserve profitable, structured businesses. 
+        We built the tools we wished existed, and now we put them in the hands of every baker who needs them.
+      </p>
+      <div class="hero-btns">
+        <a href="#story" class="btn-primary">Read our story ↓</a>
+        <a href="community.html" class="btn-secondary">Join the Club →</a>
+      </div>
+    </div>
+
+    <!-- FOUNDER CARD -->
+    <div class="founder-card">
+      <div class="founder-photo" style="background:none;padding:0;overflow:hidden;height:420px;">
+        <img src="gift.jpeg" alt="Gift Sharifa — Founder of BakeOnline" 
+     style="width:100%;height:100%;object-fit:cover;object-position:center 5%;border-radius:16px;display:block;"/>
+<div class="founder-photo-badge">Founder</div>
+      </div>
+      <div class="founder-name">Gift Sharifa</div>
+      <div class="founder-title">Founder - BakeOnline & Just Cakes</div>
+      <p class="founder-quote">" Sharifa Gift is a systems builder, tech entrepreneur, and founder of BakeOnline and Just Cakes.
+
+She works at the intersection of baking, business, and technology, helping bakers move from survival mode to structure, and from confusion to clarity.
+
+After years of working within the bakery industry, she identified a critical gap:
+most bakers are skilled, hardworking, and passionate, but lack the systems required to run profitable and sustainable businesses."
+
+</p>
+      <div class="founder-socials">
+        <a href="#" class="social-pill">📘 Facebook</a>
+        <a href="https://www.instagram.com/sharifagift?igsh=MXdzNWR2M2xvdWpycw%3D%3D&utm_source=qr" class="social-pill">📸 Instagram</a>
+        <a href="https://wa.me/25679996935" class="social-pill" target="_blank">💬 WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── OUR STORY ── -->
+<section id="story">
+  <div class="inner">
+    <div class="story-inner">
+      <div class="story-text">
+        <p class="section-label">📖 The Problem We're Solving</p>
+        <h2 class="section-title">Why most bakeries <em>struggle</em></h2>
+        <p>The bakery industry is built on skill and passion, but many bakers lack <strong>structured business systems.</strong></p>
+        <p>Because of this, they struggle with poor pricing, low profits, burnout, and businesses that cannot grow. Most rely on guesswork instead of clear processes.</p>
+        <p>Even though demand for baked products is high, many bakeries remain <strong>financially unstable</strong> - not due to lack of customers, but due to <strong>lack of structure.</strong></p>
+        <p>That is exactly the gap BakeOnline was built to close. Through pricing tools, business systems, practical guides, and access to affordable supplies, we give bakers the structure they need to move from guesswork to clarity, and from passion to profit.</p>
+        <div class="story-highlight">
+          <div class="sh-label">Our mission</div>
+          <div class="sh-quote">"We help bakers move from guesswork to clarity and from passion to profit. Because a bakery built on passion deserves to also be built on a solid business foundation."</div>
+          <div class="sh-attr">~ Gift, Founder of BakeOnline</div>
+        </div>
+      </div>
+
+      <!-- PROBLEM CARDS -->
+      <div>
+        <p class="section-label" style="margin-top:.5rem;">🎯 The problems we solve</p>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--brown);margin-bottom:1.5rem;line-height:1.3;">Three real problems holding bakeries back</h3>
+        <div class="problem-cards">
+          <div class="problem-card">
+            <div class="pc-icon pc-i1">💰</div>
+            <div>
+              <div class="pc-title">Underpricing</div>
+              <div class="pc-desc">Most bakers price by guesswork — with no clear picture of ingredient costs, labour, or overhead. They work hard and still lose money without knowing why.</div>
+            </div>
+          </div>
+          <div class="problem-card">
+            <div class="pc-icon pc-i2">📋</div>
+            <div>
+              <div class="pc-title">Disorganized operations</div>
+              <div class="pc-desc">Orders tracked in notebooks, messages scattered across WhatsApp, no system for managing production or delivery. Chaos costs time, money, and customers.</div>
+            </div>
+          </div>
+          <div class="problem-card">
+            <div class="pc-icon pc-i3">📈</div>
+            <div>
+              <div class="pc-title">Inconsistent growth</div>
+              <div class="pc-desc">Without proper business systems, growth happens by accident and not by design. BakeOnline gives bakers the structure to grow consistently and sustainably.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SOLUTIONS ── -->
+<section id="solutions">
+  <div class="inner">
+    <p class="section-label">🛠️ What We Offer</p>
+    <h2 class="section-title">Our <em>solutions</em> for bakery operators</h2>
+    <p class="section-desc">Four pillars designed to address every structural gap holding Ugandan bakers back from pricing confusion to isolated growth.</p>
+
+    <div class="solutions-grid">
+
+      <!-- Pillar 1 -->
+      <div class="sol-card">
+        <div class="sol-header">
+          <div class="sol-icon sol-i1">🧮</div>
+          <div>
+            <div class="sol-name">Pricing & Profit Tools</div>
+            <div class="sol-tag">Free & Paid</div>
+          </div>
+        </div>
+        <p class="sol-desc">Stop guessing. Our calculators and pricing guides walk bakers through the exact numbers; ingredients, labour, overheads, and profit margin, so every product is priced to actually make money.</p>
+        <div class="sol-features">
+          <div class="sol-feat">Cake & pastry pricing calculators built for Uganda</div>
+          <div class="sol-feat">Ingredient cost trackers with bulk-purchase adjustments</div>
+          <div class="sol-feat">Profit margin guides and pricing strategy workshops</div>
+        </div>
+      </div>
+
+      <!-- Pillar 2 -->
+      <div class="sol-card">
+        <div class="sol-header">
+          <div class="sol-icon sol-i2">📋</div>
+          <div>
+            <div class="sol-name">Business Systems & Operations</div>
+            <div class="sol-tag">Templates & Guides</div>
+          </div>
+        </div>
+        <p class="sol-desc">Replace scattered WhatsApp messages and paper notebooks with structured systems. We equip bakers with ready-to-use templates and SOPs that bring order to their orders, production, and finances.</p>
+        <div class="sol-features">
+          <div class="sol-feat">Order management and production planning templates</div>
+          <div class="sol-feat">Simple financial tracking systems (no accounting degree needed)</div>
+          <div class="sol-feat">Standard operating procedures for consistent quality</div>
+        </div>
+      </div>
+
+      <!-- Pillar 3 -->
+      <div class="sol-card">
+        <div class="sol-header">
+          <div class="sol-icon sol-i3">🎓</div>
+          <div>
+            <div class="sol-name">Business Education & Training</div>
+            <div class="sol-tag">Live & On-Demand</div>
+          </div>
+        </div>
+        <p class="sol-desc">Practical education built from real bakery experience and not theory. From free guides to one-on-one consultations, we teach bakers the business thinking behind every tool we create.</p>
+        <div class="sol-features">
+          <div class="sol-feat">Free downloadable business guides and resources</div>
+          <div class="sol-feat">Live training sessions and group workshops</div>
+          <div class="sol-feat">One-on-one mentorship and business consultations</div>
+        </div>
+      </div>
+
+      <!-- Pillar 4 -->
+      <div class="sol-card">
+        <div class="sol-header">
+          <div class="sol-icon sol-i4">🤝</div>
+          <div>
+            <div class="sol-name">Community & Shared Growth</div>
+            <div class="sol-tag">Free to Join</div>
+          </div>
+        </div>
+        <p class="sol-desc">No baker should figure it out alone. Our community brings together bakers at every stage; home bakers, small bake shops, and scaling businesses — to share knowledge, ask questions, and grow together.</p>
+        <div class="sol-features">
+          <div class="sol-feat">Active online community of 150+ Ugandan bakers</div>
+          <div class="sol-feat">Peer learning, experience sharing, and collaboration</div>
+          <div class="sol-feat">Connections to affordable local ingredient suppliers</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="solutions-bottom">
+      <div>
+        <div class="sb-text">Every tool we build comes from a real problem<br/>a real baker told us they were facing.</div>
+        <div class="sb-sub">Built in Uganda, for Uganda. Practical, affordable, and built for the actual bakery industry here.</div>
+      </div>
+      <a href="index.html#tools" class="sb-link">Explore all tools →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS ── -->
+<div id="stats">
+  <div class="stats-inner">
+    <div class="stat-box">
+      <div class="stat-num" id="s-bakers">0</div>
+      <div class="stat-lbl">Bakers supported<br/>across Uganda</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-box">
+      <div class="stat-num" id="s-downloads">0</div>
+      <div class="stat-lbl">Free resources<br/>downloaded</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-box">
+      <div class="stat-num" id="s-years">0</div>
+      <div class="stat-lbl">Years in the<br/>bakery industry</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-box">
+      <div class="stat-num" id="s-tools">0</div>
+      <div class="stat-lbl">Free tools &<br/>templates built</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── MISSION VISION GOAL ── -->
+<section id="mvg" style="background:var(--warm-white);">
+  <div class="inner">
+    <p class="section-label" style="text-align:center;">🎯 What Drives Us</p>
+    <h2 class="section-title" style="text-align:center;">Our Mission, Vision <em>&amp; Goal</em></h2>
+    <p class="section-desc" style="text-align:center;margin:0 auto 3.5rem;">The three pillars that define everything BakeOnline builds, creates, and stands for.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;">
+
+      <!-- MISSION -->
+      <div style="background:var(--brown);border-radius:20px;padding:2.2rem;position:relative;overflow:hidden;">
+        <div style="position:absolute;width:180px;height:180px;border-radius:50%;background:rgba(232,168,62,0.07);top:-60px;right:-60px;pointer-events:none;"></div>
+        <div style="width:48px;height:48px;border-radius:13px;background:rgba(232,168,62,0.12);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1.2rem;">🎯</div>
+        <div style="font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;">Mission</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--cream);margin-bottom:.9rem;line-height:1.35;">What we do every day</div>
+        <p style="font-size:.88rem;color:rgba(253,246,236,0.65);line-height:1.8;font-weight:300;">To build structured, profitable bakery businesses by providing bakers with <strong style="color:var(--gold);font-weight:600;">technology, systems, and practical knowledge.</strong></p>
+        <div style="margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,0.08);">
+          <div style="font-size:.72rem;color:rgba(253,246,236,0.3);margin-bottom:.5rem;font-weight:600;letter-spacing:.5px;">HOW WE DO IT</div>
+          <div style="display:flex;flex-direction:column;gap:.4rem;">
+            <div style="font-size:.78rem;color:rgba(253,246,236,0.5);display:flex;align-items:center;gap:.5rem;"><span style="color:var(--caramel);">→</span> Smart Pricing & profit tools</div>
+            <div style="font-size:.78rem;color:rgba(253,246,236,0.5);display:flex;align-items:center;gap:.5rem;"><span style="color:var(--caramel);">→</span> Business systems & templates</div>
+            <div style="font-size:.78rem;color:rgba(253,246,236,0.5);display:flex;align-items:center;gap:.5rem;"><span style="color:var(--caramel);">→</span> Practical guides & training</div>
+            <div style="font-size:.78rem;color:rgba(253,246,236,0.5);display:flex;align-items:center;gap:.5rem;"><span style="color:var(--caramel);">→</span> One-on-one consultations</div>
+            <div style="font-size:.78rem;color:rgba(253,246,236,0.5);display:flex;align-items:center;gap:.5rem;"><span style="color:var(--caramel);">→</span> A Growth-focused community</div>
+            <div style="font-size:.78rem;color:rgba(253,246,236,0.5);display:flex;align-items:center;gap:.5rem;"><span style="color:var(--caramel);">→</span> Supplies & Resources</div>
+            <div style="font-size:.78rem;color:rgba(253,246,236,0.5);display:flex;align-items:center;gap:.5rem;"><span style="color:var(--caramel);">→</span> Group Mentorships</div>
+          
+          </div>
+        </div>
+      </div>
+
+      <!-- VISION -->
+      <div style="background:linear-gradient(145deg,var(--caramel),var(--rust));border-radius:20px;padding:2.2rem;position:relative;overflow:hidden;">
+        <div style="position:absolute;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,0.06);bottom:-70px;left:-50px;pointer-events:none;"></div>
+        <div style="position:absolute;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,0.04);top:-30px;right:20px;pointer-events:none;"></div>
+        <div style="width:48px;height:48px;border-radius:13px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1.2rem;">🌍</div>
+        <div style="font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:.5rem;">Vision</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:.9rem;line-height:1.35;">Where we are going</div>
+        <p style="font-size:.88rem;color:rgba(255,255,255,0.8);line-height:1.8;font-weight:300;">To become the <strong style="color:#fff;font-weight:700;">leading digital ecosystem</strong> shaping the future of the baking industry in Africa and beyond.</p>
+        <div style="margin-top:1.5rem;background:rgba(255,255,255,0.1);border-radius:12px;padding:1rem 1.2rem;">
+          <div style="font-size:.75rem;color:rgba(255,255,255,0.6);line-height:1.7;font-style:italic;">"Every baker in Africa deserves access to the same business tools and systems that power large, successful companies."</div>
+        </div>
+        <div style="display:flex;gap:.5rem;margin-top:1.2rem;flex-wrap:wrap;">
+          <span style="background:rgba(255,255,255,0.12);color:#fff;font-size:.65rem;font-weight:600;padding:.2rem .65rem;border-radius:100px;">🇺🇬 Uganda</span>
+          <span style="background:rgba(255,255,255,0.12);color:#fff;font-size:.65rem;font-weight:600;padding:.2rem .65rem;border-radius:100px;">🌍 Africa</span>
+          <span style="background:rgba(255,255,255,0.12);color:#fff;font-size:.65rem;font-weight:600;padding:.2rem .65rem;border-radius:100px;">🌐 Global</span>
+        </div>
+      </div>
+
+      <!-- GOAL -->
+      <div style="background:var(--cream);border:1.5px solid rgba(196,123,43,0.2);border-radius:20px;padding:2.2rem;position:relative;overflow:hidden;">
+        <div style="position:absolute;width:160px;height:160px;border-radius:50%;background:rgba(196,123,43,0.05);bottom:-50px;right:-50px;pointer-events:none;"></div>
+        <div style="width:48px;height:48px;border-radius:13px;background:#FDE8C8;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1.2rem;">🚀</div>
+        <div style="font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--caramel);margin-bottom:.5rem;">Goal</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--brown);margin-bottom:.9rem;line-height:1.35;">What we are building toward</div>
+        <p style="font-size:.88rem;color:var(--soft-brown);line-height:1.8;font-weight:300;">To equip bakers with the tools, systems, and support needed to run <strong style="color:var(--brown);font-weight:600;">efficient, scalable, and profitable businesses.</strong></p>
+        <div style="margin-top:1.5rem;display:flex;flex-direction:column;gap:.6rem;">
+          <div style="display:flex;align-items:center;gap:.8rem;background:var(--warm-white);border:1px solid rgba(196,123,43,0.12);border-radius:10px;padding:.7rem .9rem;">
+            <span style="font-size:.95rem;">⚡</span>
+            <span style="font-size:.78rem;color:var(--soft-brown);font-weight:500;">Efficient — less chaos, more clarity</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:.8rem;background:var(--warm-white);border:1px solid rgba(196,123,43,0.12);border-radius:10px;padding:.7rem .9rem;">
+            <span style="font-size:.95rem;">📈</span>
+            <span style="font-size:.78rem;color:var(--soft-brown);font-weight:500;">Scalable — systems that grow with you</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:.8rem;background:var(--warm-white);border:1px solid rgba(196,123,43,0.12);border-radius:10px;padding:.7rem .9rem;">
+            <span style="font-size:.95rem;">💰</span>
+            <span style="font-size:.78rem;color:var(--soft-brown);font-weight:500;">Profitable — knowing your numbers always</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── TIMELINE ── -->
+<section id="timeline">
+  <div class="inner" style="max-width:780px;">
+    <p class="section-label">📅 Our Journey</p>
+    <h2 class="section-title" style="color:var(--cream);">From one bakery to a <em style="color:var(--gold);">movement</em></h2>
+    <p class="section-desc">Every milestone that brought BakeOnline to where it is today.</p>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">The Beginning</div>
+        <div class="tl-title">Just Cakes is born</div>
+        <div class="tl-desc">Gift starts Just Cakes, a home bakery in Kampala built on passion, custom cake orders, and the dream of doing this full time. The business grows, but so do the operational challenges.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">The Insight</div>
+        <div class="tl-title">The Pricing E-book that changed everything</div>
+        <div class="tl-desc">Frustrated by lost orders and pricing confusion, Gift builds a simple step by step pricing guide, Order tracker and a pricing calculator for Just Cakes. Shares with bakers — 30 bakers request for copies within 24 hours.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">The Platform</div>
+        <div class="tl-title">BakeOnline is launched</div>
+        <div class="tl-desc">Recognising a gap in the market, Gift builds BakeOnline, a platform dedicated to giving bakery operators the tools, systems, and education they need to run profitable businesses.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">The Community</div>
+        <div class="tl-title">Modern Bakers Club launches</div>
+        <div class="tl-desc">The Modern Bakers Club WhatsApp community launches, bringing together bakers from across Uganda to share, learn, and support each other. Membership grows quickly as word spreads.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot gold"></div>
+        <div class="tl-year">Today & Beyond</div>
+        <div class="tl-title">500+ bakers and growing</div>
+        <div class="tl-desc">BakeOnline now serves hundreds of bakery operators with free tools, paid guides, live training sessions, mentorships and one-on-one consultations. The mission remains the same: make every baker a profitable baker.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── VALUES ── -->
+<section id="values">
+  <div class="inner">
+    <p class="section-label">💛 What We Stand For</p>
+    <h2 class="section-title">Our values, <em>in plain English</em></h2>
+    <p class="section-desc">These aren't just words on a page. They shape every tool we build, every guide we write, and every baker we work with.</p>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">🧮</div>
+        <div class="value-name">Clarity over confusion</div>
+        <div class="value-desc">We choose clarity over assumptions.
+                          Every decision, from pricing to production, should be guided by systems, not feelings.
+                          We believe every baker deserves to understand their numbers. No complexity - just clear, practical tools that make sense for real bakery businesses.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🤝</div>
+        <div class="value-name">Community with direction.</div>
+        <div class="value-desc">Bakers grow faster when they grow together. We build spaces where sharing knowledge, asking questions, and supporting each other is the norm, not the exception.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🌍</div>
+        <div class="value-name">Built for Uganda, by Uganda</div>
+        <div class="value-desc">We design tools around the real context of Ugandan bakers — local pricing, local challenges, local opportunities. Not copied from somewhere else and adapted.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">📈</div>
+        <div class="value-name">Profit is not optional</div>
+        <div class="value-desc">Passion for baking is beautiful. But Baking is a business.
+                                We believe every baker deserves to make money from their work consistently and sustainably because a bakery that doesn't make money can't survive. 
+                                We help bakers understand, protect, and grow their profit consistently and unapologetically.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🎓</div>
+        <div class="value-name">Education that empowers</div>
+        <div class="value-desc">We don’t teach theory. Built from real experience, 
+          Everything we create comes from real bakery challenges, tested solutions, and lived experience.
+          We don't just hand over tools, we teach the thinking behind them. 
+          Bakers who understand their business make better decisions every single day.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🚀</div>
+        <div class="value-name">Start small, grow bold</div>
+        <div class="value-desc">Every large bakery started in someone's kitchen. 
+          We meet bakers where they are. Home baker, Small shop, or Scaling fast and give them what they need for the next step.
+          We don’t complicate what should be clear.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TEAM ── -->
+ 
+<section id="team">
+  <div class="inner">
+    <p class="section-label">👩‍🍳 The People</p>
+    <h2 class="section-title">Meet the <em>team</em></h2>
+    <p class="section-desc">A small but mighty team passionate about professionalising the bakery industry in Uganda — one baker at a time.</p>
+    <div class="team-grid">
+
+      <!-- Founder -->
+      <div class="team-card">
+        <div class="team-photo">
+          <div class="team-initials">G</div>
+          <div class="team-photo-hint">[ Add photo ]</div>
+        </div>
+        <div class="team-body">
+          <div class="team-name">Gift Sharifa</div>
+          <div class="team-role">Founder & CEO</div>
+          <div class="team-bio">Baker, entrepreneur, and the driving force behind BakeOnline. Gift runs Just Cakes and uses that frontline experience to shape every tool and resource BakeOnline creates.</div>
+        </div>
+      </div>
+
+      <!-- Slot 2 -->
+      <div class="team-card">
+        <div class="team-photo">
+          <div class="team-initials">?</div>
+          <div class="team-photo-hint">[ Add photo ]</div>
+        </div>
+        <div class="team-body">
+          <div class="team-name"> Anthony Malomba</div>
+          <div class="team-role">Operations and systems manager</div>
+          <div class="team-bio">He turns ideas into structured, working systems</div>
+        </div>
+      </div>
+
+      <!-- Slot 3 -->
+      <div class="team-card">
+        <div class="team-photo">
+          <div class="team-initials">?</div>
+          <div class="team-photo-hint">[ Add photo ]</div>
+        </div>
+        <div class="team-body">
+          <div class="team-name">Andrew Kawesa</div>
+          <div class="team-role">Sales & Partnerships Lead</div>
+          <div class="team-bio">Drives revenue and strategic growth.</div>
+        </div>
+      </div> 
+
+      <!-- Join us placeholder -->
+      <div class="team-card placeholder">
+        <div class="placeholder-inner">
+          <div class="placeholder-icon">➕</div>
+          <div class="placeholder-text">Want to be part of the BakeOnline team?<br/><br/>Reach out at<br/><strong style="color:var(--caramel);opacity:1;">bakeonlineug@gmail.com</strong></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── MISSION CTA ── -->
+<div class="mission-strip">
+  <h2>From guesswork to clarity.<br/>From passion to profit.</h2>
+  <p>Demand for baked products is high. The problem was never the customers, it was the lack of structure. BakeOnline gives every baker the systems, tools, and knowledge to build a business that is not just passionate, but profitable and sustainable.</p>
+  <div class="ms-btns">
+    <a href="community.html" class="btn-white">🍰 Join the Club — Free</a>
+    <a href="index.html#consultation" class="btn-outline-white">📅 Book a Consultation</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-bottom">
+    <div class="footer-logo">Bake<span>Online</span></div>
+    <div class="footer-links-row">
+      <a href="index.html">Home</a>
+      <a href="community.html">Community</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="baker-login.html">Baker Login</a>
+    </div>
+    <div class="footer-copy">© 2025 BakeOnline. Made in Uganda 🇺🇬</div>
+  </div>
+</footer>
+
+<script>
+/* NAV */
+function toggleMenu(){ document.getElementById('mobileMenu').classList.toggle('open'); }
+function closeMenu(){ document.getElementById('mobileMenu').classList.remove('open'); }
+
+/* ANIMATED STATS */
+const TARGETS = [
+  { id:'s-bakers',    target:150,  suffix:'+' },
+  { id:'s-downloads', target:250, suffix:'+' },
+  { id:'s-years',     target:5,    suffix:'+' },
+  { id:'s-tools',     target:8,    suffix:''  },
+];
+
+function animCount(el, target, suffix, duration){
+  const t0 = performance.now();
+  function step(now){
+    const p = Math.min((now-t0)/duration, 1);
+    const e = 1-Math.pow(1-p, 3);
+    el.textContent = Math.round(target*e) + suffix;
+    if(p<1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+const statsSection = document.getElementById('stats');
+let statsAnimated = false;
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting && !statsAnimated){
+      statsAnimated = true;
+      TARGETS.forEach(({id, target, suffix}) => {
+        animCount(document.getElementById(id), target, suffix, 1800);
+      });
+    }
+  });
+}, { threshold: 0.3 });
+if(statsSection) observer.observe(statsSection);
+</script>
+</body>
+</html>
