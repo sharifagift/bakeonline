@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Beginner Baker's Business Masterclass — BakeOnline</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --cream:#FDF6EC;
+  --warm:#FFFAF3;
+  --brown:#3B1F0D;
+  --caramel:#C47B2B;
+  --gold:#E8A83E;
+  --rust:#C45B2B;
+  --sage:#7A8C6E;
+  --tan:#F0DFC0;
+  --dark:#1E0F05;
+  --text-muted:rgba(59,31,13,.55);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--brown);overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(30,15,5,.92);backdrop-filter:blur(14px);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;height:66px;
+  border-bottom:1px solid rgba(232,168,62,.1);
+}
+.logo{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--cream);text-decoration:none;letter-spacing:-.5px;}
+.logo span{color:var(--gold);}
+.nav-cta{
+  display:inline-flex;align-items:center;gap:.4rem;
+  background:var(--gold);color:var(--brown);
+  padding:.5rem 1.3rem;border-radius:100px;
+  font-size:.85rem;font-weight:700;text-decoration:none;
+  transition:background .2s,transform .15s;
+}
+.nav-cta:hover{background:#f0c050;transform:translateY(-1px);}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  background:var(--brown);
+  display:flex;align-items:center;
+  padding:100px 5% 70px;
+  position:relative;overflow:hidden;
+}
+.hero-grain{
+  position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events:none;opacity:.6;
+}
+.hero-arc{
+  position:absolute;bottom:-2px;left:0;right:0;height:80px;
+  background:var(--cream);
+  clip-path:ellipse(60% 100% at 50% 100%);
+}
+
+.hero-inner{
+  max-width:1100px;margin:0 auto;width:100%;
+  display:grid;grid-template-columns:1fr 420px;
+  gap:4rem;align-items:center;position:relative;z-index:2;
+}
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr;gap:3rem;}}
+
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-size:.75rem;font-weight:700;letter-spacing:2px;
+  color:var(--gold);text-transform:uppercase;
+  margin-bottom:1.4rem;
+}
+.hero-eyebrow-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--gold);flex-shrink:0;
+}
+
+.hero-title{
+  font-family:'Playfair Display',serif;
+  font-weight:900;color:var(--cream);
+  line-height:1.0;letter-spacing:-.5px;
+  margin-bottom:1rem;
+}
+.hero-title .line1{font-size:clamp(1.4rem,3.5vw,2rem);font-weight:400;font-style:italic;opacity:.7;display:block;margin-bottom:.3rem;}
+.hero-title .line2{font-size:clamp(3rem,7vw,5.5rem);display:block;line-height:.95;}
+.hero-title .line3{font-size:clamp(3rem,7vw,5.5rem);display:block;line-height:.95;color:var(--gold);}
+
+.hero-tagline{
+  font-size:.95rem;color:rgba(253,246,236,.55);
+  line-height:1.75;font-weight:300;
+  margin:1.4rem 0 2rem;max-width:460px;
+  border-left:2px solid rgba(232,168,62,.3);
+  padding-left:1rem;
+}
+.hero-tagline strong{color:rgba(253,246,236,.85);font-weight:600;}
+
+.hero-pillars{
+  display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2.2rem;
+}
+.pillar-chip{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(232,168,62,.18);
+  color:rgba(253,246,236,.65);
+  font-size:.75rem;padding:.35rem .9rem;border-radius:100px;
+}
+
+.hero-btns{display:flex;gap:.8rem;flex-wrap:wrap;}
+.btn-gold{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--gold);color:var(--brown);
+  padding:.85rem 2rem;border-radius:100px;
+  font-size:.92rem;font-weight:700;text-decoration:none;
+  transition:background .2s,transform .15s;
+}
+.btn-gold:hover{background:#f0c050;transform:translateY(-2px);}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:transparent;color:rgba(253,246,236,.65);
+  padding:.85rem 1.6rem;border-radius:100px;
+  border:1.5px solid rgba(253,246,236,.2);
+  font-size:.9rem;font-weight:500;text-decoration:none;
+  transition:all .2s;
+}
+.btn-ghost:hover{border-color:rgba(253,246,236,.5);color:var(--cream);}
+
+/* Event card */
+.event-card{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(232,168,62,.18);
+  border-radius:24px;padding:2rem;
+  position:relative;overflow:hidden;
+}
+.event-card::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--caramel),var(--gold));
+}
+.ec-badge{
+  display:inline-block;
+  background:rgba(232,168,62,.15);color:var(--gold);
+  font-size:.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:.3rem .8rem;border-radius:100px;margin-bottom:1.4rem;
+}
+.ec-detail{
+  display:flex;align-items:flex-start;gap:.9rem;
+  margin-bottom:1.1rem;
+}
+.ec-icon{
+  width:38px;height:38px;border-radius:10px;
+  background:rgba(232,168,62,.1);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;flex-shrink:0;
+}
+.ec-label{font-size:.68rem;color:rgba(232,168,62,.6);font-weight:600;letter-spacing:.5px;margin-bottom:.15rem;}
+.ec-value{font-size:.9rem;color:var(--cream);font-weight:500;line-height:1.4;}
+
+.ec-price{
+  background:var(--gold);color:var(--brown);
+  border-radius:14px;padding:1.2rem 1.4rem;
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:1.6rem;
+}
+.ec-price-num{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;}
+.ec-price-label{font-size:.72rem;font-weight:600;opacity:.7;}
+.ec-included{
+  font-size:.7rem;color:var(--brown);
+  background:rgba(59,31,13,.12);
+  border-radius:100px;padding:.2rem .7rem;
+  font-weight:700;
+}
+
+/* Countdown */
+.countdown-wrap{
+  margin-top:1.6rem;
+  text-align:center;
+}
+.countdown-label{font-size:.65rem;color:rgba(232,168,62,.5);letter-spacing:1px;font-weight:600;margin-bottom:.8rem;}
+.countdown{display:flex;gap:.6rem;justify-content:center;}
+.cd-block{flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(232,168,62,.12);border-radius:12px;padding:.8rem .4rem;}
+.cd-num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--cream);line-height:1;}
+.cd-lbl{font-size:.58rem;color:rgba(232,168,62,.45);margin-top:.2rem;font-weight:600;letter-spacing:.5px;}
+
+/* ── WHAT IS THIS ── */
+#about{background:var(--cream);padding:90px 5%;}
+.section-inner{max-width:1100px;margin:0 auto;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+@media(max-width:800px){.two-col{grid-template-columns:1fr;gap:2.5rem;}}
+
+.s-eyebrow{
+  font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--caramel);margin-bottom:.7rem;
+  display:flex;align-items:center;gap:.6rem;
+}
+.s-eyebrow::before{content:'';display:block;width:20px;height:2px;background:var(--caramel);}
+.s-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,3.5vw,2.5rem);font-weight:900;
+  color:var(--brown);line-height:1.15;margin-bottom:1rem;
+}
+.s-title em{font-style:italic;color:var(--caramel);}
+.s-body p{
+  font-size:.93rem;color:var(--text-muted);line-height:1.85;
+  margin-bottom:.9rem;font-weight:300;
+}
+.s-body p strong{color:var(--brown);font-weight:600;}
+
+.stat-cluster{
+  display:grid;grid-template-columns:1fr 1fr;gap:1rem;
+}
+.sc-item{
+  background:var(--brown);border-radius:18px;
+  padding:1.6rem 1.4rem;
+}
+.sc-num{
+  font-family:'Playfair Display',serif;
+  font-size:2.2rem;font-weight:900;color:var(--gold);
+  line-height:1;margin-bottom:.3rem;
+}
+.sc-label{font-size:.78rem;color:rgba(253,246,236,.5);line-height:1.4;}
+.sc-item.featured{grid-column:span 2;background:var(--caramel);}
+.sc-item.featured .sc-num{color:var(--cream);}
+.sc-item.featured .sc-label{color:rgba(255,255,255,.65);}
+
+/* ── WHY IT MATTERS ── */
+#why{background:var(--brown);padding:90px 5%;}
+#why .s-eyebrow{color:var(--gold);}
+#why .s-eyebrow::before{background:var(--gold);}
+#why .s-title{color:var(--cream);}
+#why .s-title em{color:var(--gold);}
+
+.reasons{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1.2rem;margin-top:3rem;
+}
+@media(max-width:800px){.reasons{grid-template-columns:1fr;}}
+
+.reason-card{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(232,168,62,.1);
+  border-radius:18px;padding:1.8rem;
+  position:relative;overflow:hidden;
+  transition:border-color .25s,background .25s;
+}
+.reason-card:hover{border-color:rgba(232,168,62,.3);background:rgba(255,255,255,.06);}
+.reason-num{
+  font-family:'Playfair Display',serif;
+  font-size:3.5rem;font-weight:900;
+  color:rgba(232,168,62,.08);
+  position:absolute;top:1rem;right:1.2rem;
+  line-height:1;pointer-events:none;
+}
+.reason-icon{font-size:1.5rem;margin-bottom:.9rem;}
+.reason-title{
+  font-family:'Playfair Display',serif;
+  font-size:1rem;font-weight:700;
+  color:var(--cream);margin-bottom:.5rem;
+}
+.reason-desc{font-size:.82rem;color:rgba(253,246,236,.45);line-height:1.7;}
+
+/* ── WHAT YOU LEARN ── */
+#learn{background:var(--tan);padding:90px 5%;}
+
+.learn-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1rem;margin-top:3rem;
+}
+@media(max-width:800px){.learn-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:500px){.learn-grid{grid-template-columns:1fr;}}
+
+.learn-card{
+  background:var(--cream);
+  border:1px solid rgba(196,123,43,.12);
+  border-radius:16px;padding:1.6rem;
+  transition:box-shadow .2s,transform .2s,border-color .2s;
+  position:relative;overflow:hidden;
+}
+.learn-card::after{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--caramel),var(--gold));
+  transform:scaleX(0);transition:transform .3s;transform-origin:left;
+}
+.learn-card:hover{box-shadow:0 12px 32px rgba(59,31,13,.09);transform:translateY(-3px);border-color:var(--caramel);}
+.learn-card:hover::after{transform:scaleX(1);}
+
+.lc-module{
+  font-size:.62rem;font-weight:700;letter-spacing:1.5px;
+  color:var(--caramel);margin-bottom:.5rem;
+}
+.lc-title{
+  font-family:'Playfair Display',serif;
+  font-size:.95rem;font-weight:700;
+  color:var(--brown);margin-bottom:.6rem;line-height:1.3;
+}
+.lc-points{list-style:none;display:flex;flex-direction:column;gap:.4rem;}
+.lc-points li{
+  font-size:.78rem;color:var(--text-muted);
+  line-height:1.5;
+  padding-left:1rem;position:relative;
+}
+.lc-points li::before{
+  content:'→';
+  position:absolute;left:0;color:var(--caramel);font-size:.7rem;
+}
+
+/* Bonus banner */
+.bonus-banner{
+  background:var(--brown);border-radius:18px;
+  padding:2rem 2.4rem;margin-top:2rem;
+  display:flex;align-items:center;gap:2rem;flex-wrap:wrap;
+}
+.bb-icon{font-size:2.2rem;}
+.bb-text{}
+.bb-label{font-size:.65rem;font-weight:700;letter-spacing:1.5px;color:var(--gold);margin-bottom:.25rem;}
+.bb-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--cream);}
+.bb-desc{font-size:.8rem;color:rgba(253,246,236,.45);margin-top:.2rem;}
+
+/* ── WHO IS THIS FOR ── */
+#who{background:var(--cream);padding:90px 5%;}
+.who-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1rem;margin-top:2.5rem;
+}
+@media(max-width:700px){.who-grid{grid-template-columns:1fr;}}
+
+.who-yes,.who-no{
+  border-radius:18px;padding:1.8rem;
+}
+.who-yes{background:rgba(122,140,110,.1);border:1px solid rgba(122,140,110,.25);}
+.who-no{background:rgba(196,91,43,.06);border:1px solid rgba(196,91,43,.15);}
+.who-header{
+  display:flex;align-items:center;gap:.7rem;
+  margin-bottom:1.2rem;
+}
+.who-badge{
+  font-size:.7rem;font-weight:700;letter-spacing:1px;
+  padding:.3rem .8rem;border-radius:100px;
+}
+.who-yes .who-badge{background:rgba(122,140,110,.2);color:var(--sage);}
+.who-no .who-badge{background:rgba(196,91,43,.1);color:var(--rust);}
+.who-list{list-style:none;display:flex;flex-direction:column;gap:.7rem;}
+.who-list li{font-size:.85rem;color:var(--text-muted);padding-left:1.4rem;position:relative;line-height:1.5;}
+.who-yes .who-list li::before{content:'✓';position:absolute;left:0;color:var(--sage);font-weight:700;}
+.who-no .who-list li::before{content:'✗';position:absolute;left:0;color:var(--rust);}
+
+/* ── CTA ── */
+.final-cta{
+  background:linear-gradient(135deg,var(--caramel) 0%,var(--rust) 100%);
+  padding:80px 5%;text-align:center;
+  position:relative;overflow:hidden;
+}
+.final-cta::before{
+  content:'';position:absolute;
+  width:600px;height:600px;border-radius:50%;
+  background:rgba(255,255,255,.04);
+  top:-250px;right:-200px;pointer-events:none;
+}
+.final-cta h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,4vw,3rem);font-weight:900;
+  color:#fff;line-height:1.15;margin-bottom:.8rem;
+  position:relative;z-index:2;
+}
+.final-cta p{
+  font-size:.95rem;color:rgba(255,255,255,.72);
+  max-width:520px;margin:0 auto 2rem;line-height:1.8;
+  position:relative;z-index:2;
+}
+.cta-btns{
+  display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;
+  position:relative;z-index:2;
+}
+.btn-white{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:#fff;color:var(--caramel);
+  padding:.85rem 2rem;border-radius:100px;
+  font-size:.92rem;font-weight:700;text-decoration:none;
+  transition:transform .15s,box-shadow .2s;
+}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.15);}
+.btn-outline-w{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:transparent;color:rgba(255,255,255,.8);
+  padding:.85rem 1.7rem;border-radius:100px;
+  border:1.5px solid rgba(255,255,255,.3);
+  font-size:.9rem;font-weight:500;text-decoration:none;
+  transition:all .2s;
+}
+.btn-outline-w:hover{border-color:#fff;color:#fff;}
+
+/* Seats left */
+.seats-bar{
+  background:rgba(255,255,255,.12);
+  border-radius:100px;padding:.9rem 2rem;
+  display:inline-flex;align-items:center;gap:.8rem;
+  margin-bottom:2rem;font-size:.82rem;color:rgba(255,255,255,.75);
+  position:relative;z-index:2;
+}
+.seats-dot{width:8px;height:8px;border-radius:50%;background:#fff;animation:pulse 1.8s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.85);}}
+
+/* ── FOOTER ── */
+footer{background:var(--dark);padding:2rem 5%;}
+.footer-row{
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:1rem;
+  border-top:1px solid rgba(255,255,255,.07);padding-top:1.5rem;
+}
+.f-logo{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:900;color:var(--cream);}
+.f-logo span{color:var(--gold);}
+.f-copy{font-size:.75rem;color:rgba(253,246,236,.25);}
+.f-links{display:flex;gap:1.5rem;flex-wrap:wrap;}
+.f-links a{font-size:.78rem;color:rgba(253,246,236,.3);text-decoration:none;transition:color .2s;}
+.f-links a:hover{color:var(--gold);}
+
+/* ── PLANNER ── */
+#planner{background:var(--warm);padding:90px 5%;border-top:1px solid rgba(196,123,43,.12);}
+
+.planner-inner{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:5rem;align-items:center;
+}
+@media(max-width:800px){.planner-inner{grid-template-columns:1fr;gap:2.5rem;}}
+
+.planner-mockup{
+  position:relative;
+}
+.planner-cover{
+  background:linear-gradient(145deg,#fce4f0,#f8c8e0);
+  border-radius:16px;
+  padding:2.5rem 2rem;
+  box-shadow:0 24px 60px rgba(59,31,13,.18),0 8px 20px rgba(59,31,13,.08);
+  position:relative;overflow:hidden;
+  transform:rotate(-1.5deg);
+}
+.planner-cover::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.planner-title-block{
+  background:rgba(255,255,255,.6);
+  border-radius:12px;
+  padding:1.8rem 1.5rem;
+  text-align:center;
+  position:relative;z-index:2;
+  backdrop-filter:blur(4px);
+}
+.planner-title-block .pt-big{
+  font-family:'Playfair Display',serif;
+  font-size:2rem;font-weight:900;
+  color:var(--brown);line-height:1.1;
+  margin-bottom:.2rem;
+}
+.planner-title-block .pt-sub{
+  font-size:1.3rem;font-style:italic;
+  color:var(--caramel);font-family:'Playfair Display',serif;
+  font-weight:400;
+}
+.planner-label{
+  position:absolute;top:-12px;right:1.5rem;
+  background:var(--gold);color:var(--brown);
+  font-size:.65rem;font-weight:700;letter-spacing:1px;
+  padding:.3rem .9rem;border-radius:100px;
+  box-shadow:0 4px 12px rgba(232,168,62,.4);
+  z-index:3;
+}
+.planner-tabs{
+  display:flex;flex-direction:column;gap:.6rem;
+  margin-top:1.2rem;position:relative;z-index:2;
+}
+.ptab{
+  background:rgba(255,255,255,.5);border-radius:8px;
+  padding:.5rem .9rem;font-size:.72rem;color:var(--brown);font-weight:500;
+  display:flex;align-items:center;gap:.5rem;
+}
+.ptab-dot{width:6px;height:6px;border-radius:50%;background:var(--caramel);flex-shrink:0;}
+
+.planner-text .s-body p{margin-bottom:.9rem;}
+
+.planner-checklist{
+  margin-top:1.8rem;
+  display:flex;flex-direction:column;gap:.75rem;
+}
+.pc-item{
+  display:flex;align-items:flex-start;gap:.9rem;
+  padding:.9rem 1.1rem;
+  background:var(--cream);
+  border:1px solid rgba(196,123,43,.12);
+  border-radius:12px;
+  transition:border-color .2s,transform .2s;
+}
+.pc-item:hover{border-color:var(--caramel);transform:translateX(4px);}
+.pc-check{
+  width:22px;height:22px;border-radius:6px;
+  background:rgba(122,140,110,.15);
+  border:1.5px solid rgba(122,140,110,.3);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-size:.75rem;margin-top:.05rem;
+}
+.pc-text{font-size:.85rem;color:var(--brown);line-height:1.5;}
+.pc-text strong{font-weight:600;color:var(--brown);}
+.pc-text span{color:var(--text-muted);font-weight:300;}
+
+.planner-note{
+  margin-top:1.5rem;
+  background:rgba(196,123,43,.08);
+  border-left:3px solid var(--caramel);
+  border-radius:0 10px 10px 0;
+  padding:1rem 1.2rem;
+  font-size:.82rem;color:var(--soft-brown,#8C5A2E);
+  line-height:1.7;font-style:italic;
+}
+
+/* ── ANIMATION ── */
+.fade-in{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease;}
+.fade-in.visible{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">Bake<span>Online</span></a>
+  <a href="https://wa.me/256709156390" target="_blank" class="nav-cta">📲 Register Now</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-grain"></div>
+
+  <div class="hero-inner">
+    <div class="hero-text fade-in">
+      <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span>BakeOnline Presents</div>
+      <h1 class="hero-title">
+        <span class="line1">The Beginner Baker's</span>
+        <span class="line2">BUSINESS</span>
+        <span class="line3">MASTERCLASS</span>
+      </h1>
+      <p class="hero-tagline">
+        <strong>Start. Reset. Rebuild.</strong><br/>
+        Most bakers are great at baking. But baking is a business — and a business needs systems, numbers, and a plan. This one-day class gives you all three.
+      </p>
+      <div class="hero-pillars">
+        <span class="pillar-chip">🧮 Costing & Pricing</span>
+        <span class="pillar-chip">📣 Getting Customers</span>
+        <span class="pillar-chip">📋 Managing Your Bakery</span>
+      </div>
+      <div class="hero-btns">
+        <a href="https://wa.me/256709156390" target="_blank" class="btn-gold">Reserve Your Seat →</a>
+        <a href="#learn" class="btn-ghost">See what you'll learn</a>
+      </div>
+    </div>
+
+    <!-- EVENT CARD -->
+    <div class="event-card fade-in" style="transition-delay:.15s;">
+      <div class="ec-badge">📅 Event Details</div>
+
+      <div class="ec-detail">
+        <div class="ec-icon">📆</div>
+        <div>
+          <div class="ec-label">Date</div>
+          <div class="ec-value">Tuesday, 4th November 2026</div>
+        </div>
+      </div>
+      <div class="ec-detail">
+        <div class="ec-icon">🕑</div>
+        <div>
+          <div class="ec-label">Time</div>
+          <div class="ec-value">2:00 PM onwards</div>
+        </div>
+      </div>
+      <div class="ec-detail">
+        <div class="ec-icon">📍</div>
+        <div>
+          <div class="ec-label">Location</div>
+          <div class="ec-value">BakeOnline — Frandy Square,<br/>Ntinda, Room A6-03</div>
+        </div>
+      </div>
+      <div class="ec-detail">
+        <div class="ec-icon">📞</div>
+        <div>
+          <div class="ec-label">Inquiries</div>
+          <div class="ec-value">0709 156 390</div>
+        </div>
+      </div>
+
+      <div class="ec-price">
+        <div>
+          <div class="ec-price-label">Investment</div>
+          <div class="ec-price-num">UGX 45,000</div>
+        </div>
+        <div class="ec-included">Business Planner Included 🎁</div>
+      </div>
+
+      <div class="countdown-wrap">
+        <div class="countdown-label">Time Until the Class</div>
+        <div class="countdown">
+          <div class="cd-block"><div class="cd-num" id="cd-d">--</div><div class="cd-lbl">Days</div></div>
+          <div class="cd-block"><div class="cd-num" id="cd-h">--</div><div class="cd-lbl">Hrs</div></div>
+          <div class="cd-block"><div class="cd-num" id="cd-m">--</div><div class="cd-lbl">Min</div></div>
+          <div class="cd-block"><div class="cd-num" id="cd-s">--</div><div class="cd-lbl">Sec</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-arc"></div>
+</section>
+
+<!-- ── WHAT IS THIS ── -->
+<section id="about">
+  <div class="section-inner">
+    <div class="two-col">
+      <div class="s-body fade-in">
+        <div class="s-eyebrow">About the Class</div>
+        <h2 class="s-title">A full-day reset for your <em>baking business</em></h2>
+        <p>The Beginner Baker's Business Masterclass is a <strong>practical, hands-on workshop</strong> designed for bakers who are ready to stop winging it and start running a real business.</p>
+        <p>Whether you're brand new to baking or you've been doing it for years but still feel like your money isn't adding up — this class was designed for exactly where you are right now.</p>
+        <p>In one afternoon, you will walk away with <strong>clear pricing systems, a customer-finding strategy, and an operations plan</strong> — plus a Business Planner to keep you on track long after the session ends.</p>
+        <p>No jargon. No theory. Just the real stuff that makes a bakery work.</p>
+      </div>
+      <div class="stat-cluster fade-in" style="transition-delay:.1s;">
+        <div class="sc-item">
+          <div class="sc-num">1</div>
+          <div class="sc-label">Afternoon. Everything you need to start running your bakery right.</div>
+        </div>
+        <div class="sc-item">
+          <div class="sc-num">3</div>
+          <div class="sc-label">Core modules. Pricing, customers, and operations covered in depth.</div>
+        </div>
+        <div class="sc-item featured">
+          <div class="sc-num">UGX 45K</div>
+          <div class="sc-label">Total investment — including your Business Planner to take home.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY IT MATTERS ── -->
+<section id="why">
+  <div class="section-inner">
+    <div class="s-eyebrow fade-in">Why This Matters</div>
+    <h2 class="s-title fade-in">Most bakeries don't fail because of bad baking.<br/>They fail because of <em>bad business.</em></h2>
+    <div class="reasons">
+      <div class="reason-card fade-in">
+        <div class="reason-num">01</div>
+        <div class="reason-icon">💸</div>
+        <div class="reason-title">You're working hard and still losing money</div>
+        <div class="reason-desc">When you price by guesswork, your ingredients, labour, and overhead aren't fully covered. You bake more, make less. That's a system problem, not a baking problem.</div>
+      </div>
+      <div class="reason-card fade-in" style="transition-delay:.08s;">
+        <div class="reason-num">02</div>
+        <div class="reason-icon">😰</div>
+        <div class="reason-title">Orders are coming in but profit isn't</div>
+        <div class="reason-desc">Being busy is not the same as being profitable. Without understanding what each order actually costs you, growth can quietly make things worse.</div>
+      </div>
+      <div class="reason-card fade-in" style="transition-delay:.16s;">
+        <div class="reason-num">03</div>
+        <div class="reason-icon">📵</div>
+        <div class="reason-title">You don't have a system — you have a WhatsApp chat</div>
+        <div class="reason-desc">Managing orders in a notebook or messenger thread means things fall through the cracks. One clear system saves you hours every week and protects your reputation.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHAT YOU LEARN ── -->
+<section id="learn">
+  <div class="section-inner">
+    <div class="s-eyebrow fade-in">What You'll Learn</div>
+    <h2 class="s-title fade-in">Three modules. Real results.</h2>
+    <p style="font-size:.92rem;color:var(--text-muted);line-height:1.8;max-width:580px;margin-top:.5rem;" class="fade-in">Everything taught at this masterclass comes from real bakery experience — tested, refined, and built for the Ugandan market.</p>
+
+    <div class="learn-grid">
+
+      <div class="learn-card fade-in">
+        <div class="lc-module">Module 1</div>
+        <div class="lc-title">Costing & Pricing Basics</div>
+        <ul class="lc-points">
+          <li>How to calculate the true cost of every product you bake</li>
+          <li>What profit margin means and how to build it in from the start</li>
+          <li>Pricing for local Uganda market realities</li>
+          <li>How to price without undercutting yourself</li>
+        </ul>
+      </div>
+
+      <div class="learn-card fade-in" style="transition-delay:.08s;">
+        <div class="lc-module">Module 2</div>
+        <div class="lc-title">Finding Customers & Taking Orders</div>
+        <ul class="lc-points">
+          <li>Where your best customers actually are and how to reach them</li>
+          <li>How to present your products so people want to buy</li>
+          <li>Taking and confirming orders professionally</li>
+          <li>Turning one-time buyers into repeat customers</li>
+        </ul>
+      </div>
+
+      <div class="learn-card fade-in" style="transition-delay:.16s;">
+        <div class="lc-module">Module 3</div>
+        <div class="lc-title">Planning & Managing Your Bakery</div>
+        <ul class="lc-points">
+          <li>Building a simple weekly production and order system</li>
+          <li>Tracking money in and money out without an accountant</li>
+          <li>How to handle busy seasons without burning out</li>
+          <li>Setting yourself up to grow without chaos</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="bonus-banner fade-in">
+      <div class="bb-icon">📓</div>
+      <div class="bb-text">
+        <div class="bb-label">Included Free</div>
+        <div class="bb-title">Your BakeOnline Business Planner</div>
+        <div class="bb-desc">Every attendee takes home a physical Business Planner — built specifically for bakery operators to track orders, costs, weekly targets, and growth goals.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PLANNER ── -->
+<section id="planner">
+  <div class="planner-inner">
+
+    <!-- Mockup -->
+    <div class="planner-mockup fade-in">
+      <div class="planner-cover">
+        <div class="planner-label">🎁 Included Free</div>
+        <div class="planner-title-block">
+          <div class="pt-big">Baking Business</div>
+          <div class="pt-sub">Planner</div>
+        </div>
+        <div class="planner-tabs">
+          <div class="ptab"><span class="ptab-dot"></span>Bakery Overview & Concept</div>
+          <div class="ptab"><span class="ptab-dot"></span>Market Analysis & Target Audience</div>
+          <div class="ptab"><span class="ptab-dot"></span>Product Offerings & Menu</div>
+          <div class="ptab"><span class="ptab-dot"></span>Operations & Logistics</div>
+          <div class="ptab"><span class="ptab-dot"></span>Financial Planning</div>
+          <div class="ptab"><span class="ptab-dot"></span>Marketing & Brand Awareness</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Text -->
+    <div class="planner-text fade-in" style="transition-delay:.1s;">
+      <div class="s-eyebrow">Your Bonus Take-Home</div>
+      <h2 class="s-title">You'll also receive a <em>Bakery Business Planner</em></h2>
+      <div class="s-body">
+        <p>Every attendee walks away with a structured Business Planner — not just a notepad, but a working document with practical tables, guided sections, and activities built specifically for bakery operators.</p>
+      </div>
+
+      <div class="planner-checklist">
+        <div class="pc-item">
+          <div class="pc-check">✅</div>
+          <div class="pc-text"><strong>Define your bakery's concept, identity and goals.</strong></div>
+        </div>
+        <div class="pc-item">
+          <div class="pc-check">✅</div>
+          <div class="pc-text"><strong>Understand your market and target customers.</strong></div>
+        </div>
+        <div class="pc-item">
+          <div class="pc-check">✅</div>
+          <div class="pc-text"><strong>Plan your products and menu.</strong></div>
+        </div>
+        <div class="pc-item">
+          <div class="pc-check">✅</div>
+          <div class="pc-text"><strong>Organise sourcing, production and delivery.</strong></div>
+        </div>
+        <div class="pc-item">
+          <div class="pc-check">✅</div>
+          <div class="pc-text"><strong>Plan your setup costs, pricing and finances.</strong></div>
+        </div>
+        <div class="pc-item">
+          <div class="pc-check">✅</div>
+          <div class="pc-text"><strong>Build your marketing and brand awareness.</strong></div>
+        </div>
+      </div>
+
+      <div class="planner-note">
+        We'll guide you through the key sections during the class — so you leave with a real plan you can keep developing as your business grows.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── WHO IS THIS FOR ── -->
+<section id="who">
+  <div class="section-inner">
+    <div class="s-eyebrow fade-in">Who Should Attend</div>
+    <h2 class="s-title fade-in">This class is for you if...</h2>
+    <div class="who-grid">
+      <div class="who-yes fade-in">
+        <div class="who-header"><span class="who-badge">✓ This IS for you</span></div>
+        <ul class="who-list">
+          <li>You're starting a bakery and want to get it right from day one</li>
+          <li>You've been baking for a while but your money doesn't add up</li>
+          <li>You're ready to stop guessing your prices and start calculating them</li>
+          <li>You want to grow your bakery but feel stuck or disorganised</li>
+          <li>You want to sell more but don't know where to find customers</li>
+          <li>You want to take your passion seriously as a real business</li>
+        </ul>
+      </div>
+      <div class="who-no fade-in" style="transition-delay:.1s;">
+        <div class="who-header"><span class="who-badge">✗ This isn't for you if</span></div>
+        <ul class="who-list">
+          <li>You already have clear pricing systems and consistent profit</li>
+          <li>You have a full team handling your operations and finances</li>
+          <li>You're looking for advanced marketing or scaling strategies</li>
+          <li>You're not ready to take action and implement what you learn</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FINAL CTA ── -->
+<div class="final-cta">
+  <div class="seats-bar">
+    <span class="seats-dot"></span>
+    Limited seats available — 4th November 2026
+  </div>
+  <h2>Your bakery deserves to be<br/>profitable, not just passionate.</h2>
+  <p>One afternoon. One investment of UGX 45,000. The clarity to run your bakery like a real business. Don't miss it.</p>
+  <div class="cta-btns">
+    <a href="https://wa.me/256709156390" target="_blank" class="btn-white">📲 Reserve My Seat — UGX 45,000</a>
+    <a href="tel:0709156390" class="btn-outline-w">📞 Call Us</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-row">
+    <div class="f-logo">Bake<span>Online</span></div>
+    <div class="f-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="community.html">Community</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="f-copy">© 2026 BakeOnline. Made in Uganda 🇺🇬</div>
+  </div>
+</footer>
+
+<script>
+/* Countdown to 4 Nov 2026 14:00 EAT (UTC+3) */
+function updateCountdown(){
+  const target = new Date('2026-11-04T11:00:00Z'); // 14:00 EAT = 11:00 UTC
+  const now = new Date();
+  const diff = target - now;
+  if(diff <= 0){
+    document.getElementById('cd-d').textContent='0';
+    document.getElementById('cd-h').textContent='0';
+    document.getElementById('cd-m').textContent='0';
+    document.getElementById('cd-s').textContent='0';
+    return;
+  }
+  const d = Math.floor(diff/86400000);
+  const h = Math.floor((diff%86400000)/3600000);
+  const m = Math.floor((diff%3600000)/60000);
+  const s = Math.floor((diff%60000)/1000);
+  document.getElementById('cd-d').textContent = String(d).padStart(2,'0');
+  document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+  document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+  document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown,1000);
+
+/* Fade-in observer */
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.12});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+
+/* Trigger hero immediately */
+document.querySelectorAll('.hero .fade-in').forEach(el=>{
+  setTimeout(()=>el.classList.add('visible'),80);
+});
+</script>
+</body>
+</html>
