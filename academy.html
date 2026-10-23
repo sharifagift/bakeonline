@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>BakeOnline Academy — Learn the Craft. Build the Business. Access the Tools.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{--cream:#FDF6EC;--warm:#FFFAF3;--brown:#3B1F0D;--caramel:#C47B2B;--gold:#E8A83E;--soft:#8C5A2E;--tan:#F0DFC0;--dark:#1E0F05;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--brown);overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(253,246,236,0.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(196,123,43,0.12);display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:66px;}
+.nav-logo img{height:46px;width:auto;display:block;}
+.nav-logo-text{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--brown);display:none;}
+.nav-logo-text span{color:var(--caramel);}
+.nav-links{display:flex;align-items:center;gap:1.8rem;list-style:none;}
+.nav-links a{text-decoration:none;font-size:0.86rem;font-weight:500;color:var(--brown);transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.cur{color:var(--caramel);}
+.nav-cta{background:var(--brown);color:var(--cream)!important;padding:0.4rem 1.1rem;border-radius:100px;font-size:0.8rem!important;}
+.nav-cta:hover{background:var(--caramel)!important;}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:24px;height:2.5px;background:var(--brown);border-radius:2px;transition:all 0.3s;}
+.hamburger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg);}
+.mobile-menu{display:none;position:fixed;top:66px;left:0;right:0;background:var(--cream);z-index:199;padding:1rem 5% 1.4rem;box-shadow:0 8px 24px rgba(59,31,13,0.1);}
+.mobile-menu.open{display:block;}
+.mobile-menu a{display:block;padding:0.85rem 0;font-size:1rem;font-weight:500;color:var(--brown);text-decoration:none;border-bottom:1px solid rgba(196,123,43,0.1);}
+.mobile-menu a:last-child{border:none;}
+@media(max-width:760px){.nav-links{display:none;}.hamburger{display:flex;}}
+
+/* SHARED */
+section{padding:84px 5%;}
+.label{font-size:0.7rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--caramel);margin-bottom:0.5rem;}
+.title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;line-height:1.15;margin-bottom:0.8rem;}
+.desc{font-size:1rem;color:var(--soft);line-height:1.7;font-weight:300;max-width:560px;}
+.sec-head{margin-bottom:2.8rem;}
+.btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 1.7rem;border-radius:10px;font-size:0.9rem;font-weight:600;text-decoration:none;transition:all 0.2s;}
+.btn-primary{background:var(--caramel);color:#fff;}
+.btn-primary:hover{background:#a8611a;transform:translateY(-2px);}
+.btn-outline{border:1.5px solid rgba(59,31,13,0.22);color:var(--brown);}
+.btn-outline:hover{border-color:var(--caramel);transform:translateY(-2px);}
+.btn-gold{background:var(--gold);color:var(--brown);}
+.btn-gold:hover{background:#f0b84a;transform:translateY(-2px);}
+
+/* HERO */
+#hero{min-height:92vh;display:flex;align-items:center;background:linear-gradient(135deg,var(--brown) 0%,#5a2d0c 100%);padding:110px 5% 70px;position:relative;overflow:hidden;}
+#hero::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(232,168,62,0.12) 0%,transparent 70%);top:-150px;right:-150px;}
+.hero-inner{max-width:760px;position:relative;z-index:2;}
+.hero-tag{display:inline-block;background:rgba(232,168,62,0.15);color:var(--gold);font-size:0.72rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:0.35rem 1rem;border-radius:100px;margin-bottom:1.4rem;}
+h1{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,6vw,4.6rem);font-weight:900;line-height:1.05;color:var(--cream);margin-bottom:1.2rem;}
+h1 em{color:var(--gold);font-style:italic;}
+.hero-sub{font-size:1.05rem;color:rgba(253,246,236,0.65);line-height:1.75;max-width:560px;font-weight:300;margin-bottom:2rem;}
+.hero-promise{display:flex;flex-wrap:wrap;gap:0.6rem;margin-bottom:2.2rem;}
+.hero-promise span{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:var(--cream);font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;padding:0.5rem 1.1rem;border-radius:100px;}
+.hero-btns{display:flex;flex-wrap:wrap;gap:0.8rem;}
+.hero-btns .btn-outline{border-color:rgba(253,246,236,0.3);color:var(--cream);}
+
+/* THREE PILLARS OVERVIEW */
+#overview{background:var(--cream);}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
+.pillar{background:var(--warm);border:1px solid rgba(196,123,43,0.15);border-radius:18px;padding:2rem 1.7rem;text-decoration:none;color:var(--brown);display:flex;flex-direction:column;gap:0.8rem;transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s;}
+.pillar:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(59,31,13,0.1);border-color:var(--caramel);}
+.p-icon{width:52px;height:52px;border-radius:13px;background:var(--tan);display:flex;align-items:center;justify-content:center;font-size:1.5rem;}
+.p-kicker{font-size:0.68rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--caramel);}
+.pillar h3{font-family:'Playfair Display',serif;font-size:1.3rem;line-height:1.25;}
+.pillar p{font-size:0.88rem;color:var(--soft);line-height:1.65;flex:1;}
+.p-link{font-size:0.82rem;font-weight:600;color:var(--caramel);}
+@media(max-width:860px){.pillars{grid-template-columns:1fr;}}
+
+/* DETAIL SECTIONS */
+.detail-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;}
+.card{background:#fff;border:1px solid rgba(196,123,43,0.13);border-radius:16px;padding:1.6rem;transition:box-shadow 0.2s,transform 0.2s;display:flex;flex-direction:column;}
+.card:hover{box-shadow:0 12px 32px rgba(59,31,13,0.09);transform:translateY(-3px);}
+.status{display:inline-block;align-self:flex-start;font-size:0.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:0.22rem 0.7rem;border-radius:100px;margin-bottom:0.8rem;}
+.st-open{background:#D4EDDA;color:#2A6B40;}
+.st-soon{background:var(--tan);color:var(--soft);}
+.card h3{font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:0.5rem;line-height:1.3;}
+.card p{font-size:0.84rem;color:var(--soft);line-height:1.6;flex:1;margin-bottom:1.1rem;}
+.card-btn{align-self:flex-start;font-size:0.8rem;font-weight:600;color:var(--caramel);text-decoration:none;border:1.5px solid var(--caramel);padding:0.4rem 1rem;border-radius:8px;transition:all 0.2s;}
+.card-btn:hover{background:var(--caramel);color:#fff;}
+
+#business{background:var(--warm);}
+#school{background:var(--brown);}
+#school .label{color:var(--gold);}
+#school .title{color:var(--cream);}
+#school .desc{color:rgba(253,246,236,0.6);}
+#resources{background:var(--cream);}
+.future-note{margin-top:1.6rem;font-size:0.84rem;color:var(--soft);font-style:italic;}
+#school .future-note{color:rgba(253,246,236,0.5);}
+
+/* BAKING SCHOOL LEVELS */
+.levels{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2.2rem;position:relative;}
+.level{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:1.5rem 1.3rem;}
+.lvl-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--gold);line-height:1;margin-bottom:0.6rem;}
+.level h3{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--cream);margin-bottom:0.5rem;}
+.level p{font-size:0.8rem;color:rgba(253,246,236,0.55);line-height:1.6;}
+@media(max-width:900px){.levels{grid-template-columns:1fr 1fr;}}
+@media(max-width:520px){.levels{grid-template-columns:1fr;}}
+.skills{display:flex;flex-wrap:wrap;gap:0.55rem;}
+.skills span{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);color:rgba(253,246,236,0.8);font-size:0.8rem;padding:0.4rem 0.9rem;border-radius:100px;}
+.skills-title{font-size:0.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;}
+
+/* RESOURCE HUB */
+.res-card .rtag{font-size:0.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--caramel);margin-bottom:0.5rem;}
+
+/* COMPLETE BAKER */
+#baker{background:var(--warm);text-align:center;}
+.baker-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:1rem;align-items:center;max-width:900px;margin:2.5rem auto 0;}
+.bf-box{background:#fff;border:1px solid rgba(196,123,43,0.15);border-radius:14px;padding:1.3rem 1rem;}
+.bf-box .bf-icon{font-size:1.6rem;margin-bottom:0.4rem;}
+.bf-box h4{font-family:'Playfair Display',serif;font-size:1rem;margin-bottom:0.3rem;}
+.bf-box p{font-size:0.78rem;color:var(--soft);line-height:1.5;}
+.bf-arrow{font-size:1.4rem;color:var(--caramel);}
+@media(max-width:760px){.baker-flow{grid-template-columns:1fr;}.bf-arrow{transform:rotate(90deg);}}
+
+/* FINAL CTA */
+#cta{background:var(--brown);text-align:center;padding:96px 5%;}
+#cta .title{color:var(--cream);}
+#cta p{color:rgba(253,246,236,0.55);margin-bottom:2rem;font-weight:300;}
+.cta-btns{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;}
+.cta-btns .btn-outline{border-color:rgba(253,246,236,0.3);color:var(--cream);}
+
+footer{background:var(--dark);padding:2.4rem 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.2rem;}
+footer a{color:rgba(253,246,236,0.45);text-decoration:none;font-size:0.82rem;margin-right:1.3rem;}
+footer a:hover{color:var(--gold);}
+.copy{font-size:0.74rem;color:rgba(253,246,236,0.25);}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="logo.png" alt="BakeOnline" onerror="this.style.display='none';document.getElementById('nlt').style.display='block'"/>
+    <span class="nav-logo-text" id="nlt">Bake<span>Online</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="academy.html" class="cur">Academy</a></li>
+    <li><a href="calculator.html">Tools</a></li>
+    <li><a href="index.html#guides">Guides</a></li>
+    <li><a href="index.html#community">Community</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="calculator.html" class="nav-cta">Try Calculator →</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="#business" onclick="closeMenu()">Profitable Bakers Programs</a>
+  <a href="#school" onclick="closeMenu()">Baking School</a>
+  <a href="#resources" onclick="closeMenu()">Resource Hub</a>
+  <a href="calculator.html">Tools</a>
+  <a href="shop.html">Shop</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">BakeOnline Academy</div>
+    <h1>Learn the Craft.<br/>Build the <em>Business.</em><br/>Access the Tools.</h1>
+    <p class="hero-sub">One Academy that develops a complete baker — skilled in the kitchen, strong in business, and equipped to execute.</p>
+    <div class="hero-btns">
+      <a href="#overview" class="btn btn-gold">Explore the Academy</a>
+      <a href="index.html#community" class="btn btn-outline">Join the Community</a>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW -->
+<section id="overview">
+  <div class="sec-head">
+    <p class="label">Three Pillars</p>
+    <h2 class="title">One Academy. Three ways to grow.</h2>
+    <p class="desc">Every baker needs craft, business capability, and the right tools. The Academy covers all three.</p>
+  </div>
+  <div class="pillars">
+    <a href="#business" class="pillar">
+      <div class="p-icon">📈</div>
+      <div class="p-kicker">Business</div>
+      <h3>The Profitable Bakers Programs</h3>
+      <p>Learn the business of baking. Build, manage and grow your bakery as a real business.</p>
+      <span class="p-link">View programs →</span>
+    </a>
+    <a href="#school" class="pillar">
+      <div class="p-icon">🎂</div>
+      <div class="p-kicker">Skills</div>
+      <h3>BakeOnline Baking School</h3>
+      <p>Master the craft of baking — from fundamentals to professional practical training.</p>
+      <span class="p-link">View the school →</span>
+    </a>
+    <a href="#resources" class="pillar">
+      <div class="p-icon">🧰</div>
+      <div class="p-kicker">Resources</div>
+      <h3>BakeOnline Resource Hub</h3>
+      <p>Tools, templates and guides that help you implement what you learn.</p>
+      <span class="p-link">Open the hub →</span>
+    </a>
+  </div>
+</section>
+
+<!-- 1. PROFITABLE BAKERS PROGRAMS -->
+<section id="business">
+  <div class="sec-head">
+    <p class="label">1 · Business</p>
+    <h2 class="title">The Profitable Bakers Programs</h2>
+    <p class="desc">This is where we teach bakers how to build, manage and grow the bakery as a business.</p>
+  </div>
+  <div class="detail-grid">
+    <div class="card">
+      <span class="status st-open">Open</span>
+      <h3>Profitable Bakers Training</h3>
+      <p>The core business training — pricing, costing, profit and the foundations of a structured, profitable bakery.</p>
+      <a href="index.html#community" class="card-btn">Register interest →</a>
+    </div>
+    <div class="card">
+      <span class="status st-soon">Coming soon</span>
+      <h3>Bakery Systems Implementation Program</h3>
+      <p>Hands-on support to put production, ordering and operations systems into your bakery.</p>
+      <a href="index.html#community" class="card-btn">Join waitlist →</a>
+    </div>
+    <div class="card">
+      <span class="status st-soon">Coming soon</span>
+      <h3>Business Growth Mentorship</h3>
+      <p>Ongoing guidance to help you make better decisions and grow with confidence.</p>
+      <a href="index.html#community" class="card-btn">Join waitlist →</a>
+    </div>
+    <div class="card">
+      <span class="status st-soon">Coming soon</span>
+      <h3>Consultations</h3>
+      <p>One-on-one sessions focused on your bakery's specific challenges.</p>
+      <a href="index.html#community" class="card-btn">Join waitlist →</a>
+    </div>
+    <div class="card">
+      <span class="status st-soon">Coming soon</span>
+      <h3>Business Masterclasses</h3>
+      <p>Focused deep-dives on the topics that move bakery businesses forward.</p>
+      <a href="index.html#community" class="card-btn">Join waitlist →</a>
+    </div>
+  </div>
+  <p class="future-note">Later: advanced programs in leadership, finance, sales, marketing and scaling.</p>
+</section>
+
+<!-- 2. BAKING SCHOOL -->
+<section id="school">
+  <div class="sec-head">
+    <p class="label">2 · Skills</p>
+    <h2 class="title">BakeOnline Baking School</h2>
+    <p class="desc">The section that actually teaches how to bake — for beginners through advanced practical training.</p>
+  </div>
+  <div class="levels">
+    <div class="level"><div class="lvl-num">01</div><h3>Foundation</h3><p>Baking fundamentals for beginners. Build the base every baker needs.</p></div>
+    <div class="level"><div class="lvl-num">02</div><h3>Intermediate</h3><p>Develop range and consistency across cakes, pastries and breads.</p></div>
+    <div class="level"><div class="lvl-num">03</div><h3>Professional</h3><p>Production techniques and finishing standards for commercial work.</p></div>
+    <div class="level"><div class="lvl-num">04</div><h3>Masterclasses</h3><p>Regional and master classes on advanced, specialised skills.</p></div>
+  </div>
+  <div class="skills-title">What we teach</div>
+  <div class="skills">
+    <span>Baking fundamentals</span><span>Cake decorating</span><span>Fondant</span><span>Buttercream</span>
+    <span>Pastries</span><span>Breads</span><span>Desserts</span><span>Recipe development</span>
+    <span>Production techniques</span><span>Regional classes</span><span>Master classes</span>
+  </div>
+  <div style="margin-top:2rem;"><a href="index.html#community" class="btn btn-gold">Join the waitlist →</a></div>
+</section>
+
+<!-- 3. RESOURCE HUB -->
+<section id="resources">
+  <div class="sec-head">
+    <p class="label">3 · Resources</p>
+    <h2 class="title">BakeOnline Resource Hub</h2>
+    <p class="desc">The practical library supporting both sides of the Academy — tools to help you implement.</p>
+  </div>
+  <div class="detail-grid">
+    <div class="card res-card">
+      <div class="rtag">Live</div>
+      <h3>🧮 Costing Calculators</h3>
+      <p>Pricing Calculator for real ingredient, labour, packaging and overhead costs.</p>
+      <a href="calculator.html" class="card-btn">Use calculator →</a>
+    </div>
+    <div class="card res-card">
+      <div class="rtag">Free download</div>
+      <h3>📊 Profit Tracker</h3>
+      <p>Monthly income, expense and profit tracking template for your bakery.</p>
+      <a href="profit-tracker.xlsx" download class="card-btn">Download →</a>
+    </div>
+    <div class="card res-card">
+      <div class="rtag">Ebooks</div>
+      <h3>📘 Ebooks & Guides</h3>
+      <p>Pricing Ebook and Bakery Systems Guide — practical and immediately actionable.</p>
+      <a href="index.html#guides" class="card-btn">View guides →</a>
+    </div>
+    <div class="card res-card">
+      <div class="rtag">Coming soon</div>
+      <h3>📋 Templates, SOPs & Checklists</h3>
+      <p>Ready-to-use documents to standardise how your bakery runs.</p>
+      <a href="index.html#community" class="card-btn">Join waitlist →</a>
+    </div>
+    <div class="card res-card">
+      <div class="rtag">Coming soon</div>
+      <h3>📖 Recipe Books & Baking Guides</h3>
+      <p>Tested recipes and step-by-step guides for consistent results.</p>
+      <a href="index.html#community" class="card-btn">Join waitlist →</a>
+    </div>
+    <div class="card res-card">
+      <div class="rtag">Coming soon</div>
+      <h3>🎥 Recorded Classes</h3>
+      <p>Watch and learn at your own pace with recorded lessons and downloadable resources.</p>
+      <a href="index.html#community" class="card-btn">Join waitlist →</a>
+    </div>
+  </div>
+</section>
+
+<!-- COMPLETE BAKER -->
+<section id="baker">
+  <p class="label">The Complete Baker</p>
+  <h2 class="title">Craft. Business. Execution.</h2>
+  <p class="desc" style="margin:0 auto;">The Academy develops a complete baker.</p>
+  <div class="baker-flow">
+    <div class="bf-box"><div class="bf-icon">🎂</div><h4>Baking School</h4><p>Develops your craft</p></div>
+    <div class="bf-arrow">+</div>
+    <div class="bf-box"><div class="bf-icon">📈</div><h4>Profitable Bakers</h4><p>Develops your business capability</p></div>
+    <div class="bf-arrow">+</div>
+    <div class="bf-box"><div class="bf-icon">🧰</div><h4>Resource Hub</h4><p>Gives you the tools to execute</p></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <h2 class="title">Learn the Craft. Build the Business. Access the Tools.</h2>
+  <p>Start with the calculator today, and join the community to hear first when programs open.</p>
+  <div class="cta-btns">
+    <a href="calculator.html" class="btn btn-gold">🧮 Use the Calculator</a>
+    <a href="index.html#community" class="btn btn-outline">👥 Join the Community</a>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <a href="index.html">Home</a><a href="calculator.html">Tools</a><a href="shop.html">Shop</a><a href="index.html#community">Community</a>
+  </div>
+  <div class="copy">© 2026 BakeOnline · bakeonline.co</div>
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');document.getElementById('hamburger').classList.toggle('open');}
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');document.getElementById('hamburger').classList.remove('open');}
+</script>
+</body>
+</html>
