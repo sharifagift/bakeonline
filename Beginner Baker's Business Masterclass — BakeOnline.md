@@ -17,13 +17,13 @@ Most bakers are great at baking. But baking is a business — and a business nee
 
 Date
 
-Tuesday, 4th November 2026
+Saturday, 5th December 2026
 
 🕑
 
 Time
 
-2:00 PM onwards
+9:00 AM onwards
 
 📍
 
@@ -225,7 +225,7 @@ Who Should Attend
 - You're looking for advanced marketing or scaling strategies
 - You're not ready to take action and implement what you learn
 
-Limited seats available — 4th November 2026
+Limited seats available — 5th December 2026
 
 ## Your bakery deserves to be profitable, not just passionate.
 
