@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Resources — BakeOnline</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--d:#3D2008;--m:#6B3A16;--w:#9B5E2A;--g:#C9963A;--gl:#E8BD72;--gp:#F5E4C0;--c:#FDF6EC;--cd:#F4EAD8;--t:#2C1A0E;--tl:#7A5C3E}
+body{font-family:'DM Sans',sans-serif;background:var(--c);color:var(--t)}
+.hero{background:var(--d);padding:64px 24px 54px;text-align:center;border-bottom:4px solid var(--g);background-image:radial-gradient(ellipse 80% 60% at 50% 0,rgba(201,150,58,.2),transparent 70%)}
+.pill{display:inline-block;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--g);border:1px solid var(--g);padding:6px 18px;border-radius:50px;margin-bottom:22px}
+h1,h2,h3{font-family:'Playfair Display',serif}
+.hero h1{color:#fff;font-size:clamp(2rem,5vw,3.2rem);line-height:1.2;max-width:700px;margin:0 auto 14px}
+.hero h1 span{color:var(--gl);font-style:italic}
+.hero p{color:rgba(255,255,255,.72);max-width:520px;margin:0 auto 26px;line-height:1.7;font-size:15px}
+.nav{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.nav a{color:var(--gp);font-size:13px;font-weight:600;text-decoration:none;padding:8px 16px;border:1px solid rgba(232,189,114,.4);border-radius:50px}
+.nav a:hover{background:var(--g);color:var(--d)}
+.sec{max-width:1080px;margin:0 auto;padding:60px 24px}
+.lbl{text-align:center;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--g);margin-bottom:8px}
+.ttl{text-align:center;font-size:clamp(1.6rem,3vw,2.3rem);color:var(--d);margin-bottom:10px}
+.sub{text-align:center;font-size:14px;color:var(--tl);max-width:540px;margin:0 auto 44px;line-height:1.7}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:24px}
+.card{background:#fff;border-radius:16px;border:1px solid rgba(201,150,58,.2);box-shadow:0 4px 22px rgba(61,32,8,.08);display:flex;flex-direction:column;overflow:hidden;transition:.25s}
+.card:hover{transform:translateY(-5px);box-shadow:0 12px 36px rgba(61,32,8,.15)}
+.top{padding:26px 24px 18px;background:var(--cd);border-bottom:2px solid var(--gp);position:relative}
+.tag{position:absolute;top:16px;right:16px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 11px;border-radius:50px;color:#fff;background:var(--g)}
+.tag.paid{background:var(--d)}
+.ic{font-size:36px;display:block;margin-bottom:10px}
+.type{font-size:10.5px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--w);margin-bottom:6px}
+.card h3{font-size:1.25rem;color:var(--d);margin-bottom:8px}
+.card p{font-size:13.5px;color:var(--tl);line-height:1.65}
+.body{padding:18px 24px;flex:1}
+.body ul{list-style:none;display:grid;gap:7px}
+.body li{font-size:13px;display:flex;gap:8px;line-height:1.5}
+.body li:before{content:'✦';color:var(--g);font-size:10px;margin-top:3px}
+.foot{padding:16px 24px 22px;border-top:1px solid var(--gp)}
+.price{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--d);margin-bottom:10px}
+.btn{display:flex;justify-content:center;align-items:center;gap:8px;width:100%;padding:13px;background:var(--d);color:#fff;font:600 13.5px 'DM Sans',sans-serif;border-radius:10px;text-decoration:none;border:0;cursor:pointer;transition:.2s}
+.btn:hover{background:var(--m)}
+.btn.gold{background:var(--g);color:var(--d)}.btn.gold:hover{background:var(--gl)}
+/* calculator */
+.calc-wrap{background:var(--d);padding:60px 24px}
+.calc-in{max-width:1000px;margin:0 auto}
+.calc-wrap .ttl{color:#fff}.calc-wrap .ttl span{color:var(--gl);font-style:italic}
+.calc-wrap .sub{color:rgba(255,255,255,.65);margin-bottom:30px}
+.purpose{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:30px}
+.purpose div{background:rgba(255,255,255,.07);border:1px solid rgba(232,189,114,.25);border-radius:12px;padding:16px;color:#fff;font-size:13px;line-height:1.55}
+.purpose b{display:block;color:var(--gl);margin-bottom:4px;font-size:13.5px}
+.calc{display:grid;grid-template-columns:1.5fr 1fr;gap:22px}
+@media(max-width:800px){.calc{grid-template-columns:1fr}}
+.panel{background:#fff;border-radius:16px;padding:22px}
+.panel h4{font-family:'Playfair Display',serif;color:var(--d);font-size:1.1rem;margin-bottom:12px}
+.row{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:6px;margin-bottom:6px}
+.row.h span{font-size:10.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--w)}
+input{width:100%;padding:9px 10px;border:1px solid #dcc9aa;border-radius:8px;font:13px 'DM Sans',sans-serif;background:var(--c);color:var(--t)}
+input:focus{outline:2px solid var(--g);border-color:var(--g)}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.f2 label{font-size:11.5px;font-weight:600;color:var(--tl);display:block;margin-bottom:4px}
+.add{background:none;border:1px dashed var(--g);color:var(--w);padding:7px 12px;border-radius:8px;font:600 12px 'DM Sans';cursor:pointer;margin-top:4px}
+.res div{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--gp);font-size:13.5px}
+.res b{color:var(--d)}
+.big{background:var(--d);color:#fff;border-radius:12px;padding:16px;margin:14px 0;text-align:center}
+.big small{display:block;color:var(--gl);font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+.big strong{font:900 1.8rem 'Playfair Display',serif}
+.note{font-size:11.5px;color:var(--tl);line-height:1.5}
+/* course */
+.course{background:linear-gradient(135deg,var(--d),var(--m));border-radius:20px;padding:40px;color:#fff;display:grid;grid-template-columns:1.3fr 1fr;gap:34px;align-items:center}
+@media(max-width:800px){.course{grid-template-columns:1fr;padding:28px 22px}}
+.course h3{font-size:1.9rem;margin:8px 0 12px}
+.course p{color:rgba(255,255,255,.75);line-height:1.7;font-size:14px;margin-bottom:16px}
+.course ol{padding-left:18px;display:grid;gap:7px;font-size:13.5px;color:var(--gp)}
+.cbox{background:rgba(255,255,255,.08);border:1px solid rgba(232,189,114,.3);border-radius:16px;padding:24px;text-align:center}
+.cbox .price{color:var(--gl);font-size:2rem}
+.cbox .btn{margin-bottom:10px}
+.cbox small{color:rgba(255,255,255,.6);font-size:12px;line-height:1.5;display:block}
+.how{background:var(--cd);padding:50px 24px;text-align:center}
+.steps{max-width:900px;margin:26px auto 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:22px}
+.n{width:46px;height:46px;border-radius:50%;background:var(--g);color:var(--d);font:900 1.3rem 'Playfair Display';display:flex;align-items:center;justify-content:center;margin:0 auto 10px}
+.steps b{display:block;font-size:13.5px;margin-bottom:4px}.steps span{font-size:12.5px;color:var(--tl)}
+.fs{background:var(--g);padding:20px;text-align:center;font-size:13px;font-weight:600;color:var(--d)}
+
+.cw{display:grid;grid-template-columns:1.1fr 1fr;gap:22px;align-items:start}
+@media(max-width:860px){.cw{grid-template-columns:1fr}}
+.cl,.cr{border-radius:18px;padding:26px}
+.cl{background:rgba(255,255,255,.07);border:1px solid rgba(232,189,114,.25);color:#fff}
+.cl h3{font-size:1.3rem;color:var(--gl);margin-bottom:6px}.cd{font-size:13.5px;color:rgba(255,255,255,.7);line-height:1.6;margin-bottom:18px}
+.sts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+@media(max-width:480px){.sts{grid-template-columns:1fr}}
+.st{display:flex;gap:10px;align-items:center;background:rgba(0,0,0,.18);border-radius:12px;padding:10px 12px}
+.st span{font-size:20px;width:36px;height:36px;border-radius:10px;background:rgba(232,189,114,.18);display:flex;align-items:center;justify-content:center;flex:none}
+.st b{display:block;font-size:13px}.st small{font-size:11.5px;color:rgba(255,255,255,.6)}
+.ft{list-style:none;display:grid;gap:7px;margin-bottom:20px}.ft li{font-size:13px;color:var(--gp);display:flex;gap:8px}.ft li:before{content:'✓';color:var(--gl);font-weight:700}
+.go{display:inline-flex;width:auto;padding:14px 28px}
+.cr{background:#fff}
+.qh b{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--d);display:block}.qh small{font-size:12px;color:var(--tl)}
+.qg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.qg label{font-size:11.5px;font-weight:600;color:var(--tl)}.qg label b{color:var(--d)}.qg input{margin-top:4px}
+.qg label:last-child{grid-column:1/-1}.qg input[type=range]{padding:0;accent-color:var(--g)}
+.qp{background:var(--d);border-radius:14px;padding:14px;text-align:center;color:#fff}.qp small{display:block;color:var(--gl);font-size:11px;letter-spacing:2px;text-transform:uppercase}.qp strong{font:900 1.9rem 'Playfair Display',serif}
+.qb{display:flex;height:12px;border-radius:12px;overflow:hidden;margin:14px 0 8px;background:var(--cd)}.qb i{display:block;height:100%;transition:.3s}#qbc{background:var(--d)}#qbp{background:var(--g)}
+.ql{display:flex;justify-content:space-between;font-size:12px;color:var(--tl)}.ql u{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--d);margin-right:5px}.ql u.g{background:var(--g)}.ql b{color:var(--d);margin-left:4px}
+.qm{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.qm div{background:var(--cd);border-radius:10px;padding:10px 4px;text-align:center;font-size:10.5px;color:var(--tl)}.qm b{display:block;font-size:12.5px;color:var(--d);margin-top:2px}
+</style></head><body>
+
+<section class="hero">
+ <div class="pill">BakeOnline Resource Hub</div>
+ <h1>From Guesswork to Clarity, <span>From Passion to Profit</span></h1>
+ <p>Free tools, a live baking calculator, paid guides and our Profitable Baker course — everything to run your bakery like a business.</p>
+ <div class="nav"><a href="#free">Free Tools</a><a href="#calculator">Baking Calculator</a><a href="#guides">Guides & Cookbook</a><a href="#course">Course</a></div>
+</section>
+
+<!-- FREE -->
+<div class="sec" id="free">
+ <div class="lbl">Free Downloads</div><h2 class="ttl">Free Starter Tools</h2>
+ <p class="sub">Click and download instantly. No account needed.</p>
+ <div class="grid">
+  <div class="card"><div class="top"><span class="tag">Free</span><span class="ic">📦</span><div class="type">Excel</div><h3>Order Tracker</h3><p>Log every order from request to delivery. Never miss a deadline.</p></div>
+   <div class="body"><ul><li>Auto-calculated order totals</li><li>Payment and delivery status</li><li>Summary dashboard</li></ul></div>
+   <div class="foot"><a class="btn" href="BakeOnline_Order_Tracker.xlsx" download>⬇ Download Order Tracker</a></div></div>
+  <div class="card"><div class="top"><span class="tag">Free</span><span class="ic">💰</span><div class="type">Excel</div><h3>Profit Tracker</h3><p>See what you earn and spend each month, and your real margin.</p></div>
+   <div class="body"><ul><li>12-month revenue and cost view</li><li>Auto net profit and margin %</li><li>Annual totals</li></ul></div>
+   <div class="foot"><a class="btn" href="BakeOnline_Profit_Tracker.xlsx" download>⬇ Download Profit Tracker</a></div></div>
+  <div class="card"><div class="top"><span class="tag">Free</span><span class="ic">👤</span><div class="type">Guide + Template</div><h3>Customer Profiling Guide</h3><p>Step-by-step guide to knowing who your customers are and why they buy.</p></div>
+   <div class="body"><ul><li>5-step profiling framework</li><li>Fill-in customer profile sheet</li><li>Loyalty tiers</li></ul></div>
+   <div class="foot"><a class="btn" href="BakeOnline_Customer_Profiling_Guide.xlsx" download>⬇ Download Guide</a></div></div>
+ </div>
+</div>
+
+<!-- CALCULATOR -->
+<div class="calc-wrap" id="calculator"><div class="calc-in">
+ <div class="lbl">Free Online Tool</div><h2 class="ttl">The Baking <span>Pricing Calculator</span></h2>
+ <p class="sub">Know the real cost of every cake. Then set a price that gives you profit.</p>
+ <div class="cw">
+  <div class="cl">
+   <h3>What it works out for you</h3>
+   <p class="cd">Add every cost, step by step. The calculator finds the cost of exactly what you use.</p>
+   <div class="sts"><div class="st"><span>🍰</span><div><b>1. Cake base</b><small>Flour, sugar, eggs, butter</small></div></div><div class="st"><span>🎨</span><div><b>2. Icing</b><small>Buttercream, fondant, cream</small></div></div><div class="st"><span>✨</span><div><b>3. Decorations</b><small>Sprinkles, chocolate, prints</small></div></div><div class="st"><span>💎</span><div><b>4. Accessories</b><small>Toppers, skewers, boards</small></div></div><div class="st"><span>📦</span><div><b>5. Packaging</b><small>Box, ribbon, labels</small></div></div><div class="st"><span>⏱</span><div><b>6. Labour</b><small>Your time or worker pay</small></div></div><div class="st"><span>🏠</span><div><b>7. Overhead</b><small>Gas, power, rent, transport</small></div></div><div class="st"><span>📈</span><div><b>8. Profit</b><small>Choose % or a fixed amount</small></div></div></div>
+   <ul class="ft"><li>Real cost per gram, per ml and per piece</li><li>8 currencies, including UGX and KSh</li><li>Shows your total cost, your profit and your price</li></ul>
+   <a class="btn gold go" href="https://bakeonline.co/calculator.html" target="_blank" rel="noopener">Open the Full Calculator →</a>
+  </div>
+  <div class="cr">
+   <div class="qh"><b>⚡ Quick price check</b><small>A fast guess. Use the full calculator for exact costs.</small></div>
+   <div class="qg">
+    <label>Ingredients (UGX)<input id="q1" type="number" value="25000" oninput="q()"></label>
+    <label>Packaging (UGX)<input id="q2" type="number" value="3000" oninput="q()"></label>
+    <label>Your time (UGX)<input id="q3" type="number" value="9000" oninput="q()"></label>
+    <label>Gas and power (UGX)<input id="q4" type="number" value="5000" oninput="q()"></label>
+    <label>How many items<input id="q5" type="number" value="12" oninput="q()"></label>
+    <label>Profit you want: <b id="q6v">40%</b><input id="q6" type="range" min="5" max="80" value="40" oninput="q()"></label>
+   </div>
+   <div class="qp"><small>Price to charge per item</small><strong id="qpu">0</strong></div>
+   <div class="qb"><i id="qbc"></i><i id="qbp"></i></div>
+   <div class="ql"><span><u></u>Cost <b id="qt">0</b></span><span><u class="g"></u>Profit <b id="qf">0</b></span></div>
+   <div class="qm"><div>Cost per item<b id="qcu">0</b></div><div>Profit per item<b id="qfu">0</b></div><div>Total price<b id="qp">0</b></div></div>
+  </div>
+ </div>
+</div></div>
+
+<!-- PAID GUIDES -->
+<div class="sec" id="guides">
+ <div class="lbl">Premium Guides</div><h2 class="ttl">Guides & Cookbook</h2>
+ <p class="sub">Practical, bakery-tested notes. Order, pay, and receive your copy.</p>
+ <div class="grid">
+  <div class="card"><div class="top"><span class="tag paid">Paid</span><span class="ic">🏷️</span><div class="type">PDF Guide</div><h3>Pricing Guide</h3><p>Price your products with confidence so every sale makes money.</p></div>
+   <div class="body"><ul><li>How to calculate true cost</li><li>Margins, markups and discounts</li><li>Pricing custom, bulk and corporate orders</li></ul></div>
+   <div class="foot"><div class="price" data-price="pricing"></div><a class="btn gold" data-buy="Pricing Guide">Buy Pricing Guide</a></div></div>
+  <div class="card"><div class="top"><span class="tag paid">Paid</span><span class="ic">⚙️</span><div class="type">PDF Guide</div><h3>Systems Starter Guide</h3><p>Put simple systems in place so your bakery runs without chaos.</p></div>
+   <div class="body"><ul><li>The core bakery operational systems</li><li>Simple checklists and routines</li><li>Start small, scale steadily</li></ul></div>
+   <div class="foot"><div class="price" data-price="systems"></div><a class="btn gold" data-buy="Systems Starter Guide">Buy Systems Guide</a></div></div>
+  <div class="card"><div class="top"><span class="tag paid">Paid</span><span class="ic">🍪</span><div class="type">Recipe Book</div><h3>Our Cookies Cookbook</h3><p>Our cookie recipes, written for consistent results and healthy margins.</p></div>
+   <div class="body"><ul><li>Tested recipes with exact quantities</li><li>How many each recipe makes, and how to store</li><li>Costing notes for each recipe</li></ul></div>
+   <div class="foot"><div class="price" data-price="cookbook"></div><a class="btn gold" data-buy="Cookies Cookbook">Buy Cookbook</a></div></div>
+  <div class="card"><div class="top"><span class="tag paid">Paid</span><span class="ic">📝</span><div class="type">Excel Planner</div><h3>Beginner Baker's Business Planner</h3><p>Plan your bakery from idea to first customers, with costs and break-even worked out.</p></div>
+   <div class="body"><ul><li>Business snapshot: product, customer, goals</li><li>Startup costs with funding gap</li><li>Product pricing and profit margins</li><li>Monthly budget and break-even orders</li><li>90-day action plan</li></ul></div>
+   <div class="foot"><div class="price" data-price="planner"></div><a class="btn gold" data-buy="Beginner Baker's Business Planner">Buy Planner</a></div></div>
+ </div>
+</div>
+
+<!-- COURSE -->
+<div class="sec" id="course" style="padding-top:0">
+ <div class="course">
+  <div><div class="pill" style="margin:0">Course</div>
+   <h3>The Profitable Baker Training</h3>
+   <p>The full Profitable Baker training, with notes and session materials, available to study at your own pace.</p>
+   <ol><li>Know your costs</li><li>Price for profit</li><li>Build simple systems</li><li>Understand and keep your customers</li></ol></div>
+  <div class="cbox"><div class="price" data-price="course"></div>
+   <a class="btn gold" data-buy="Profitable Baker Course">Enrol Now</a>
+   <small>Access details are sent after payment confirmation.</small></div>
+ </div>
+</div>
+
+<div class="how"><h2 class="ttl">How Buying Works</h2>
+ <div class="steps">
+  <div><div class="n">1</div><b>Choose</b><span>Pick a guide, cookbook or the course</span></div>
+  <div><div class="n">2</div><b>Pay</b><span>MTN MoMo or Airtel Money</span></div>
+  <div><div class="n">3</div><b>Receive</b><span>Get your files or course access</span></div>
+  <div><div class="n">4</div><b>Apply</b><span>Use it in your bakery this week</span></div>
+ </div></div>
+<div class="fs">Professionalising bakeries, one tool at a time · BakeOnline</div>
+
+<script>
+/* ===== EDIT THESE ===== */
+const WHATSAPP = "256700000000";  // your number, country code, no + or spaces
+const PRICES = {pricing:"", systems:"", cookbook:"", planner:"", course:""}; // e.g. "UGX 25,000"
+/* ====================== */
+document.querySelectorAll('[data-price]').forEach(e=>{e.textContent=PRICES[e.dataset.price]||'';if(!PRICES[e.dataset.price])e.remove()});
+document.querySelectorAll('[data-buy]').forEach(a=>{
+ a.href="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent("Hello BakeOnline, I'd like to buy: "+a.dataset.buy);a.target="_blank";a.rel="noopener"});
+const qf=n=>"UGX "+Math.round(n).toLocaleString();
+function q(){const g=i=>+document.getElementById(i).value||0,$=i=>document.getElementById(i);
+ const c=g('q1')+g('q2')+g('q3')+g('q4'),n=Math.max(g('q5'),1),m=g('q6')/100,p=c/(1-m),f=p-c;
+ $('q6v').textContent=g('q6')+'%';$('qpu').textContent=qf(p/n);$('qt').textContent=qf(c);$('qf').textContent=qf(f);
+ $('qcu').textContent=qf(c/n);$('qfu').textContent=qf(f/n);$('qp').textContent=qf(p);
+ $('qbc').style.width=(c>0?100-m*100:100)+'%';$('qbp').style.width=(c>0?m*100:0)+'%'}
+q();
+</script></body></html>
